@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chandler4.com | Homepage</title>
+    <meta name="description" content="Chandler S. White IV, GISP - Geographic Information Science Professional specializing in spatial analysis, conservation ecology, and species distribution modeling.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            color: white;
+            padding: 4rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero h2 {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #4a7c59;
+            border-left: 4px solid #4a7c59;
+            text-align: center;
+        }
+
+        .intro-section h3 {
+            color: #2d5016;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .expertise-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .expertise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .expertise-card h4 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .expertise-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .navigation-section {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .navigation-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .navigation-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .nav-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .nav-card p {
+            opacity: 0.9;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .nav-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .credentials {
+            background: #f8fffe;
+            border: 1px solid #a3febf;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .credentials h4 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .credential-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #4a7c59;
+            border-left: 3px solid #4a7c59;
+            font-size: 0.95rem;
+        }
+
+        .credential-item strong {
+            color: #2d5016;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        footer p {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #4a7c59;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .expertise-overview, .nav-grid, .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 3rem 0;
+            }
+
+            main {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="interactive_habitat_map.html" target="_blank">Interactive Map</a></li>
+                <li><a href="cv.html">Curriculum Vitae</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    <div>
+        <br>
+        <br>
+    </div>
+        <div class="container">
+            <div class="hero">
+                <h1>Chandler S. White IV, GISP</h1>
+                <h2>Geographic Information Science Professional</h2>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro-section">
+            <h3>Welcome!</h3>
+            <p>Hello! My name is Chandler White, and I'm a GIS professional with over 15 years of experience in both the public and private sectors. I currently serve as the GIS Technical Coordinator with the Department of Information Technology at Clayton County, Georgia.</p>
+            <p>My professional interests lie in spatial analysis, ecological theory and research, and application development, while my skills range from enterprise system design to field data collection. I'm passionate about applying geospatial technology to address real-world challenges and support data-driven decision making.</p>
+        </section>
+
+        <div class="expertise-overview">
+            <div class="expertise-card">
+                <span class="expertise-icon">🗺️</span>
+                <h4>Spatial Analysis & Modeling</h4>
+                <p>Advanced GIS techniques, species distribution modeling, and habitat suitability analysis using R, ArcGIS, and specialized ecological modeling software.</p>
+            </div>
+            <div class="expertise-card">
+                <span class="expertise-icon">🌱</span>
+                <h4>Conservation Applications</h4>
+                <p>Climate change impact assessment, endangered species research, and conservation planning tools for natural heritage programs and environmental organizations.</p>
+            </div>
+            <div class="expertise-card">
+                <span class="expertise-icon">🏛️</span>
+                <h4>Enterprise GIS</h4>
+                <p>System design, database administration, and application development for government operations and organizational spatial data management.</p>
+            </div>
+            <div class="expertise-card">
+                <span class="expertise-icon">📊</span>
+                <h4>Research & Analysis</h4>
+                <p>Quantitative methods in ecology, statistical modeling, and scientific research with experience in both academic and applied contexts.</p>
+            </div>
+        </div>
+
+        <section class="credentials">
+            <h4>Professional Credentials & Recognition</h4>
+            <div class="credentials-grid">
+                <div class="credential-item">
+                    <strong>GISP Certified</strong>
+                    Geographic Information Systems Professional (2022)
+                </div>
+                <div class="credential-item">
+                    <strong>M.S. Geospatial Science</strong>
+                    University of North Alabama (2017)
+                </div>
+                <div class="credential-item">
+                    <strong>National Recognition</strong>
+                    Awarded Esri's Special Achievement in GIS Award (2025)
+                </div>
+                <div class="credential-item">
+                    <strong>Alabama Roots</strong>
+                    Auburn University alum with local knowledge
+                </div>
+            </div>
+        </section>
+
+        <section class="navigation-section">
+            <h3>Explore My Work</h3>
+            <p>Discover my portfolio, professional background, and current research projects</p>
+            
+            <div class="nav-grid">
+                <a href="portfolio.html" class="nav-card">
+                    <span class="nav-icon">💼</span>
+                    <h4>Portfolio</h4>
+                    <p>Featured project: Climate change impact assessment for Marshallia mohrii using species distribution modeling and habitat suitability analysis</p>
+                </a>
+                
+                <a href="cv.html" class="nav-card">
+                    <span class="nav-icon">📄</span>
+                    <h4>Curriculum Vitae</h4>
+                    <p>Complete professional history, education, technical skills, research experience, and professional development activities</p>
+                </a>
+                
+                <a href="about.html" class="nav-card">
+                    <span class="nav-icon">📖</span>
+                    <h4>About</h4>
+                    <p>Personal background, research philosophy, and professional interests in conservation GIS and spatial ecology</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Chandler S. White IV, GISP</strong></p>
+        <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
+    </footer>
+</body>
+</html>
