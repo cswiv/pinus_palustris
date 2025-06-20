@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Habitat Map | Pinus palustris Climate Change Assessment</title>
+    <meta name="description" content="Interactive habitat suitability map for Pinus palustris (Longleaf Pine) showing current and projected future distributions under climate change scenarios.">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        #map {
+            height: 80vh;
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 380px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 1000;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .info-panel h2 {
+            margin: 0 0 15px 0;
+            color: #2d5016;
+            font-size: 20px;
+            border-bottom: 2px solid #4a7c59;
+            padding-bottom: 8px;
+        }
+        
+        .info-panel h3 {
+            margin: 15px 0 8px 0;
+            color: #2d5016;
+            font-size: 16px;
+        }
+        
+        .info-panel p {
+            margin: 8px 0;
+            line-height: 1.5;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .species-name {
+            font-style: italic;
+            font-weight: bold;
+            color: #2d5016;
+        }
+        
+        .layer-controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1000;
+            min-width: 220px;
+        }
+        
+        .layer-controls h3 {
+            margin: 0 0 12px 0;
+            color: #2d5016;
+            font-size: 16px;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 6px;
+        }
+        
+        .layer-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .layer-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+        
+        .layer-item label {
+            font-size: 14px;
+            color: #34495e;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1000;
+        }
+        
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #2d5016;
+            font-size: 14px;
+        }
+        
+        .legend-gradient {
+            width: 200px;
+            height: 20px;
+            background: linear-gradient(to right, #440154, #31688e, #35b779, #fde725);
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        .legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+            margin-top: 4px;
+        }
+        
+        .refugia-legend {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .refugia-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .refugia-color {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+        }
+        
+        .basemap-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 12px;
+            z-index: 1000;
+        }
+
+        .basemap-controls h4 {
+            margin: 0 0 8px 0;
+            color: #2d5016;
+            font-size: 14px;
+        }
+
+        .basemap-item {
+            margin: 4px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .basemap-item input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .basemap-item label {
+            font-size: 13px;
+            color: #34495e;
+            cursor: pointer;
+        }
+        
+        .leaflet-popup-content {
+            margin: 8px 12px;
+            line-height: 1.4;
+        }
+        
+        .popup-title {
+            font-weight: bold;
+            color: #2d5016;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .popup-field {
+            margin: 4px 0;
+            font-size: 13px;
+        }
+        
+        .popup-label {
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+        
+        .toggle-info {
+            position: absolute;
+            top: 20px;
+            right: 410px;
+            background: #4a7c59;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .toggle-info:hover {
+            background: #2d5016;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        footer p {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #4a7c59;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .info-panel {
+                width: 90%;
+                right: 5%;
+                max-height: 50vh;
+            }
+
+            .toggle-info {
+                right: 20px;
+                top: 80px;
+            }
+
+            .layer-controls, .legend, .basemap-controls {
+                position: relative;
+                margin: 10px;
+                width: auto;
+            }
+
+            #map {
+                height: 60vh;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#" class="active">Interactive Map</a></li>
+                <li><a href="cv.html">Curriculum Vitae</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        
+        <div class="container">
+            <div class="hero">
+                <h1><span class="species-name">Pinus palustris</span> Climate Assessment</h1>
+                <h2>Interactive Habitat Suitability Map - Alabama</h2>
+            </div>
+        </div>
+    </header>
+
+    <div style="position: relative;">
+        <div id="map"></div>
+        
+        <!-- Layer Controls -->
+        <div class="layer-controls">
+            <h3><i class="fas fa-layers"></i> Habitat Layers</h3>
+            <div class="layer-item">
+                <input type="checkbox" id="current-layer" checked>
+                <label for="current-layer">Current (1991-2020)</label>
+            </div>
+            <div class="layer-item">
+                <input type="checkbox" id="mid-layer">
+                <label for="mid-layer">Mid-Century (2041-2070)</label>
+            </div>
+            <div class="layer-item">
+                <input type="checkbox" id="late-layer">
+                <label for="late-layer">Late-Century (2071-2100)</label>
+            </div>
+            <div class="layer-item">
+                <input type="checkbox" id="refugia-layer">
+                <label for="refugia-layer">Climate Refugia</label>
+            </div>
+            <div class="layer-item">
+                <input type="checkbox" id="occurrence-layer" checked>
+                <label for="occurrence-layer">Occurrence Points</label>
+            </div>
+        </div>
+        
+        <!-- Basemap Controls -->
+        <div class="basemap-controls">
+            <h4><i class="fas fa-map"></i> Basemap</h4>
+            <div class="basemap-item">
+                <input type="radio" id="terrain-base" name="basemap" value="terrain" checked>
+                <label for="terrain-base">Terrain</label>
+            </div>
+            <div class="basemap-item">
+                <input type="radio" id="satellite-base" name="basemap" value="satellite">
+                <label for="satellite-base">Satellite</label>
+            </div>
+            <div class="basemap-item">
+                <input type="radio" id="osm-base" name="basemap" value="osm">
+                <label for="osm-base">OpenStreetMap</label>
+            </div>
+            <div class="basemap-item">
+                <input type="radio" id="topo-base" name="basemap" value="topo">
+                <label for="topo-base">Topographic</label>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <h4><i class="fas fa-palette"></i> Habitat Suitability</h4>
+            <div class="legend-gradient"></div>
+            <div class="legend-labels">
+                <span>0.0</span>
+                <span>0.25</span>
+                <span>0.5</span>
+                <span>0.75</span>
+                <span>1.0</span>
+            </div>
+            <div class="legend-labels">
+                <span>Low</span>
+                <span></span>
+                <span>Moderate</span>
+                <span></span>
+                <span>High</span>
+            </div>
+            
+            <div class="refugia-legend">
+                <h4>Climate Refugia</h4>
+                <div class="refugia-item">
+                    <div class="refugia-color" style="background-color: #27ae60;"></div>
+                    <span style="font-size: 12px;">Stable suitable habitat</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Info Panel Toggle Button -->
+        <button class="toggle-info" onclick="toggleInfoPanel()">
+            <i class="fas fa-info"></i>
+        </button>
+        
+        <!-- Information Panel -->
+        <div class="info-panel" id="info-panel">
+            <button class="close-btn" onclick="toggleInfoPanel()">&times;</button>
+            
+            <h2><i class="fas fa-tree"></i> <span class="species-name">Pinus palustris</span></h2>
+            <p><strong>Common Name:</strong> Longleaf Pine</p>
+            <p><strong>Study Area:</strong> Alabama, USA</p>
+            
+            <h3><i class="fas fa-thermometer-half"></i> Climate Change Assessment</h3>
+            <p>This interactive map displays habitat suitability models for longleaf pine under current and projected future climate conditions. The analysis uses MaxEnt species distribution modeling with 361 occurrence records and climate variables from ClimateNA.</p>
+            
+            <h3><i class="fas fa-calendar-alt"></i> Time Periods</h3>
+            <p><strong>Current:</strong> 1991-2020 climate normals</p>
+            <p><strong>Mid-Century:</strong> 2041-2070 under SSP2-4.5</p>
+            <p><strong>Late-Century:</strong> 2071-2100 under SSP2-4.5</p>
+            
+            <h3><i class="fas fa-shield-alt"></i> Climate Refugia</h3>
+            <p>Green areas represent climate refugia - locations that remain climatically suitable across all time periods, indicating stable habitat under climate change.</p>
+            
+            <h3><i class="fas fa-fire"></i> Key Ecological Factors</h3>
+            <p>Longleaf pine habitat suitability is primarily driven by:</p>
+            <ul style="margin: 8px 0; padding-left: 20px;">
+                <li>Fire-climate variables (seasonal drought, temperature)</li>
+                <li>Soil drainage (sandy soil preference)</li>
+                <li>Temperature tolerances</li>
+                <li>Moisture stress indicators</li>
+            </ul>
+            
+            <h3><i class="fas fa-chart-line"></i> Model Performance</h3>
+            <p><strong>Training AUC:</strong> > 0.8 (Excellent)</p>
+            <p><strong>Validation:</strong> 5-fold spatial cross-validation</p>
+            <p><strong>Variables:</strong> 10-16 literature-informed predictors</p>
+            
+            <h3><i class="fas fa-exclamation-triangle"></i> Conservation Implications</h3>
+            <p>The analysis reveals significant projected habitat contractions under climate change, emphasizing the critical importance of:</p>
+            <ul style="margin: 8px 0; padding-left: 20px;">
+                <li>Protecting identified climate refugia</li>
+                <li>Maintaining fire management regimes</li>
+                <li>Conserving connectivity between suitable patches</li>
+                <li>Focusing restoration on well-drained sandy soils</li>
+            </ul>
+            
+            <h3><i class="fas fa-book"></i> Methods & Data</h3>
+            <p><strong>Modeling:</strong> MaxEnt species distribution modeling</p>
+            <p><strong>Climate Data:</strong> ClimateNA (1km resolution)</p>
+            <p><strong>Occurrence Data:</strong> 361 spatially-filtered records</p>
+            <p><strong>Background Sampling:</strong> 15x occurrence ratio with bias correction</p>
+            <p><strong>Threshold:</strong> 10th percentile training presence</p>
+            
+            <h3><i class="fas fa-university"></i> Citations & References</h3>
+            <p style="font-size: 12px; line-height: 1.4;">
+                <strong>Climate Data:</strong> Wang, T., Hamann, A., Spittlehouse, D., & Carroll, C. (2016). Locally downscaled and spatially customizable climate data for historical and future periods for North America. <em>PLoS One</em>, 11(6), e0156720.<br><br>
+                
+                <strong>Species Distribution Modeling:</strong> Phillips, S. J., Anderson, R. P., & Schapire, R. E. (2006). Maximum entropy modeling of species geographic distributions. <em>Ecological Modelling</em>, 190(3-4), 231-259.<br><br>
+                
+                <strong>Longleaf Pine Ecology:</strong> José, S., Jokela, E. J., & Miller, D. L. (Eds.). (2021). <em>The longleaf pine ecosystem: ecology, silviculture, and restoration</em>. Springer.<br><br>
+                
+                <strong>Model Evaluation:</strong> Muscarella, R., Galante, P. J., Soley‐Guardia, M., Boria, R. A., Kass, J. M., Uriarte, M., & Anderson, R. P. (2014). ENMeval: An R package for conducting spatially independent evaluations and estimating optimal model complexity for MaxEnt ecological niche models. <em>Methods in Ecology and Evolution</em>, 5(11), 1198-1205.
+            </p>
+            
+            <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; font-size: 12px; color: #7f8c8d;">
+                <strong>Analysis conducted:</strong> 2024<br>
+                <strong>Contact:</strong> <a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Chandler S. White IV, GISP</strong></p>
+        <p>GIS Technical Coordinator | Clayton County, Georgia</p>
+        <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
+        <p><em>Species distribution modeling for conservation applications</em></p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize map centered on Alabama
+        const map = L.map('map').setView([32.7, -86.8], 7);
+        
+        // Define basemap layers
+        const basemaps = {
+            terrain: L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }),
+            satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            }),
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }),
+            topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+            })
+        };
+        
+        // Add default basemap
+        let currentBasemap = basemaps.terrain;
+        currentBasemap.addTo(map);
+        
+        // Basemap switching
+        document.querySelectorAll('input[name="basemap"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    map.removeLayer(currentBasemap);
+                    currentBasemap = basemaps[this.value];
+                    currentBasemap.addTo(map);
+                }
+            });
+        });
+        
+        // Storage for layers
+        const layers = {
+            current: null,
+            mid: null,
+            late: null,
+            refugia: null,
+            occurrences: null,
+            alabama: null
+        };
+        
+        // Color scale for habitat suitability (viridis plasma)
+        function getHabitatColor(value) {
+            if (value === null || value === undefined || isNaN(value)) {
+                return 'rgba(0,0,0,0)';
+            }
+            
+            // Viridis plasma color scale
+            const colors = [
+                [0.0, '#440154'],
+                [0.1, '#482777'],
+                [0.2, '#3f4a8a'],
+                [0.3, '#31678e'],
+                [0.4, '#26838f'],
+                [0.5, '#1f9d8a'],
+                [0.6, '#6cce5a'],
+                [0.7, '#b6de2b'],
+                [1.0, '#fee825']
+            ];
+            
+            // Find the appropriate color
+            for (let i = 0; i < colors.length - 1; i++) {
+                if (value >= colors[i][0] && value <= colors[i + 1][0]) {
+                    // Linear interpolation between colors would go here
+                    // For simplicity, return the lower bound color
+                    return colors[i][1];
+                }
+            }
+            
+            return colors[colors.length - 1][1]; // Return highest color if value >= 1.0
+        }
+        
+        // Function to create popup content for occurrence points
+        function createOccurrencePopup(feature) {
+            const props = feature.properties;
+            let content = '<div class="popup-title">Longleaf Pine Occurrence</div>';
+            
+            // Display available fields in a clean format
+            const fieldLabels = {
+                'institutionCode': 'Institution',
+                'catalogNumber': 'Catalog Number',
+                'recordedBy': 'Recorded By',
+                'eventDate': 'Collection Date',
+                'year': 'Year',
+                'month': 'Month',
+                'day': 'Day',
+                'country': 'Country',
+                'stateProvince': 'State/Province',
+                'county': 'County',
+                'locality': 'Locality',
+                'decimalLatitude': 'Latitude',
+                'decimalLongitude': 'Longitude',
+                'coordinateUncertaintyInMeters': 'Coordinate Uncertainty (m)',
+                'habitat': 'Habitat',
+                'occurrenceRemarks': 'Remarks',
+                'datasetName': 'Dataset',
+                'basisOfRecord': 'Basis of Record'
+            };
+            
+            for (const [field, label] of Object.entries(fieldLabels)) {
+                if (props[field] && props[field] !== '' && props[field] !== null) {
+                    let value = props[field];
+                    
+                    // Format coordinates to reasonable precision
+                    if (field === 'decimalLatitude' || field === 'decimalLongitude') {
+                        value = parseFloat(value).toFixed(5);
+                    }
+                    
+                    // Format date if available
+                    if (field === 'eventDate' && value) {
+                        const date = new Date(value);
+                        if (!isNaN(date.getTime())) {
+                            value = date.toLocaleDateString();
+                        }
+                    }
+                    
+                    content += `<div class="popup-field"><span class="popup-label">${label}:</span> ${value}</div>`;
+                }
+            }
+            
+            return content;
+        }
+        
+        // Load Alabama boundary
+        async function loadAlabamaBoundary() {
+            try {
+                const response = await fetch('data/alabama_boundary.geojson');
+                const data = await response.json();
+                
+                layers.alabama = L.geoJSON(data, {
+                    style: {
+                        fillColor: 'none',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#2d5016',
+                        fillOpacity: 0
+                    }
+                }).addTo(map);
+                
+                console.log('✓ Alabama boundary loaded');
+                
+            } catch (error) {
+                console.error('Error loading Alabama boundary:', error);
+            }
+        }
+        
+        // Load occurrence points
+        async function loadOccurrencePoints() {
+            try {
+                const response = await fetch('data/occurrence_points.geojson');
+                const data = await response.json();
+                
+                layers.occurrences = L.geoJSON(data, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 5,
+                            fillColor: '#e74c3c',
+                            color: '#c0392b',
+                            weight: 2,
+                            opacity: 0.8,
+                            fillOpacity: 0.6
+                        });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        layer.bindPopup(createOccurrencePopup(feature));
+                    }
+                }).addTo(map);
+                
+                console.log('✓ Occurrence points loaded:', data.features.length, 'points');
+                
+            } catch (error) {
+                console.error('Error loading occurrence points:', error);
+            }
+        }
+        
+        // Load habitat points for continuous surface effect
+        async function loadHabitatPoints(filename, layerName, description) {
+            try {
+                const response = await fetch(`data/${filename}`);
+                const data = await response.json();
+                
+                // Create layer with points styled for continuous surface effect
+                const layer = L.geoJSON(data, {
+                    pointToLayer: function (feature, latlng) {
+                        const suitability = feature.properties.suitability;
+                        return L.circleMarker(latlng, {
+                            radius: 8, // Larger radius for continuous effect
+                            fillColor: getHabitatColor(suitability),
+                            color: getHabitatColor(suitability),
+                            weight: 1,
+                            opacity: 0.8,
+                            fillOpacity: 0.7
+                        });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        const suitability = feature.properties.suitability;
+                        layer.bindPopup(`
+                            <div class="popup-title">${description}</div>
+                            <div class="popup-field">
+                                <span class="popup-label">Habitat Suitability:</span> ${suitability ? suitability.toFixed(3) : 'N/A'}
+                            </div>
+                            <div class="popup-field">
+                                <span class="popup-label">Coordinates:</span> ${layer.getLatLng().lat.toFixed(5)}, ${layer.getLatLng().lng.toFixed(5)}
+                            </div>
+                        `);
+                    }
+                });
+                
+                layers[layerName] = layer;
+                
+                console.log(`✓ ${description} loaded:`, data.features.length, 'points');
+                
+            } catch (error) {
+                console.error(`Error loading ${description}:`, error);
+            }
+        }
+        
+        // Function to create climate refugia (placeholder for now)
+        function createClimateRefugia() {
+            // This would be calculated from overlapping suitable areas
+            // For now, create a placeholder
+            console.log('Climate refugia calculation would go here');
+        }
+        
+        // Layer control event handlers
+        document.getElementById('current-layer').addEventListener('change', function() {
+            if (this.checked && layers.current) {
+                layers.current.addTo(map);
+            } else if (layers.current) {
+                map.removeLayer(layers.current);
+            }
+        });
+        
+        document.getElementById('mid-layer').addEventListener('change', function() {
+            if (this.checked && layers.mid) {
+                layers.mid.addTo(map);
+            } else if (layers.mid) {
+                map.removeLayer(layers.mid);
+            }
+        });
+        
+        document.getElementById('late-layer').addEventListener('change', function() {
+            if (this.checked && layers.late) {
+                layers.late.addTo(map);
+            } else if (layers.late) {
+                map.removeLayer(layers.late);
+            }
+        });
+        
+        document.getElementById('refugia-layer').addEventListener('change', function() {
+            if (this.checked && layers.refugia) {
+                layers.refugia.addTo(map);
+            } else if (layers.refugia) {
+                map.removeLayer(layers.refugia);
+            }
+        });
+        
+        document.getElementById('occurrence-layer').addEventListener('change', function() {
+            if (this.checked && layers.occurrences) {
+                layers.occurrences.addTo(map);
+            } else if (layers.occurrences) {
+                map.removeLayer(layers.occurrences);
+            }
+        });
+        
+        // Info panel toggle
+        function toggleInfoPanel() {
+            const panel = document.getElementById('info-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Initialize the map
+        async function initializeMap() {
+            console.log('Initializing Pinus palustris interactive map...');
+            
+            // Load data layers
+            await loadAlabamaBoundary();
+            await loadOccurrencePoints();
+            
+            // Load habitat suitability layers
+            await loadHabitatPoints('current_habitat_points.geojson', 'current', 'Current Habitat Suitability (1991-2020)');
+            await loadHabitatPoints('mid_habitat_points.geojson', 'mid', 'Mid-Century Habitat Suitability (2041-2070)');
+            await loadHabitatPoints('late_habitat_points.geojson', 'late', 'Late-Century Habitat Suitability (2071-2100)');
+            
+            // Add current layer by default (checkbox is checked)
+            if (layers.current) {
+                layers.current.addTo(map);
+            }
+            
+            // Create climate refugia (placeholder)
+            createClimateRefugia();
+            
+            console.log('✓ Map initialization completed');
+        }
+        
+        // Start loading when page is ready
+        document.addEventListener('DOMContentLoaded', initializeMap);
+    </script>
+</body>
+</html>
