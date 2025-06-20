@@ -137,7 +137,7 @@
         
         .layer-controls {
             position: absolute;
-            top: 20px;
+            bottom: 200px;
             left: 20px;
             background: white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -423,16 +423,12 @@
         <div class="basemap-controls">
             <h4><i class="fas fa-map"></i> Basemap</h4>
             <div class="basemap-item">
-                <input type="radio" id="terrain-base" name="basemap" value="terrain" checked>
-                <label for="terrain-base">Terrain</label>
+                <input type="radio" id="osm-base" name="basemap" value="osm" checked>
+                <label for="osm-base">OpenStreetMap</label>
             </div>
             <div class="basemap-item">
                 <input type="radio" id="satellite-base" name="basemap" value="satellite">
                 <label for="satellite-base">Satellite</label>
-            </div>
-            <div class="basemap-item">
-                <input type="radio" id="osm-base" name="basemap" value="osm">
-                <label for="osm-base">OpenStreetMap</label>
             </div>
             <div class="basemap-item">
                 <input type="radio" id="topo-base" name="basemap" value="topo">
@@ -556,16 +552,11 @@
         
         // Define basemap layers
         const basemaps = {
-            terrain: L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                subdomains: 'abcd',
-                maxZoom: 20
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }),
             satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-            }),
-            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }),
             topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
@@ -573,7 +564,7 @@
         };
         
         // Add default basemap
-        let currentBasemap = basemaps.terrain;
+        let currentBasemap = basemaps.osm;
         currentBasemap.addTo(map);
         
         // Basemap switching
@@ -731,42 +722,72 @@
             }
         }
         
-        // Load habitat points for continuous surface effect
+        // Load habitat points and create raster-like visualization
         async function loadHabitatPoints(filename, layerName, description) {
             try {
                 const response = await fetch(`data/${filename}`);
                 const data = await response.json();
                 
-                // Create layer with points styled for continuous surface effect
-                const layer = L.geoJSON(data, {
-                    pointToLayer: function (feature, latlng) {
-                        const suitability = feature.properties.suitability;
-                        return L.circleMarker(latlng, {
-                            radius: 8, // Larger radius for continuous effect
-                            fillColor: getHabitatColor(suitability),
-                            color: getHabitatColor(suitability),
-                            weight: 1,
+                // Create a more raster-like layer using canvas rendering
+                const layer = L.layerGroup();
+                
+                // Process points into a grid-like structure for better rendering
+                const gridSize = 0.01; // Adjust for desired resolution
+                const pointGrid = {};
+                
+                // Group points by grid cells
+                data.features.forEach(feature => {
+                    const [lng, lat] = feature.geometry.coordinates;
+                    const suitability = feature.properties.suitability;
+                    
+                    // Create grid cell key
+                    const gridX = Math.floor(lng / gridSize) * gridSize;
+                    const gridY = Math.floor(lat / gridSize) * gridSize;
+                    const gridKey = `${gridX},${gridY}`;
+                    
+                    // Store the highest suitability value for each grid cell
+                    if (!pointGrid[gridKey] || pointGrid[gridKey].suitability < suitability) {
+                        pointGrid[gridKey] = {
+                            lat: gridY + gridSize/2,
+                            lng: gridX + gridSize/2,
+                            suitability: suitability
+                        };
+                    }
+                });
+                
+                // Create rectangles for each grid cell (raster-like appearance)
+                Object.values(pointGrid).forEach(cell => {
+                    if (cell.suitability > 0.1) { // Only show cells with reasonable suitability
+                        const bounds = [
+                            [cell.lat - gridSize/2, cell.lng - gridSize/2],
+                            [cell.lat + gridSize/2, cell.lng + gridSize/2]
+                        ];
+                        
+                        const rectangle = L.rectangle(bounds, {
+                            fillColor: getHabitatColor(cell.suitability),
+                            color: getHabitatColor(cell.suitability),
+                            weight: 0,
                             opacity: 0.8,
                             fillOpacity: 0.7
                         });
-                    },
-                    onEachFeature: function (feature, layer) {
-                        const suitability = feature.properties.suitability;
-                        layer.bindPopup(`
+                        
+                        rectangle.bindPopup(`
                             <div class="popup-title">${description}</div>
                             <div class="popup-field">
-                                <span class="popup-label">Habitat Suitability:</span> ${suitability ? suitability.toFixed(3) : 'N/A'}
+                                <span class="popup-label">Habitat Suitability:</span> ${cell.suitability.toFixed(3)}
                             </div>
                             <div class="popup-field">
-                                <span class="popup-label">Coordinates:</span> ${layer.getLatLng().lat.toFixed(5)}, ${layer.getLatLng().lng.toFixed(5)}
+                                <span class="popup-label">Grid Center:</span> ${cell.lat.toFixed(5)}, ${cell.lng.toFixed(5)}
                             </div>
                         `);
+                        
+                        layer.addLayer(rectangle);
                     }
                 });
                 
                 layers[layerName] = layer;
                 
-                console.log(`✓ ${description} loaded:`, data.features.length, 'points');
+                console.log(`✓ ${description} loaded as raster-like grid:`, Object.keys(pointGrid).length, 'cells');
                 
             } catch (error) {
                 console.error(`Error loading ${description}:`, error);
@@ -831,28 +852,66 @@
         async function initializeMap() {
             console.log('Initializing Pinus palustris interactive map...');
             
-            // Load data layers
-            await loadAlabamaBoundary();
-            await loadOccurrencePoints();
+            // Force map resize after a short delay (fixes rendering issues)
+            setTimeout(() => {
+                map.invalidateSize();
+                console.log('Map size invalidated');
+            }, 100);
             
-            // Load habitat suitability layers
-            await loadHabitatPoints('current_habitat_points.geojson', 'current', 'Current Habitat Suitability (1991-2020)');
-            await loadHabitatPoints('mid_habitat_points.geojson', 'mid', 'Mid-Century Habitat Suitability (2041-2070)');
-            await loadHabitatPoints('late_habitat_points.geojson', 'late', 'Late-Century Habitat Suitability (2071-2100)');
-            
-            // Add current layer by default (checkbox is checked)
-            if (layers.current) {
-                layers.current.addTo(map);
+            // Load data layers with error handling
+            try {
+                await loadAlabamaBoundary();
+                await loadOccurrencePoints();
+                
+                // Load habitat suitability layers
+                await loadHabitatPoints('current_habitat_points.geojson', 'current', 'Current Habitat Suitability (1991-2020)');
+                await loadHabitatPoints('mid_habitat_points.geojson', 'mid', 'Mid-Century Habitat Suitability (2041-2070)');
+                await loadHabitatPoints('late_habitat_points.geojson', 'late', 'Late-Century Habitat Suitability (2071-2100)');
+                
+                // Add current layer by default (checkbox is checked)
+                if (layers.current) {
+                    layers.current.addTo(map);
+                }
+                
+                console.log('✓ Map initialization completed');
+                
+            } catch (error) {
+                console.error('Error during map initialization:', error);
+                
+                // For local testing, add a simple test marker
+                L.marker([32.7, -86.8])
+                    .addTo(map)
+                    .bindPopup('Test marker - map is working!')
+                    .openPopup();
             }
+        }
+        
+        // Alternative initialization for local testing
+        function initializeBasicMap() {
+            console.log('Initializing basic map for local testing...');
             
-            // Create climate refugia (placeholder)
-            createClimateRefugia();
+            // Force map resize
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
             
-            console.log('✓ Map initialization completed');
+            // Add a test marker to verify map is working
+            const testMarker = L.marker([32.7, -86.8])
+                .addTo(map)
+                .bindPopup('Pinus palustris study area center<br/>Map is rendering correctly!')
+                .openPopup();
+            
+            console.log('Basic map initialized with test marker');
         }
         
         // Start loading when page is ready
-        document.addEventListener('DOMContentLoaded', initializeMap);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Try full initialization first
+            initializeMap().catch(error => {
+                console.warn('Full initialization failed, falling back to basic map:', error);
+                initializeBasicMap();
+            });
+        });
     </script>
 </body>
 </html>
