@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chandler4.com | Curriculum Vitae</title>
+    <meta name="description" content="Curriculum vitae for Chandler S. White IV, GISP - Geographic Information Science Professional specializing in spatial analysis, ecology, and app development.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .cv-header {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 1px solid #4a7c59;
+            border-left: 4px solid #4a7c59;
+        }
+
+        .cv-header h3 {
+            color: #2d5016;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .cv-header .title {
+            color: #4a7c59;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .cv-header .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .cv-header .contact-info a {
+            color: #4a7c59;
+            text-decoration: none;
+        }
+
+        .cv-header .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .download-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .cv-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .cv-section h4 {
+            color: #2d5016;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #4a7c59;
+            padding-bottom: 0.5rem;
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .education-item:last-child, .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .degree, .position {
+            font-weight: 600;
+            color: #2d5016;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution, .employer {
+            color: #4a7c59;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            margin-top: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: #e8f8f0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #4a7c59;
+            border-left: 3px solid #4a7c59;
+        }
+
+        .skill-category h5 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4a7c59;
+            font-weight: bold;
+        }
+
+        .certifications {
+            background: linear-gradient(135deg, #e8f8f0 0%, #d4f4e0 100%);
+            border: 1px solid #2d5016;
+            border-left: 3px solid #4a7c59;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+
+        .certifications h5 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+        }
+
+        .cert-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #4a7c59;
+            border-left: 3px solid #4a7c59;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        footer p {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #4a7c59;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .cv-header .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="interactive_habitat_map.html" target="_blank">Interactive Map</a></li>
+                <li><a href="#" class="active">Curriculum Vitae</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <br>
+        <br>
+        <div class="container">
+            <div class="hero">
+                <h1>Curriculum Vitae</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="cv-header">
+            <h3>Chandler S. White IV, GISP</h3>
+            <p class="title">GIS Technical Coordinator | Clayton County, Georgia</p>
+            <p><em>Geographic information science professional with expertise in spatial analysis, ecology, and application development</em></p>
+            <div class="contact-info">
+                <span><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a></span>
+                <span><a href="https://www.chandler4.com">www.chandler4.com</a></span>
+                <span>334-728-2974</span>
+            </div>
+        </section>
+
+        <div class="download-section">
+            <a href="assets/c_white_cv.pdf" target="_blank" class="download-btn">📄 Download Full CV (PDF)</a>
+        </div>
+
+        <section class="cv-section">
+            <h4>Education</h4>
+            <div class="education-item">
+                <div class="degree">M.S., Geospatial Science</div>
+                <div class="institution">University of North Alabama, Florence, AL</div>
+                <div class="date">December 2017</div>
+                <div class="description">
+                    <strong>Thesis:</strong> Phylogenetic patterns of invasive macrophytes in freshwater communities<br>
+                    <strong>Advisor:</strong> Dr. Jonathan Fleming
+                </div>
+            </div>
+            <div class="education-item">
+                <div class="degree">B.A., Geography</div>
+                <div class="institution">Auburn University, Auburn, AL</div>
+                <div class="date">December 2009</div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h4>Professional Experience</h4>
+            <div class="experience-item">
+                <div class="position">GIS Technical Coordinator</div>
+                <div class="employer">Clayton County Department of Information Technology</div>
+                <div class="date">January 2024 - Present</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">GIS Analyst</div>
+                <div class="employer">Clayton County Department of Information Technology</div>
+                <div class="date">June 2023 - January 2024</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Systems Administrator</div>
+                <div class="employer">Clayton County Department of Transportation and Development</div>
+                <div class="date">October 2018 - June 2023</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Graduate Teaching Assistant</div>
+                <div class="employer">University of North Alabama</div>
+                <div class="date">January 2016 - December 2017</div>
+                <div class="description">
+                    Courses: Physical Geography, Cartography, GIS, Quantitative Methods, Remote Sensing
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h4>Research Experience</h4>
+            <div class="experience-item">
+                <div class="position">Research Assistant</div>
+                <div class="employer">AlabamaView</div>
+                <div class="date">2008 - 2010</div>
+                <div class="description">
+                    Collected and processed environmental products derived from Landsat program platforms
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Research Volunteer</div>
+                <div class="employer">Lake Watch of Lake Martin</div>
+                <div class="date">2009 - 2010</div>
+                <div class="description">
+                    Collected and processed water samples using spectroradiometer and other digital sensors for eutrophication analysis
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h4>Technical Skills & Expertise</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>GIS & Spatial Analysis</h5>
+                    <ul>
+                        <li>Esri (ArcGIS Enterprise, Online, Pro)</li>
+                        <li>QGIS</li>
+                        <li>Web GIS</li>
+                        <li>R</li>
+                        <li>Python</li>
+                        <li>TerrSet</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h5>Ecological Modeling</h5>
+                    <ul>
+                        <li>MaxEnt</li>
+                        <li>Climate change projections</li>
+                        <li>Conservation planning</li>
+                        <li>Phylogenetic analysis</li>
+                        <li>Environmental data processing</li>
+                        <li>Model validation & assessment</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h5>Data & Systems</h5>
+                    <ul>
+                        <li>Database administration</li>
+                        <li>Enterprise GIS systems</li>
+                        <li>Remote sensing & image analysis</li>
+                        <li>ETL design</li>
+                        <li>System integration</li>
+                        <li>Geospatial app development</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h5>Research Areas</h5>
+                    <ul>
+                        <li>Community ecology</li>
+                        <li>Lentic ecosystems</li>
+                        <li>Climate change</li>
+                        <li>Flora of the Southeast U.S.</li>
+                        <li>Quantitative and qualitative methods</li>
+                        <li>Physical and cultural geography</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="certifications">
+                <h5>Professional Certifications</h5>
+                <div class="cert-item">
+                    <strong>Geographic Information Systems Professional (GISP)</strong><br>
+                    GIS Certification Institute | Credential ID 161424 | Awarded 2022
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h4>Selected Awards & Recognition</h4>
+            <div class="experience-item">
+                <div class="position">Special Achievement in GIS Award</div>
+                <div class="employer">Esri</div>
+                <div class="date">2025</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Government-to-Government Award</div>
+                <div class="employer">Government Management Information Sciences, Georgia Chapter</div>
+                <div class="date">2025</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">David W. Icenogle Award for Outstanding Senior in Geography</div>
+                <div class="employer">Auburn University</div>
+                <div class="date">2009</div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h4>Professional Development & Service</h4>
+            <div class="experience-item">
+                <div class="position">Member</div>
+                <div class="employer"><a href="https://thegpn.org/" target="_blank">Geospatial Professional Network</a></div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Member</div>
+                <div class="employer"><a href="https://gageospatial.org/" target="_blank">Georgia Geospatial Association</a></div>
+            </div>
+            <div class="experience-item">
+                <div class="position">GIS Day Workshop Organizer</div>
+                <div class="employer">Morrow High School</div>
+                <div class="date">November 2024</div>
+                <div class="description">Organized and led GIS Day Expo event and GIS mini-workshop for students</div>
+            </div>
+            <div class="experience-item">
+                <div class="position">Humanitarian Mapping Volunteer</div>
+                <div class="employer">Humanitarian OpenStreetMap Team (HOT)</div>
+                <div class="date">February 2023</div>
+                <div class="description">Contributed 42.1 hours to earthquake response efforts in Türkiye and Syria, performing feature extraction from satellite imagery</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Chandler S. White IV, GISP</strong></p>
+        <p>GIS Technical Coordinator | Clayton County, Georgia</p>
+        <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
+        <p><em>Specialized in spatial analysis, ecology, and conservation applications</em></p>
+    </footer>
+</body>
+</html>
