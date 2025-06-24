@@ -528,10 +528,10 @@
                 <h2>2. Data & Methods</h2>
 
             <h3>2.1 Study Area</h3>
-            <p>The study was conducted across the state of Alabama, USA (32°N to 35°N, 84°W to 88°W), which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range. Alabama's diverse physiographic regions, from the Gulf Coastal Plain to the Appalachian foothills, provide a comprehensive gradient of environmental conditions for assessing habitat suitability patterns. Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization.</p>
+            <p>The study was conducted across the state of Alabama, USA, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range. Alabama's diverse physiographic regions, from the Ridge-and-Valley region to the Gulf Coastal Plain, provide a comprehensive gradient of environmental conditions for assessing habitat suitability patterns. Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (U.S. Census Bureau, 2023), providing precise Alabama state and county boundaries for spatial analysis and data munging.</p>
 
             <h3>2.2 Occurrence Data</h3>
-            <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website. The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
+            <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (GBIF.org, 2025). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
             <ul>
                 <li>Spatial filtering with 2km minimum distance between points to reduce spatial autocorrelation</li>
                 <li>Coordinate validation and removal of records with high uncertainty</li>
@@ -578,13 +578,14 @@
 
             <div class="technical-details">
                 <h4>Canopy Openness</h4>
-                <p><strong>Data source:</strong> NLCD 2023 Annual Land Cover</p>
-                <p><strong>Processing:</strong> Forest cover density was converted to canopy openness using focal analysis, following established approaches for quantifying forest structure (<a href="#ref-homer2015">Homer et al., 2015</a>):</p>
+                <p><strong>Data source:</strong> NLCD 2023 Annual Land Cover <a href="#ref-homer2015"></a>(Homer et al., 2015)</a></p>
+                <p><strong>Processing:</strong> A multi-step workflow was implemented to convert NLCD forest classification to canopy openness metrics:</p>
                 <ul>
-                    <li>Forest classes (41-43) identified from NLCD</li>
-                    <li>3×3 focal window applied for local density calculation</li>
-                    <li>Openness = 100 - (forest density × 100)</li>
-                    <li>Higher values potentially indicate more open, fire-maintained conditions</li>
+                    <li>Forest classes (41=Deciduous, 42=Evergreen, 43=Mixed Forest) were extracted</li>
+                    <li>3×3 focal window/neighborhood analysis calculated local forest density</li>
+                    <li>Canopy openness derived as: 100 - (forest density × 100)</li>
+                    <li>Cross-projection handling managed coordinate reference system differences between NLCD (NAD83) and ClimateNA (WGS84)</li>
+                    <li>Final values represent percentage openness, where higher values indicate fire-maintained savanna conditions optimal for longleaf pine</li>
                 </ul>
             </div>
 
@@ -601,7 +602,39 @@
             </div>
 
             <h4>2.3.3 Topographic Variables</h4>
-            <p>Topographic variables included elevation, slope, aspect (transformed to northness/eastness), and topographic wetness index derived from digital elevation models.</p>
+            <p>Topographic variables were derived from SRTM 30m resolution digital elevation data and processed through a multi-step workflow, described in Section 2.3.5 below, to ensure spatial consistency with climate data:</p>
+            <ul>
+                <li><strong>Elevation:</strong> Direct extraction from SRTM DEM</li>
+                <li><strong>Slope:</strong> Calculated as percent rise using the terra R package</li>
+                <li><strong>Aspect:</strong> Aspect converted to northness (cosine) and eastness (sine) components to handle circular nature of aspect data, also using the terra R package</li>
+                <li><strong>Topographic Wetness Index (TWI):</strong> Calculated using slope-based proxy methodology</li>
+            </ul>
+            <p>All topographic derivatives were calculated at native 30-meter resolution before resampling to 1-kilometer resolution using bilinear interpolation to match the ClimateNA template structure. A 5-kilometer buffer was applied around Alabama boundaries during processing to minimize edge effects during resampling operations.</p>
+
+            <h4>2.3.4 Digital Elevation Model and Topographic Framework</h4>
+            <p>The spatial framework for all environmental variables was established using Shuttle Radar Topography Mission (SRTM) digital elevation data (<a href="#ref-farr2007">Farr et al., 2007</a>). The SRTM DEM provided the baseline 30m resolution raster structure that was subsequently resampled to 1km resolution to match ClimateNA software requirements. All topographic derivatives (elevation, slope, aspect components, and topographic wetness index) were calculated from this SRTM foundation before alignment with the ClimateNA template structure.</p>
+
+            <h4>2.3.5 Spatial Data Integration and Quality Assurance</h4>
+            <p>All environmental variables underwent systematic processing to ensure spatial consistency and alignment:</p>
+            <ul>
+                <li><strong>Template Establishment:</strong> ClimateNA ASCII files served as the master spatial reference, establishing consistent 1-kilometer resolution, extent, and coordinate reference system (WGS84) across all variables.</li>
+                <li><strong>Multi-source Integration:</strong>> Variables from different sources (LANDFIRE, NLCD, SoilGrids) required careful reprojection and resampling procedures to adhere to the ClimateNA raster structure:
+                    <ul>
+                        <li>Native resolution (~30m → ~1km) processing, followed by template alignment</li>
+                        <li>Bilinear interpolation processing followed by template alignment</li>
+                        <li>Nearest neighbor resampling for categorical data</li>
+                        <li>5km buffer zone to minimize edge artifacting</li>
+                    </ul>
+                </li>
+                <li><strong>Quality Control:</strong> Comprehensive validation ensured spatial consistency, precision and accuracy:
+                    <ul>
+                        <li>Study area extent verification across all raster layers</li>
+                        <li>Resolution-matching confirmation</li>
+                        <li>Coordinate reference system alignment</li>
+                        <li>Pixel value range validation to ensure bioclimatic and ecological realism</li>
+                    </ul>
+                </li>
+            </ul>
 
             <h3>2.4 Variable Selection</h3>
             <p>An automated multi-criteria variable selection approach was implemented to optimize model performance while minimizing multicollinearity. From an initial set of 91 ClimateNA variables plus ecological enhancements, variables were systematically reduced to an optimal subset using multiple methodological criteria.</p>
@@ -658,7 +691,7 @@
             </ul>
 
             <h4>2.5.2 Bias Correction</h4>
-            <p>Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, accounting for accessibility and observer effort patterns across the landscape.</p>
+            <p>Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, accounting for accessibility and observer effort patterns across the landscape (GBIF.org, 2025).</p>
 
             <h4>2.5.3 Model Evaluation</h4>
             <p>Model performance was evaluated using multiple metrics following established SDM evaluation protocols (<a href="#ref-phillips2006">Phillips et al., 2006</a>; <a href="#ref-elith2011">Elith et al., 2011</a>):</p>
@@ -674,7 +707,7 @@
                 <h2>3. Results</h2>
 
             <h3>3.1 Model Performance</h3>
-            <p>The ecology-enhanced MaxEnt model achieved good predictive performance across all time periods (<a href="#ref-swets1988">Swets, 1988</a>; <a href="#ref-araujo2007">Araújo & Guisan, 2007</a>):</p>
+            <p>The ecology-enhanced MaxEnt model achieved decent, but not great, predictive performance across all time periods (<a href="#ref-swets1988">Swets, 1988</a>; <a href="#ref-araujo2007">Araújo & Guisan, 2007</a>):</p>
 
             <div class="results-grid">
                 <div class="result-card">
@@ -699,11 +732,11 @@
                 </div>
             </div>
 
-            <p>The model demonstrated good predictive ability (Training AUC = 0.747, Test AUC = 0.706), exceeding the threshold for good model performance (AUC > 0.7). The average test AUC across all time periods (0.710) indicates consistent performance under changing climate conditions, with relatively low variability (±0.041).</p>
+            <p>The model demonstrated good predictive ability (Training AUC = 0.747, Test AUC = 0.706), exceeding what is commonly considered the threshold for acceptable model performance (AUC > 0.7). The average test AUC across all time periods (0.710) indicates consistent performance under changing climate conditions, with relatively low variability (±0.041).</p>
 
             <div class="enhancement-highlight">
                 <h3>Ecological Enhancement Impact</h3>
-                <p>The integration of ecological variables resulted in improved model performance and ecological realism compared to traditional climate-only models. This enhancement demonstrates the importance of incorporating species-specific ecological requirements in habitat suitability modeling, with canopy openness emerging as the single most important predictor (35.7% contribution).</p>
+                <p>I ran this analysis in several different iterations, testing out functionality at every step along the way. After establishing a working design solely using the ClimateNA bioclimatic and DEM-derived variables, I expanded the scope of the study to include ecological predictors. The enhancement of model performance was evident after initial runs, pushing the Test AUC over the critical 0.7 threshold. Crucially, I was able to add a dimension of ecological realism that was not included in my earlier tests, as evidenced by the 35.7% relative importance of canopy openness to the model. This enhancement demonstrates the importance of incorporating species-specific ecological requirements in habitat suitability modeling.</p>
             </div>
 
             <h3>3.2 Variable Importance</h3>
@@ -1043,6 +1076,14 @@
                     Frost, C.C. (2006). History and future of the longleaf pine ecosystem. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), The Longleaf Pine Ecosystem (pp. 9-48). Springer.
                 </div>
                 
+                <div class="reference-item" id="ref-GBIF2025pinus">
+                    GBIF.org (19 June 2025) GBIF Occurrence Download https://doi.org/10.15468/dl.7xvyg9
+                </div>
+
+                <div class="reference-item" id="ref-GBIF2025plantae">
+                    GBIF.org (22 June 2025) GBIF Occurrence Download https://doi.org/10.15468/dl.6axvt7
+                </div>
+                
                 <div class="reference-item" id="ref-harris2014">
                     Harris, I., Jones, P.D., Osborn, T.J., Lister, D.H. (2014). Updated high-resolution grids of monthly climatic observations - the CRU TS3.10 Dataset. International Journal of Climatology, 34, 623-642.
                 </div>
@@ -1114,7 +1155,6 @@
     <footer>
         <p><strong>Chandler S. White IV, GISP</strong></p>
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
-        <p class="citation">Suggested citation: White, C.S. IV. (2025). Climate Change Impact Assessment for Pinus palustris: Species Distribution Modeling and Habitat Suitability Analysis under Future Climate Scenarios. Portfolio Project. Available at: https://www.chandler4.com</p>
     </footer>
 </body>
 </html>
