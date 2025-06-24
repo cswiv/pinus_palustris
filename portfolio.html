@@ -487,7 +487,7 @@
                 <h3>Abstract</h3>
                 <p><strong>Background:</strong> <em>Pinus palustris</em> Mill. (Longleaf Pine) is a fire-dependent keystone species of southeastern United States ecosystems that has experienced severe population declines due to habitat loss, fire suppression, and land use changes. Climate change poses additional threats to remaining populations through altered temperature and precipitation patterns that may affect both species survival and critical fire regimes.</p>
                 
-                <p><strong>Methods:</strong> I conducted species distribution modeling using MaxEnt with occurrence data from GBIF (n=274 spatially filtered records) and environmental variables from ClimateNA across three time periods: current climate (1991-2020), mid-century (2041-2070), and late-century (2071-2100) under SSP2-4.5 emissions scenario. Our analysis incorporated traditional climate and topographic variables enhanced with ecological variables including fire regime suitability and canopy openness to capture the species' fire-dependent habitat requirements.</p>
+                <p><strong>Methods:</strong> I conducted species distribution modeling using MaxEnt with occurrence data from GBIF (n=274 spatially filtered records) and environmental variables from ClimateNA across three time periods: current climate (1991-2020), mid-century (2041-2070), and late-century (2071-2100) under SSP2-4.5 emissions scenario. This analysis incorporated traditional climate and topographic variables enhanced with ecological variables including fire regime suitability and canopy openness to capture the species' fire-dependent habitat requirements.</p>
                 
                 <p><strong>Results:</strong> The ecology-enhanced model achieved good predictive performance (Training AUC = 0.747, Test AUC = 0.706) with canopy openness (35.7% contribution) and spring precipitation (20.3% contribution) as primary habitat predictors. Current suitable habitat covers 106,598 km² in Alabama. Climate projections indicate minimal habitat changes: +0.1% by mid-century and +2.9% by late-century, suggesting stable habitat availability under future climate scenarios. Climate refugia analysis shows that 88.3% of current suitable habitat remains suitable across all three time periods, indicating high climate stability.</p>
                 
@@ -531,7 +531,7 @@
             <p>The study was conducted across the state of Alabama, USA, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range. Alabama's diverse physiographic regions, from the Ridge-and-Valley region to the Gulf Coastal Plain, provide a comprehensive gradient of environmental conditions for assessing habitat suitability patterns. Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (U.S. Census Bureau, 2023), providing precise Alabama state and county boundaries for spatial analysis and data munging.</p>
 
             <h3>2.2 Occurrence Data</h3>
-            <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (GBIF.org, 2025). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
+            <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
             <ul>
                 <li>Spatial filtering with 2km minimum distance between points to reduce spatial autocorrelation</li>
                 <li>Coordinate validation and removal of records with high uncertainty</li>
@@ -691,7 +691,7 @@
             </ul>
 
             <h4>2.5.2 Bias Correction</h4>
-            <p>Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, accounting for accessibility and observer effort patterns across the landscape (GBIF.org, 2025).</p>
+            <p>Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, accounting for accessibility and observer effort patterns across the landscape (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>).</p>
 
             <h4>2.5.3 Model Evaluation</h4>
             <p>Model performance was evaluated using multiple metrics following established SDM evaluation protocols (<a href="#ref-phillips2006">Phillips et al., 2006</a>; <a href="#ref-elith2011">Elith et al., 2011</a>):</p>
@@ -878,11 +878,8 @@
 
             <div class="interactive-map-section">
                 <h3>🗺️ Explore Interactive Results</h3>
-                <p>View detailed habitat suitability maps, climate projections, and county-level impact analysis through our interactive web mapping application.</p>
+                <p>View detailed habitat suitability maps, climate projections, and county-level impact analysis through my interactive web mapping application.</p>
                 <a href="interactive_habitat_map.html" target="_blank" class="map-button">Launch Interactive Map</a>
-                <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 1rem;">
-                    Interactive web mapping application with detailed habitat analysis
-                </p>
             </div>
             </div>
 
