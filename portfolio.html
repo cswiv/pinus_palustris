@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Climate Change Impact Assessment for Pinus palustris | Chandler S. White IV</title>
+    <title>chandler4.com | Portfolio</title>
     <meta name="description" content="Species distribution modeling and habitat suitability analysis for Longleaf Pine (Pinus palustris) under climate change scenarios in Alabama using MaxEnt and ecology-enhanced variables.">
     <style>
         * {
@@ -474,61 +474,64 @@
         </div>
         <div class="container">
             <div class="hero">
-                <h1>Climate Change Impact Assessment for <em>Pinus palustris</em></h1>
-                <h2>Species Distribution Modeling and Habitat Suitability Analysis under Future Climate Scenarios</h2>
-                <p class="hero-subtitle">MaxEnt modeling with ecology-enhanced variables across Alabama</p>
+                <h1>Climate Change Impact Assessment for <em>Pinus palustris</em> Mill.</h1>
             </div>
         </div>
     </header>
 
     <main>
         <div class="section-box">
-            <div class="abstract">
-                <h3>Abstract</h3>
-                <p><strong>Background:</strong> <em>Pinus palustris</em> Mill. (Longleaf Pine) is a fire-dependent keystone species of southeastern United States ecosystems that has experienced severe population declines due to habitat loss, fire suppression, and land use changes. Climate change poses additional threats to remaining populations through altered temperature and precipitation patterns that may affect both species survival and critical fire regimes.</p>
+            <h2>Abstract</h2>
+
+            <p><strong>Background:</strong> <em>Pinus palustris</em> Mill. (Longleaf Pine) is a fire-dependent keystone species of southeastern United States ecosystems that has experienced severe population declines due to habitat loss, fire suppression, and land use changes. Climate change poses additional threats to remaining populations through changing temperature and precipitation patterns that may affect species survival and overall ecological community resilience.</p>
                 
-                <p><strong>Methods:</strong> I conducted species distribution modeling using MaxEnt with occurrence data from GBIF (n=274 spatially filtered records) and environmental variables from ClimateNA across three time periods: current climate (1991-2020), mid-century (2041-2070), and late-century (2071-2100) under SSP2-4.5 emissions scenario. This analysis incorporated traditional climate and topographic variables enhanced with ecological variables including fire regime suitability and canopy openness to capture the species' fire-dependent habitat requirements.</p>
+            <p><strong>Methods:</strong> I conducted MaxEnt-based habitat suitability modeling with occurrence data from GBIF (n=274 spatially filtered records) and ClimateNA-sourced climate projection data (SSP2-4.5 emissions scenario) across three time periods: current climate (1991-2020), mid-century (2041-2070), and late-century (2071-2100). This analysis incorporated traditional bioclimatic, topographic, and ecological predictors including fire regime suitability and canopy openness to capture the species' fire-dependent habitat requirements.</p>
                 
-                <p><strong>Results:</strong> The ecology-enhanced model achieved good predictive performance (Training AUC = 0.747, Test AUC = 0.706) with canopy openness (35.7% contribution) and spring precipitation (20.3% contribution) as primary habitat predictors. Current suitable habitat covers 106,598 km² in Alabama. Climate projections indicate minimal habitat changes: +0.1% by mid-century and +2.9% by late-century, suggesting stable habitat availability under future climate scenarios. Climate refugia analysis shows that 88.3% of current suitable habitat remains suitable across all three time periods, indicating high climate stability.</p>
+            <p><strong>Results:</strong> The model achieved acceptable predictive performance (Training AUC = 0.747, Test AUC = 0.706) with canopy openness (35.7% contribution) and spring precipitation (20.3% contribution) as primary habitat predictors. Current suitable habitat covers 106,598 km² in Alabama. Climate projections indicate minimal habitat changes: +0.1% by mid-century and +2.9% by late-century, suggesting stable habitat availability under the SSP2.5-4 future climate scenario. Climate refugia analysis shows that 88.3% of current suitable habitat remains suitable across all three time periods, indicating high climate stability.</p>
                 
-                <p><strong>Conclusions:</strong> <em>Pinus palustris</em> habitat in Alabama shows moderate resilience to projected climate change, but conservation efforts should prioritize climate refugia areas and maintain fire management regimes critical to species persistence. The integration of ecological variables improved model performance and ecological realism, demonstrating the importance of incorporating species-specific ecological requirements in climate change assessments.</p>
-            </div>
+            <p><strong>Conclusions:</strong> <em>Pinus palustris</em> habitat in Alabama shows moderate resilience to projected climate change, but conservation efforts should prioritize climate refugia areas and maintain fire management regimes (e.g. prescribed burning) critical to species persistence and ecological community health. Specifically, the integration of ecological variables improved model performance and captured ecological realism, demonstrating the importance of incorporating species-specific niche requirements in climate change assessments. Future efforts should focus on an expanded study area and scope encompassing the wider southeastern United States and other community members, using higher quality baseline data, including other relevant predictors, and implementing further spatial analysis.</p>
         </div>
 
             <div class="section-box">
                 <h2>1. Introduction</h2>
                 
                 <h3>1.1 Species Background</h3>
-                <p><em>Pinus palustris</em> Mill., commonly known as Longleaf Pine, is a long-lived coniferous tree species endemic to the southeastern United States and the official state tree of Alabama. Historically, longleaf pine ecosystems covered approximately 37 million hectares across the southeastern coastal plain, but current estimates suggest less than 5% of this original extent remains (Frost, 2006). The species is characterized by its distinctive life cycle, fire adaptation, and role as a keystone species supporting one of North America's most biodiverse ecosystems.</p>
+                <p><em>Pinus palustris</em> Mill., commonly known as Longleaf Pine, is a long-lived coniferous tree species endemic to the southeastern United States. Historically, longleaf pine ecosystems covered approximately 370,000 km² across its range, but current estimates suggest less than 5% of this original extent remains (Frost, 2006). The species is characterized by its distinctive habit, adaptation to fire, and role as a keystone species supporting one of North America's most biodiverse ecosystems.</p>
+            
+                <h4>2.1.1 <em>Pinus palustris</em> Habitat and Community</h4>
+                <p></p>
 
-                <p>Longleaf pine exhibits unique ecological traits that distinguish it from other southern pines. The species requires frequent, low-intensity surface fires (return intervals of 1-5 years) to maintain open savanna conditions, eliminate competing vegetation, and facilitate successful regeneration. This fire dependency makes longleaf pine particularly vulnerable to modern fire suppression practices and altered fire regimes associated with climate change.</p>
+                <p>Longleaf pine exhibits unique ecological traits that distinguish it from other <em>Pinus</em> taxa in the region. The species requires frequent, low-intensity surface fires (return intervals of 1-5 years) to maintain open savanna conditions, eliminate competing vegetation, and facilitate successful regeneration. This fire dependency makes longleaf pine particularly vulnerable to modern fire suppression practices and altered fire regimes associated with climate change.</p>
 
                 <h3>1.2 Conservation Status and Threats</h3>
-                <p>The dramatic decline of longleaf pine ecosystems represents one of the most significant conservation challenges in southeastern North America. Primary threats include:</p>
+                <p>The dramatic decline of longleaf pine ecosystems represents one of the most significant conservation challenges in the southeastern United States. Primary threats include:</p>
                 <ul>
                     <li><strong>Habitat conversion:</strong> Agricultural development, urbanization, and conversion to pine plantations</li>
-                    <li><strong>Fire suppression:</strong> Disruption of natural fire cycles essential for ecosystem maintenance</li>
+                    <li><strong>Fire suppression:</strong> Disruption of natural fire cycles essential for ecosystem health</li>
                     <li><strong>Fragmentation:</strong> Isolation of remaining populations and reduced landscape connectivity</li>
                     <li><strong>Climate change:</strong> Potential shifts in temperature, precipitation, and fire weather patterns</li>
                 </ul>
 
                 <h3>1.3 Climate Change Implications</h3>
-                <p>Climate change poses complex challenges for fire-dependent ecosystems. Projected increases in temperature and altered precipitation patterns may affect longleaf pine through multiple pathways:</p>
+                <p>Climate change poses complex challenges for fire-dependent ecosystems. Projected increases in temperature and altered precipitation patterns may affect longleaf pine along multiple vectors:</p>
                 <ul>
                     <li>Direct physiological stress from temperature and drought</li>
                     <li>Altered fire weather patterns affecting fire frequency and intensity</li>
                     <li>Shifts in competitive relationships with other plant species</li>
-                    <li>Changes in regeneration windows and seedling establishment success</li>
+                    <li>Changes in regeneration timing and seedling success</li>
                 </ul>
 
-                <p>Understanding how climate change may affect longleaf pine habitat suitability is essential for developing effective conservation strategies and informing restoration prioritization across the species' range.</p>
+                <h3>1.4 Current conservation efforts</h3>
+                <p>Many conservation efforts centered on <em>Pinus palustris</em> have been underway for decades, from organizations like <a href="https://longleafalliance.org">The Longleaf Alliance</a>.</p>
+
+                <p>Understanding how climate change may affect longleaf pine habitat suitability is essential for developing effective conservation strategies and informing restoration prioritization across longleaf pine's range.</p>
             </div>
 
             <div class="section-box">
                 <h2>2. Data & Methods</h2>
 
             <h3>2.1 Study Area</h3>
-            <p>The study was conducted across the state of Alabama, USA, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range. Alabama's diverse physiographic regions, from the Ridge-and-Valley region to the Gulf Coastal Plain, provide a comprehensive gradient of environmental conditions for assessing habitat suitability patterns. Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (U.S. Census Bureau, 2023), providing precise Alabama state and county boundaries for spatial analysis and data munging.</p>
+            <p>The study was conducted across the state of Alabama, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range. Alabama's diverse physiographic regions, from the Ridge-and-Valley hills to the Gulf Coastal Plain, provide a comprehensive gradient of conditions for assessing habitat suitability patterns. Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (U.S. Census Bureau, 2023), providing Alabama state and county political boundaries for spatial analysis and data munging.</p>
 
             <h3>2.2 Occurrence Data</h3>
             <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
@@ -609,18 +612,18 @@
                 <li><strong>Aspect:</strong> Aspect converted to northness (cosine) and eastness (sine) components to handle circular nature of aspect data, also using the terra R package</li>
                 <li><strong>Topographic Wetness Index (TWI):</strong> Calculated using slope-based proxy methodology</li>
             </ul>
-            <p>All topographic derivatives were calculated at native 30-meter resolution before resampling to 1-kilometer resolution using bilinear interpolation to match the ClimateNA template structure. A 5-kilometer buffer was applied around Alabama boundaries during processing to minimize edge effects during resampling operations.</p>
+            <p>All topographic derivatives were calculated at native 30m resolution before resampling to 1km resolution using bilinear interpolation to match the ClimateNA template structure. A 5km buffer was applied around Alabama boundaries during processing to minimize edge effects during resampling operations.</p>
 
             <h4>2.3.4 Digital Elevation Model and Topographic Framework</h4>
-            <p>The spatial framework for all environmental variables was established using Shuttle Radar Topography Mission (SRTM) digital elevation data (<a href="#ref-farr2007">Farr et al., 2007</a>). The SRTM DEM provided the baseline 30m resolution raster structure that was subsequently resampled to 1km resolution to match ClimateNA software requirements. All topographic derivatives (elevation, slope, aspect components, and topographic wetness index) were calculated from this SRTM foundation before alignment with the ClimateNA template structure.</p>
+            <p>The spatial framework for all environmental variables was established using Shuttle Radar Topography Mission (SRTM) digital elevation data (<a href="#ref-farr2007">Farr et al., 2007</a>). The SRTM DEM provided the baseline 30m resolution raster structure that was subsequently resampled to 1km resolution to match ClimateNA extremely strict software requirements. All topographic derivatives (elevation, slope, aspect components, and topographic wetness index) were calculated from this SRTM foundation before alignment with the ClimateNA template structure.</p>
 
             <h4>2.3.5 Spatial Data Integration and Quality Assurance</h4>
             <p>All environmental variables underwent systematic processing to ensure spatial consistency and alignment:</p>
             <ul>
-                <li><strong>Template Establishment:</strong> ClimateNA ASCII files served as the master spatial reference, establishing consistent 1-kilometer resolution, extent, and coordinate reference system (WGS84) across all variables.</li>
+                <li><strong>Template Establishment:</strong> ClimateNA ASCII files served as the master spatial reference, establishing consistent 1km resolution, extent, and coordinate reference system (WGS84) across all variables datasets.</li>
                 <li><strong>Multi-source Integration:</strong>> Variables from different sources (LANDFIRE, NLCD, SoilGrids) required careful reprojection and resampling procedures to adhere to the ClimateNA raster structure:
                     <ul>
-                        <li>Native resolution (~30m → ~1km) processing, followed by template alignment</li>
+                        <li>Native resolution (30m → 1km) processing, followed by template alignment</li>
                         <li>Bilinear interpolation processing followed by template alignment</li>
                         <li>Nearest neighbor resampling for categorical data</li>
                         <li>5km buffer zone to minimize edge artifacting</li>
@@ -691,7 +694,7 @@
             </ul>
 
             <h4>2.5.2 Bias Correction</h4>
-            <p>Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, accounting for accessibility and observer effort patterns across the landscape (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>).</p>
+            <p>As this study relied on presence-only occurrence data, necessary steps had to be taken to account for sampling bias. This type of error is introduced to study designs by the inherent nature of collecting this type of citizen science data--observations are far more frequently logged in easily-accessible locations, such as recreational areas or rights-of-way. Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, controlling for accessibility and observer effort patterns across the landscape (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>).</p>
 
             <h4>2.5.3 Model Evaluation</h4>
             <p>Model performance was evaluated using multiple metrics following established SDM evaluation protocols (<a href="#ref-phillips2006">Phillips et al., 2006</a>; <a href="#ref-elith2011">Elith et al., 2011</a>):</p>
@@ -735,8 +738,8 @@
             <p>The model demonstrated good predictive ability (Training AUC = 0.747, Test AUC = 0.706), exceeding what is commonly considered the threshold for acceptable model performance (AUC > 0.7). The average test AUC across all time periods (0.710) indicates consistent performance under changing climate conditions, with relatively low variability (±0.041).</p>
 
             <div class="enhancement-highlight">
-                <h3>Ecological Enhancement Impact</h3>
-                <p>I ran this analysis in several different iterations, testing out functionality at every step along the way. After establishing a working design solely using the ClimateNA bioclimatic and DEM-derived variables, I expanded the scope of the study to include ecological predictors. The enhancement of model performance was evident after initial runs, pushing the Test AUC over the critical 0.7 threshold. Crucially, I was able to add a dimension of ecological realism that was not included in my earlier tests, as evidenced by the 35.7% relative importance of canopy openness to the model. This enhancement demonstrates the importance of incorporating species-specific ecological requirements in habitat suitability modeling.</p>
+                <h3>Progressive Model Improvement</h3>
+                <p>I iterated upon this analysis many times over, testing out functionality at every step along the way. After establishing a working design solely using the ClimateNA bioclimatic and DEM-derived topographic variables, I expanded the scope of the study to include ecological predictors. The enhancement of model performance was apparent after initial runs, pushing the Test AUC over the critical 0.7 threshold. Crucially, I was able to add a dimension of ecological realism that was not included in my earlier tests, as evidenced by the 35.7% relative importance of canopy openness to the model. This enhancement demonstrates the importance of incorporating species-specific ecological requirements in habitat suitability modeling.</p>
             </div>
 
             <h3>3.2 Variable Importance</h3>
@@ -872,6 +875,11 @@
                 <li><strong>Southern coastal areas:</strong> Relatively stable with some late-century gains</li>
                 <li><strong>Southeastern counties:</strong> Most resilient regions with consistent habitat quality</li>
             </ul>
+            <p>At the county level, the following trends were apparent:</p>
+            <ul>
+                <li><strong>Franklin County:</strong> greatest gain in habitat suitability (+0.239 suitability delta in late-century)</li>
+                <li><strong>Pickens County:</strong> greatest loss in habitat suitability (-0.104 suitability delta in late-century)</li>
+            </ul>
 
             <h4>3.4.3 Climate Refugia Analysis</h4>
             <p>Climate refugia, defined as areas maintaining suitable habitat across all time periods, represent 88.3% of current suitable habitat (approximately 94,126 km²). This high percentage of stable habitat indicates exceptional climate resilience for longleaf pine in Alabama, suggesting that direct climate effects pose minimal threat to habitat availability. The extensive refugia coverage spans most of the currently suitable area across the state, providing a strong foundation for long-term conservation planning.</p>
@@ -958,46 +966,6 @@
                 <li><strong>Bias surface development:</strong> Species-specific bias correction methodology</li>
                 <li><strong>Multi-temporal analysis:</strong> Comprehensive climate change impact assessment</li>
             </ul>
-
-            <div class="challenges-section">
-                <h3>Technical Challenges and Solutions</h3>
-                
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Fire Regime Data Processing</div>
-                    <p>LANDFIRE surface fire return interval data required extensive preprocessing to convert raw fire frequency data into ecologically meaningful suitability scores for longleaf pine.</p>
-                    <p class="solution">Solution: Developed species-specific fire regime classification system based on longleaf pine ecological literature (<a href="#ref-frost2006">Frost, 2006</a>; <a href="#ref-outcalt2000">Outcalt, 2000</a>), implementing a 5-class suitability scale (95-15) corresponding to optimal fire return intervals of ≤5 years down to fire-suppressed conditions >100 years.</p>
-                </div>
-
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Multicollinearity in Environmental Variables</div>
-                    <p>Initial variable set of 91 ClimateNA variables exhibited high correlation (many r > 0.8), requiring sophisticated variable selection to balance ecological relevance with statistical validity.</p>
-                    <p class="solution">Solution: Implemented automated multi-criteria variable selection combining VIF analysis, correlation assessment, cross-validated performance testing, and ecological importance weighting (<a href="#ref-dormann2013">Dormann et al., 2013</a>). Final selection reduced variables from 91 to 8 while maintaining ecological representation.</p>
-                </div>
-
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Spatial Autocorrelation in Occurrence Data</div>
-                    <p>Raw GBIF data contained significant spatial clustering, potentially biasing model training and inflating performance metrics.</p>
-                    <p class="solution">Solution: Applied systematic 2km minimum distance spatial filtering using iterative distance calculations, reducing dataset to 274 high-quality, spatially independent records while maintaining environmental gradient representation.</p>
-                </div>
-
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Sampling Bias Correction</div>
-                    <p>Citizen science and herbarium data exhibited strong sampling bias toward accessible areas, roads, and populated regions, requiring bias surface development for background point selection.</p>
-                    <p class="solution">Solution: Created bias surface from 209,496 human-observed Plantae records using kernel density estimation. The analysis provided spatial weighting to account for collector accessibility patterns and survey effort distribution.</p>
-                </div>
-
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Cross-temporal Variable Consistency</div>
-                    <p>Ensuring consistent variable calculation across current, mid-century, and late-century time periods while maintaining ecological validity of fire and canopy variables that don't have direct climate projections.</p>
-                    <p class="solution">Solution: Applied fire and canopy variables as temporally constant factors representing current landscape conditions, focusing climate change analysis on direct climate-response relationships while acknowledging this limitation in model interpretation.</p>
-                </div>
-
-                <div class="challenge-item">
-                    <div class="challenge-title">Challenge: Model Parameter Optimization</div>
-                    <p>MaxEnt parameter selection required balancing model complexity with overfitting prevention, particularly given the incorporation of ecological variables.</p>
-                    <p class="solution">Solution: Conducted systematic parameter testing across feature classes (L, LQ, LQH, LQHP) and regularization multipliers (0.5-3.0) using 5-fold cross-validation, selecting LQHP features with regularization multiplier 1.5 based on AUC optimization and AICc criteria.</p>
-                </div>
-            </div>
             </div>
 
             <div class="section-box">
@@ -1070,7 +1038,7 @@
                 </div>
                 
                 <div class="reference-item" id="ref-frost2006">
-                    Frost, C.C. (2006). History and future of the longleaf pine ecosystem. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), The Longleaf Pine Ecosystem (pp. 9-48). Springer.
+                    Frost, C.C. (2006). History and future of the longleaf pine ecosystem. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration (pp. 9-48). Springer.
                 </div>
                 
                 <div class="reference-item" id="ref-GBIF2025pinus">
