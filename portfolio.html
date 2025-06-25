@@ -990,14 +990,24 @@
 
             <h3>5.1 Key Findings</h3>
             <ul>
-                <li><strong>Model performance:</strong> Ecology-enhanced MaxEnt modeling achieved good predictive performance (Test AUC = 0.706), validating the importance of incorporating species-specific ecological requirements</li>
-                <li><strong>Habitat stability:</strong> Projected climate change impacts are relatively modest (+0.1% to +2.9%), suggesting direct climate tolerance resilience</li>
+                <li><strong>Model performance:</strong> MaxEnt modeling achieved good predictive performance (Test AUC = 0.706), validating the importance of incorporating species-specific ecological requirements</li>
+                <li><strong>Habitat stability:</strong> Projected climate change impacts are relatively modest (+0.1% to +2.9%), suggesting direct climate tolerance resilience that contrasts sharply with projections for other fire-dependent species</li>
+                <li><strong>Comparative climate vulnerability:</strong>The conservative projections of my research differ markedly from studies of other fire-dependent pine species, which show substantial habitat losses and range contractions. Ponderosa pine faces extensive habitat loss, with studies documenting 16-30% of existing forests at risk of conversion to non-forest vegetation by 2050 (<a href="#ref-parks2019">Parks et al., 2019</a>), and widespread regeneration failure following high-severity fires (<a href="#ref-stevens2018">Stevens-Rumann et al., 2018</a>). Similarly, oak savanna restoration efforts in the Upper Midwest require decades of intensive fire management to maintain even marginal habitat conditions (<a href="#ref-davis2021">Davis et al., 2021</a>). Mexican pine and oak species show projected range decreases of 7-64% under climate change scenarios (<a href="#ref-gomez2007">Gómez-Mendoza & Arriaga, 2007</a>).</li>
+                <li><strong>Longleaf pine climate resilience mechanisms:</strong>Several factors likely explain longleaf pine's relative climate resilience compared to other fire-dependent species:
+                    <ul>
+                        <li>Deep taproot system enabling access to groundwater during drought periods</li>
+                        <li>Broad historical climate tolerance developed across a range from Virginia to Texas</li>
+                        <li>Fire-adapted physiology including thick bark and grass-stage juvenile form that provides buffering against climate-fire interactions</li>
+                        <li>Southeastern climate stability, where projected temperature and precipitation changes are more moderate than in western North America</li>
+                    </ul>
+                </li>
                 <li><strong>Temporal ecological dynamics:</strong> Variable importance patterns reveal three distinct phases: current spring moisture dependence, mid-century multi-factor vulnerability, and late-century drought adaptation</li>
-                <li><strong>Fire dependence evolution:</strong> Canopy openness maintains dominance (35.7% → 28.8% → 39.0%) with mid-century dip suggesting temporary vulnerability during climate transition</li>
-                <li><strong>Moisture stress transition:</strong> Declining spring precipitation importance (20.3% → 4.4%) coupled with increasing climatic moisture deficit (1.5% → 4.0%) indicates fundamental shifts in seasonal moisture relationships</li>
-                <li><strong>Soil drainage amplification:</strong> Sand content peaks in mid-century (29.7%) highlighting critical buffering role during climate transition</li>
-                <li><strong>Climate refugia identified:</strong> 88.3% of current suitable habitat represents stable refugia areas prioritized for conservation</li>
-                <li><strong>Regional variation:</strong> Central Alabama shows greatest vulnerability, while southeastern counties demonstrate highest resilience</li>
+                <li><strong>Fire dependence evolution:</strong> Canopy openness maintains dominance (35.7% → 28.8% → 39.0%) with mid-century dip suggesting temporary vulnerability during climate transition, while fire regime suitability shows the highest importance during the critical mid-century period (6.1% contribution)</li>
+                <li><strong>Moisture stress transition:</strong> Declining spring precipitation importance (20.3% → 4.4%) coupled with increasing climatic moisture deficit (1.5% → 4.0%) indicates fundamental shifts in seasonal moisture relationships that longleaf pine appears capable of accommodating</li>
+                <li><strong>Soil drainage amplification:</strong> Sand content peaks in mid-century (29.7%) highlighting critical buffering role during climate transition, suggesting well-drained soils provide crucial resilience against climate-fire stress interactions</li>
+                <li><strong>Climate refugia identified:</strong> 88.3% of current suitable habitat represents stable refugia areas prioritized for conservation, indicating exceptional stability compared to climate change projections for other fire-dependent ecosystems</li>
+                <li><strong>Regional variation:</strong> Central Alabama shows greatest vulnerability, while southeastern counties demonstrate highest resilience, providing spatial targets for differentiated management strategies</li>
+                <li><strong>Fire regime integration effects:</strong> The inclusion of fire regime variables appears to constrain habitat projections to more ecologically realistic estimates, suggesting that fire management rather than climate represents the primary limiting factor for longleaf pine persistence</li>
             </ul>
 
             <h3>5.2 Conservation Recommendations</h3>
@@ -1012,14 +1022,37 @@
             </ol>
 
             <h3>5.3 Future Research Directions</h3>
-            <p>This study opens several avenues for future research. The overall project could be improved through expanded study area extent and higher resolution (beyond the 1 km used here), factors which were limited due to computational constraints of using a personal workstation. Future work could integrate more detailed data, such as soils from SSURGO and more up-to-date LANDFIRE data. The input DEM could be LiDAR-derived, which could produce higher-quality derivatives, like TWI, slope, and aspect. Additional research directions include:</p>
-            <ul>
-                <li><strong>Dynamic fire modeling:</strong> Integration of climate-fire models to project fire regime changes</li>
-                <li><strong>Genetic adaptation analysis:</strong> Assessment of local adaptation and migration potential</li>
-                <li><strong>Ecosystem-level modeling:</strong> Expansion to include associated species and community dynamics</li>
-                <li><strong>Restoration prioritization:</strong> Development of spatially explicit restoration planning tools</li>
-                <li><strong>Scenario expansion:</strong> Analysis under additional emission scenarios and time horizons</li>
-            </ul>
+            <p>This study opens several avenues for future research that could significantly enhance our understanding of longleaf pine climate vulnerability and improve model accuracy. The spatial design components of this study offer particularly promising opportunities for methodological advancement and ecological insight.</p>
+            
+            <h4>5.3.1 Spatial Resolution and Scale Effects</h4>
+            <p>The current study's 1km spatial resolution, while aligned with ClimateNA climate data specifications, represents a compromise that may obscure important fine-scale ecological processes critical to longleaf pine habitat assessment. Research demonstrates that species distribution models are highly sensitive to spatial grain size, with model accuracy generally improving with finer resolutions until reaching species-specific optimal scales (<a href="#ref-guisan2007">Guisan et al., 2007</a>; <a href="#ref-song2013">Song et al., 2013</a>). For fire-dependent species like longleaf pine, microhabitat heterogeneity captured at resolutions finer than 1 km may be crucial for accurately modeling fire behavior, seed dispersal limitations, and local population dynamics (<a href="#ref-moudry2023">Moudrý et al., 2023</a>).</p>
+            <p>Future research could explore multi-scale modeling approaches using grain sizes ranging from 30m (native SRTM resolution) to 250m (MODIS resolution) to identify optimal spatial scales for different ecological processes. Studies have shown that increasing spatial resolution can reveal previously undetected environmental predictors and improve model discrimination, particularly for species associated with spatially heterogeneous or rare habitat conditions (<a href="#ref-anderson2010">Anderson & Raza, 2010</a>; <a href="#ref-connor2018">Connor et al., 2018</a>). For longleaf pine, fine-scale fire regime patterns, local soil drainage variability, and microsite canopy openness may only become apparent at sub-kilometer resolutions.</p>
+
+            <h4>5.3.2 Study Extent and Geographic Scope</h4>
+            <p>The Alabama-focused extent of this study, while providing detailed state-level insights, limits our understanding of range-wide climate responses and potential population source-sink dynamics. Research indicates that study extent significantly influences species distribution model outputs, with larger extents generally improving model transferability but potentially masking local adaptation patterns (<a href="#ref-khosravi2016">Khosravi et al., 2016</a>; <a href="#ref-massada2012">Bar Massada et al., 2012</a>). The "interactive spatial scale effects" documented in recent studies suggest that optimal grain size and extent combinations are species-specific and may differ significantly from current modeling approaches (<a href="#ref-li2019">Li et al., 2019</a>).</p>
+            <p>Expanding the study extent to encompass the full longleaf pine range from Virginia to Texas would enable investigation of climate gradient effects, regional adaptation patterns, and range-wide vulnerability assessment. Multi-extent modeling approaches could examine how local population responses to climate change may be influenced by connectivity to populations across different climate zones. This is particularly relevant for longleaf pine given its limited seed dispersal capacity and the highly fragmented nature of remaining populations.</p>
+
+            <h4>5.3.3 Scale-Dependent Variable Selection</h4>
+            <p>The current study's ecological variables (fire regime suitability and canopy openness) were derived at their native resolutions before resampling to match climate data. However, research suggests that different ecological processes may be optimally captured at different spatial scales, and that scale-mismatched predictor variables can significantly reduce model performance (<a href="#ref-moudry2023">Moudrý et al., 2023</a>). Future research could explore scale-optimization approaches where each predictor variable is analyzed at its optimal spatial resolution before integration into multi-scale modeling frameworks.</p>
+            <p>For longleaf pine, fire regime patterns may be most meaningful at landscape scales (1-10km), while canopy openness may be most informative at stand scales (30-100m), and soil drainage patterns at intermediate scales (100-500m). Hierarchical modeling approaches that explicitly incorporate multiple spatial scales could capture these scale-dependent relationships and improve both model accuracy and ecological realism.</p>
+
+            <h4>5.3.4 High Resolution Data Integration</h4>
+            <p>Emerging high resolution datasets offer opportunities to transcend current spatial limitations. LiDAR-derived digital elevation models could provide sub-meter topographic resolution, enabling more accurate calculation of topographic wetness index, fire behavior modeling, and microsite characterization. High resolution satellite imagery (e.g., Sentinel-2 at 10-20m resolution) could improve canopy openness estimates and enable dynamic monitoring of fire effects and vegetation recovery patterns.</p>
+            <p>Integration of unmanned aerial systems (UAS) data could enable field-scale (1-10m) habitat characterization, particularly valuable for validating model predictions and understanding fine-scale ecological processes. Recent advances in spectral unmixing and machine learning approaches could enable extraction of longleaf pine-specific signatures from remotely sensed data, improving species-specific habitat mapping accuracy.</p>
+
+            <h4>5.3.5 Temporal Scale Considerations</h4>
+            <p>While this study examined three temporal snapshots (current, mid-century, late-century), the temporal grain of analysis could be refined to capture decadal-scale climate variability and disturbance-recovery cycles. Annual or decadal modeling approaches could reveal climate-fire interactions, drought cycle effects, and management intervention impacts that are obscured in 30-year climate averages.</p>
+
+            <h4>5.3.6 Methodological Innovation Opportunities</h4>
+            <p>The spatial scale literature suggests several promising methodological approaches for future longleaf pine SDM research:
+                <ul>
+                    <li>Adaptive scale selection algorithms that optimize grain size for each predictor variable independently</li>
+                    <li>Multi-scale ensemble modeling that weights predictions from multiple spatial scales based on validation performance</li>
+                    <li>Hierarchical Bayesian approaches that explicitly model scale-dependent uncertainty</li>
+                    <li>Dynamic species distribution models that incorporate temporal variability in spatial scale effects</li>
+                </ul>
+            </p>
+            <p>These spatial design enhancements could significantly improve model accuracy, ecological realism, and conservation applicability while providing methodological advances transferable to other fire-dependent species and ecosystem types. The computational constraints that limited this study to 1-kilometer resolution are increasingly surmountable with advances in cloud computing and high-performance computing resources, making comprehensive multi-scale analyses increasingly feasible for conservation applications.</p>
 
             <h3>5.4 Broader Implications</h3>
             <p>The temporal variable importance analysis demonstrates that species distribution models can reveal not just where species may persist, but how their ecological relationships may evolve under climate change. The three-phase pattern observed—current dependencies, transitional vulnerability, and adapted requirements—suggests that climate change impacts on species may be more dynamic and temporally structured than typically captured in static habitat projections.</p>
@@ -1032,10 +1065,18 @@
             <div class="references" id="references">
                 <h3>References</h3>
                 
+                <div class="reference-item" id="ref-anderson2010">
+                    Anderson, R.P., & Raza, A. (2010). The effect of the extent of the study region on GIS models of species geographic distributions and estimates of niche evolution: preliminary tests with montane rodents (genus Nephelomys) in Venezuela. Journal of Biogeography, 37(7), 1378-1393.
+                </div>
+                
                 <div class="reference-item" id="ref-araujo2007">
                     Araújo, M.B., & Guisan, A. (2007). Five (or so) challenges for species distribution modelling. Journal of Biogeography, 33(10), 1677-1688.
                 </div>
 
+                <div class="reference-item" id="ref-massada2012">
+                    Bar Massada, A., Radeloff, V.C., Stewart, S.I., & Hawbaker, T.J. (2009). Wildfire risk in the wildland–urban interface: A simulation study in northwestern Wisconsin. Forest Ecology and Management, 258(9), 1990-1999.
+                </div>
+                
                 <div class="reference-item" id="ref-boyer1990">
                     Boyer, W.D. (1990). Pinus palustris Mill. Longleaf pine. In R.M. Burns & B.H. Honkala (Eds.), Silvics of North America: Volume 1, Conifers (pp. 405-412). USDA Forest Service Agriculture Handbook 654.
                 </div>
@@ -1044,12 +1085,20 @@
                     Campôa, J., & Puhlick, J.J. (2023). Influence of climate fluctuations on Pinus palustris growth and drought resilience. Forest Ecosystems, 10, 100151.
                 </div>
 
+                <div class="reference-item" id="ref-connor2018">
+                    Connor, T., Hull, V., Viña, A., Shortridge, A., Tang, Y., Zhang, J., Wang, F., & Liu, J. (2018). Effects of grain size and niche breadth on species distribution modeling. Ecography, 41(8), 1270-1282.
+                </div>
+                
                 <div class="reference-item" id="ref-croker1987">
                     Croker, T.C. (1987). Longleaf pine: A history of man and a forest. USDA Forest Service, Forestry Report R8-FR7.
                 </div>
                 
                 <div class="reference-item" id="ref-daly2008">
                     Daly, C., Halbleib, M., Smith, J.I., Gibson, W.P., Doggett, M.K., Taylor, G.H., Curtis, J. (2008). Physiographically sensitive mapping of temperature and precipitation across the conterminous United States. International Journal of Climatology, 28, 2031–2064.
+                </div>
+                
+                <div class="reference-item" id="ref-davis2021">
+                    Davis, A.B., Jackman, T.R., Savage, J.A., & Huebner, C.D. (2021). Twenty‐five years of tree demography in a frequently burned oak woodland: implications for savanna restoration. Ecosphere, 12(12), e03844.
                 </div>
                 
                 <div class="reference-item" id="ref-dormann2013">
@@ -1096,8 +1145,16 @@
                     Gilliam, F.S., & Platt, W.J. (1999). Effects of long-term fire exclusion on tree species composition and stand structure in an old-growth Pinus palustris (Longleaf pine) forest. Plant Ecology, 140(1), 15-26.
                 </div>
 
+                <div class="reference-item" id="ref-gomez2007">
+                    Gómez-Mendoza, L., & Arriaga, L. (2007). Modeling the effect of climate change on the distribution of oak and pine species of Mexico. Conservation Biology, 21(6), 1545-1555.
+                </div>
+                
                 <div class="reference-item" id="ref-griffith2001">
                     Griffith, G.E., Omernik, J.M., Comstock, J.A., Lawrence, S., Martin, G., Goddard, A., Hulcher, V.J., & Foster, T. (2001). Ecoregions of Alabama and Georgia (color poster with map, descriptive text, summary tables, and photographs). U.S. Geological Survey, Reston, VA.
+                </div>
+                
+                <div class="reference-item" id="ref-guisan2007">
+                    Guisan, A., Graham, C.H., Elith, J., Huettmann, F., & NCEAS Species Distribution Modelling Group. (2007). Sensitivity of predictive species distribution models to change in grain size. Diversity and Distributions, 13(3), 332-340.
                 </div>
                 
                 <div class="reference-item" id="ref-harris2014">
@@ -1128,6 +1185,10 @@
                     Kearney, M., & Porter, W. (2009). Mechanistic niche modelling: combining physiological and spatial data to predict species' ranges. Ecology Letters, 12(4), 334-350.
                 </div>
 
+                <div class="reference-item" id="ref-khosravi2016">
+                    Khosravi, R., Hemami, M.R., Malekian, M., Flint, A.L., & Flint, L.E. (2016). Maxent modeling for predicting potential distribution of goitered gazelle in central Iran: the effect of extent and grain size on performance of the model. Turkish Journal of Zoology, 40(4), 574-585.
+                </div>
+                
                 <div class="reference-item" id="ref-kirkman2001">
                     Kirkman, L.K., Mitchell, R.J., Helton, R.C., & Drew, M.B. (2001). Productivity and species richness across an environmental gradient in a fire-dependent ecosystem. American Journal of Botany, 88(11), 2119-2128.
                 </div>
@@ -1144,6 +1205,10 @@
                     Landers, J.L., Van Lear, D.H., & Boyer, W.D. (1995). The longleaf pine forests of the Southeast: Requiem or renaissance? Journal of Forestry, 93(11), 39-44.
                 </div>
                 
+                <div class="reference-item" id="ref-li2019">
+                    Li, J., Fan, K., Zhou, Y., Chen, N., & Qi, P. (2019). Interactive spatial scale effects on species distribution modeling: The case of the giant panda. Scientific Reports, 9(1), 14563.
+                </div>
+                
                 <div class="reference-item" id="ref-mahony2022">
                     Mahony, C.R., Wang, T., Hamann, A., & Cannon, A.J. (2022). A CMIP6 ensemble for downscaled monthly climate normals over North America. International Journal of Climatology, 42(11), 5871-5891. DOI: https://doi.org/10.1002/joc.7566
                 </div>
@@ -1152,6 +1217,10 @@
                     Mitchell, R.J., Hiers, J.K., O'Brien, J.J., Jack, S.B., & Goodrick, S.L. (2006). Silviculture that sustains: the nexus between silviculture, frequent prescribed fire, and conservation of biodiversity in longleaf pine forests of the southeastern United States. Canadian Journal of Forest Research, 36(12), 2724-2736.
                 </div>
 
+                <div class="reference-item" id="ref-moudry2023">
+                    Moudrý, V., Keil, P., Gábor, L., Lecours, V., Zarzo-Arias, A., Barták, V., Malavasi, M., Rocchini, D., Torresani, M., Gdulová, K., Grattarola, F., Leroy, F., Marchetto, E., Thouverai, E., Prošek, J., Wild, J., & Šímová, P. (2023). Scale mismatches between predictor and response variables in species distribution modelling: A review of practices for appropriate grain selection. Diversity and Distributions, 29(4), 459-475.
+                </div>
+                
                 <div class="reference-item" id="ref-noss1989">
                     Noss, R.F. (1989). Longleaf pine and wiregrass: Keystone species of an endangered ecosystem. Natural Areas Journal, 9(4), 211-213.
                 </div>
@@ -1162,6 +1231,10 @@
                 
                 <div class="reference-item" id="ref-outcalt2000">
                     Outcalt, K.W. (2000). The longleaf pine ecosystem of the South. Native Plants Journal, 1(1), 42-53.
+                </div>
+                
+                <div class="reference-item" id="ref-parks2019">
+                    Parks, S.A., Holsinger, L.M., Voss, M.A., Loehman, R.A., & Robinson, N.P. (2019). Mean composite fire severity metrics computed with Google Earth Engine offer improved accuracy and expanded mapping potential. Remote Sensing, 11(8), 879.
                 </div>
                 
                 <div class="reference-item" id="ref-peet2006">
@@ -1188,6 +1261,14 @@
                     Ramos, A.M., Santos, J.A., & Pereira, J.S. (2023). Species Distribution Modelling under Climate Change Scenarios for Maritime Pine (Pinus pinaster Aiton) in Portugal. Forests, 14(3), 591.
                 </div>
 
+                <div class="reference-item" id="ref-song2013">
+                    Song, W., Kim, E., Lee, D., Lee, M., & Jeon, S.W. (2013). The sensitivity of species distribution modeling to scale differences. Ecological Modelling, 248, 113-118.
+                </div>
+                
+                <div class="reference-item" id="ref-stevens2018">
+                    Stevens-Rumann, C.S., Kemp, K.B., Higuera, P.E., Harvey, B.J., Rother, M.T., Donato, D.C., Morgan, P., & Veblen, T.T. (2018). Evidence for declining forest resilience to wildfires under climate change. Ecology Letters, 21(2), 243-252.
+                </div>
+                
                 <div class="reference-item" id="ref-swets1988">
                     Swets, J.A. (1988). Measuring the accuracy of diagnostic systems. Science, 240(4857), 1285-1293.
                 </div>
