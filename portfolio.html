@@ -521,9 +521,7 @@
                 </ul>
 
                 <h3>1.4 Current Conservation Efforts</h3>
-                <p>Many conservation efforts centered on <em>Pinus palustris</em> have been underway for decades, from organizations like <a href="https://longleafalliance.org">The Longleaf Alliance</a>.</p>
-
-                <p>Understanding how climate change may affect longleaf pine habitat suitability is essential for developing effective conservation strategies and informing restoration prioritization across longleaf pine's range.</p>
+                <p>Current conservation efforts for longleaf pine involve a comprehensive multi-sector collaboration led by America's Longleaf Restoration Initiative (ALRI), which unites federal agencies, NGOs, universities, and private industry toward restoring 8 million acres by 2025 (<a href="ref-americaslongleaf2024">America's Longleaf, 2024</a>). Federal initiatives include the NRCS Longleaf Pine Initiative (restoring 870,000+ acres on private lands), USDA Forest Service partnerships, and military installation conservation programs managing hundreds of thousands of acres (<a href="#ref-nrcs2024">NRCS, 2024</a>). Major NGOs like The Nature Conservancy, National Wildlife Federation, and Tall Timbers Research Station contribute through land management, technical assistance, and prescribed fire training, while the National Fish and Wildlife Foundation's Longleaf Landscape Stewardship Fund provides record funding of $33.5 million annually (<a href="#ref-nfnw2024">NFWF, 2024</a>; <a href="#ref-talltimbers2024">Tall Timbers, 2024</a>). Academic institutions, including Auburn University's Center for Longleaf Pine Ecosystems and NC State University, conduct critical research on climate resilience, restoration techniques, and fire ecology (<a href="#ref-samuelson2017">Samuelson et al., 2017</a>). These collaborative efforts have increased managed longleaf habitat from 3 million to 5.2 million acres, demonstrating unprecedented coordination in ecosystem-scale conservation (<a href="#ref-americaslongleaf2025">America's Longleaf, 2025</a>), though significant challenges remain given the species' historic decline from 37 million hectares to less than 5% of its original range (<a href="#ref-jose2006">Jose et al., 2006</a>).</p>
                 
                 <h3>1.5 Past research</h3>
                 
@@ -544,182 +542,183 @@
 
             <div class="section-box">
                 <h2>2. Data & Methods</h2>
+                <p>All spatial data processing and analysis were conducted using R version 4.5.0 (<a href="#ref-rcore2025">R Core Team, 2025</a>) within RStudio (<a href="#ref-rstudio2025">Posit Team, 2025</a>) and QGIS 3.40.7 (<a href="#ref-qgis2025">QGIS.org, 2025</a>). Primary R packages for spatial data manipulation included terra (<a href="#ref-hijmans2025">Hijmans, 2025</a>) and sf (<a href="#ref-pebesma2018"></a>Pebesma, 2018) for raster and vector operations, with additional processing using raster (<a href="#ref-raster2023">Hijmans, 2023</a>) and exactextractr (<a href="#ref-exactextractr2023">Baston, 2023</a>) for zonal statistics. Habitat suitability modeling processes relied on the dismo (<a href="#ref-dismo2024">Hijmans et al., 2024</a>), rJava (<a href="#ref-rjava2021">Urbanek, 2021</a>), and ENMeval (<a href="#ref-enmeval2014">Muscarella et al., 2014</a>) packages, while data munging relied on dplyr (<a href="#ref-dplyr2023">Wickham et al., 2023</a>). Terrain analysis, such as calculations of topographic wetness index (TWI), used whitebox (<a href="#ref-whitebox2020">Wu, 2020</a>). ggplot2 (<a href="#ref-ggplot2016">Wickham, 2016</a>), corrplot (<a href="#ref-corrplot2021">Wei & Simko, 2021</a>), viridis (<a href="#ref-viridis2024">Garnier, 2024</a>), and layout packages cowplot (<a href="#ref-cowplot2024">Wilke, 2024</a>), and gridExtra (<a href="#ref-auguie2017">Auguie, 2017</a>) enabled visualization and statistical analysis throughout the workflow. Interactive web mapping was developed using leaflet (<a href="#ref-leaflet2024">Cheng et al., 2024</a>), htmlwidgets (<a href="#ref-htmlwidgets2023">Vaidyanathan et al., 2023</a>), and RColorBrewer (<a href="#ref-rcolorbrewer2022">Neuwirth, 2022</a>).</p>
 
-            <h3>2.1 Study Area</h3>
-            <p>The study was conducted across the state of Alabama, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range (<a href="#ref-uscensus2023">U.S. Census Bureau, 2023</a>). Alabama's diverse physiographic regions, from the Ridge-and-Valley hills to the Gulf Coastal Plain, provide a comprehensive gradient of conditions for assessing habitat suitability patterns (<a href="#ref-griffith2001">Griffith, 2001</a>). Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (<a href="#ref-uscensus2023">U.S. Census Bureau, 2023</a>), providing Alabama state and county political boundaries for spatial analysis and data munging.</p>
+                <h3>2.1 Study Area</h3>
+                <p>The study was conducted across the state of Alabama, which encompasses approximately 135,760 km² total area (131,172 km² land area) and represents a significant portion of the longleaf pine's historical and current range (<a href="#ref-uscensus2023">U.S. Census Bureau, 2023</a>). Alabama's diverse physiographic regions, from the Ridge-and-Valley hills to the Gulf Coastal Plain, provide a comprehensive gradient of conditions for assessing habitat suitability patterns (<a href="#ref-griffith2001">Griffith, 2001</a>). Open water and urbanized land cover classes were excluded from the analysis to focus modeling efforts on terrestrial habitats suitable for forest species colonization. Study area boundaries were obtained from the U.S. Census Bureau's Master Address File/Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) System (<a href="#ref-uscensus2023">U.S. Census Bureau, 2023</a>), providing Alabama state and county political boundaries for spatial analysis and data munging.</p>
 
-            <h3>2.2 Occurrence Data</h3>
-            <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
-            <ul>
-                <li>Spatial filtering with 2km minimum distance between points to reduce spatial autocorrelation</li>
-                <li>Coordinate validation and removal of records with high uncertainty</li>
-                <li>Geographic filtering to Alabama study area boundaries</li>
-                <li>Final dataset: 274 spatially filtered, high-quality occurrence records</li>
-            </ul>
+                <h3>2.2 Occurrence Data</h3>
+                <p>Species occurrence records were obtained from the Global Biodiversity Information Facility (GBIF) through manual data retrieval from their website (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>). The initial dataset contained occurrence records spanning 2003-2025, filtered to include only human-observed records and excluding herbarium specimens that might complicate accurate observation data. Data preprocessing included:</p>
+                <ul>
+                    <li>Spatial filtering with 2km minimum distance between points to reduce spatial autocorrelation</li>
+                    <li>Coordinate validation and removal of records with high uncertainty</li>
+                    <li>Geographic filtering to Alabama study area boundaries</li>
+                    <li>Final dataset: 274 spatially filtered, high-quality occurrence records</li>
+                </ul>
 
-            <div class="methods-grid">
-                <div class="method-card">
-                    <h4>Data Quality Control</h4>
-                    <p>Rigorous quality control procedures ensured occurrence data reliability, including coordinate validation, uncertainty thresholds, and systematic bias assessment through comparison with human-observed records.</p>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <h4>Data Quality Control</h4>
+                        <p>Rigorous quality control procedures ensured occurrence data reliability, including coordinate validation, uncertainty thresholds, and systematic bias assessment through comparison with human-observed records.</p>
+                    </div>
+                    <div class="method-card">
+                        <h4>Spatial Filtering</h4>
+                        <p>Applied 2km minimum distance filtering to reduce spatial autocorrelation while maintaining adequate sample size for model training and validation across environmental gradients. This distance reflects the limited dispersal ability of longleaf pine seeds, which typically disperse less than 1-2 tree lengths from parent trees under natural conditions.</p>
+                    </div>
                 </div>
-                <div class="method-card">
-                    <h4>Spatial Filtering</h4>
-                    <p>Applied 2km minimum distance filtering to reduce spatial autocorrelation while maintaining adequate sample size for model training and validation across environmental gradients. This distance reflects the limited dispersal ability of longleaf pine seeds, which typically disperse less than 1-2 tree lengths from parent trees under natural conditions.</p>
+
+                <h3>2.3 Environmental Variables</h3>
+            
+                <h4>2.3.1 Bioclimatic Variables</h4>
+                <p>Climate variables were obtained from ClimateNA v7.30 (<a href="#ref-wang2016">Wang et al., 2016</a>), which provides high-resolution climate surfaces based on PRISM data (<a href="#ref-daly2008">Daly et al., 2008</a>) and downscaled climate model projections (<a href="#ref-mahony2022">Mahony et al., 2022</a>). Variables were extracted for three time periods:</p>
+                <ul>
+                    <li><strong>Current climate:</strong> 1991-2020 normals</li>
+                    <li><strong>Mid-century:</strong> 2041-2070 (13 GCM ensemble, SSP2-4.5)</li>
+                    <li><strong>Late-century:</strong> 2071-2100 (13 GCM ensemble, SSP2-4.5)</li>
+                </ul>
+
+                <h4>2.3.2 Ecological Variables</h4>
+                <p>Ecological variables were developed to capture the species' fire-dependent habitat requirements and soil preferences:</p>
+            
+                <div class="technical-details">
+                    <h4>Fire Regime Suitability</h4>
+                    <p><strong>Data source:</strong> LANDFIRE Biophysical Settings Fire Return Interval (FRI_SURFAC), circa 2016 (<a href="#ref-landfire2016">LANDFIRE, 2016</a>)</p>
+                    <p><strong>Processing:</strong> Fire return intervals were classified into suitability scores based on longleaf pine ecological requirements (<a href="#ref-boyer1990">Boyer, 1990</a>; <a href="#ref-gilliam1999">Gilliam & Platt, 1999</a>; <a href="#ref-frost2006">Frost, 2006</a>):</p>
+                    <ul>
+                        <li>FRI ≤ 5 years: Suitability = 95 (Optimal)</li>
+                        <li>FRI 6-15 years: Suitability = 75 (Good)</li>
+                        <li>FRI 16-30 years: Suitability = 55 (Moderate)</li>
+                        <li>FRI 31-100 years: Suitability = 35 (Poor)</li>
+                        <li>FRI >100 years: Suitability = 15 (Very Poor)</li>
+                    </ul>
                 </div>
-            </div>
 
-            <h3>2.3 Environmental Variables</h3>
-            
-            <h4>2.3.1 Bioclimatic Variables</h4>
-            <p>Climate variables were obtained from ClimateNA v7.30 (<a href="#ref-wang2016">Wang et al., 2016</a>), which provides high-resolution climate surfaces based on PRISM data (<a href="#ref-daly2008">Daly et al., 2008</a>) and downscaled climate model projections (<a href="#ref-mahony2022">Mahony et al., 2022</a>). Variables were extracted for three time periods:</p>
-            <ul>
-                <li><strong>Current climate:</strong> 1991-2020 normals</li>
-                <li><strong>Mid-century:</strong> 2041-2070 (13 GCM ensemble, SSP2-4.5)</li>
-                <li><strong>Late-century:</strong> 2071-2100 (13 GCM ensemble, SSP2-4.5)</li>
-            </ul>
-
-            <h4>2.3.2 Ecological Variables</h4>
-            <p>Ecological variables were developed to capture the species' fire-dependent habitat requirements and soil preferences:</p>
-            
-            <div class="technical-details">
-                <h4>Fire Regime Suitability</h4>
-                <p><strong>Data source:</strong> LANDFIRE Biophysical Settings Fire Return Interval (FRI_SURFAC), circa 2016 (<a href="#ref-landfire2016">LANDFIRE, 2016</a>)</p>
-                <p><strong>Processing:</strong> Fire return intervals were classified into suitability scores based on longleaf pine ecological requirements (<a href="#ref-boyer1990">Boyer, 1990</a>; <a href="#ref-gilliam1999">Gilliam & Platt, 1999</a>; <a href="#ref-frost2006">Frost, 2006</a>):</p>
-                <ul>
-                    <li>FRI ≤ 5 years: Suitability = 95 (Optimal)</li>
-                    <li>FRI 6-15 years: Suitability = 75 (Good)</li>
-                    <li>FRI 16-30 years: Suitability = 55 (Moderate)</li>
-                    <li>FRI 31-100 years: Suitability = 35 (Poor)</li>
-                    <li>FRI >100 years: Suitability = 15 (Very Poor)</li>
-                </ul>
-            </div>
-
-            <div class="technical-details">
-                <h4>Canopy Openness</h4>
-                <p><strong>Data source:</strong> NLCD 2023 Annual Land Cover <a href="#ref-homer2015"></a>(Homer et al., 2015)</a></p>
-                <p><strong>Processing:</strong> A multi-step workflow was implemented to convert NLCD forest classification to canopy openness metrics, based on fire-canopy relationships described by <a href="#ref-mitchell2006">Mitchell et al. (2006)</a>:</p>
-                <ul>
-                    <li>Forest classes (41=Deciduous, 42=Evergreen, 43=Mixed Forest) were extracted</li>
-                    <li>3×3 focal window/neighborhood analysis calculated local forest density</li>
-                    <li>Canopy openness derived as: 100 - (forest density × 100)</li>
-                    <li>Cross-projection handling managed coordinate reference system differences between NLCD (NAD83) and ClimateNA (WGS84)</li>
-                    <li>Final values represent percentage openness, where higher values indicate fire-maintained savanna conditions optimal for longleaf pine</li>
-                </ul>
-            </div>
-
-            <div class="technical-details">
-                <h4>Soil Variables</h4>
-                <p><strong>Data source:</strong> SoilGrids.org (<a href="#ref-poggio2021">Poggio et al., 2021</a>; <a href="#ref-turek2023">Turek et al., 2023</a>)</p>
-                <p><strong>Processing:</strong> Sand fraction (g/kg) data were retrieved and processed at three depths reflecting longleaf pine's preference for well-drained, sandy soils:</p>
-                <ul>
-                    <li>Surface layer: 0-5cm depth</li>
-                    <li>Shallow subsurface: 15-30cm depth</li>
-                    <li>Deep subsurface: 30-60cm depth</li>
-                </ul>
-                <p>These variables were included in the initial variable set before the variable selection process to capture soil drainage characteristics critical for longleaf pine establishment and growth.</p>
-            </div>
-
-            <h4>2.3.3 Topographic Variables</h4>
-            <p>Topographic variables were derived from SRTM 30m resolution digital elevation data and processed through a multi-step workflow, described in Section 2.3.5 below, to ensure spatial consistency with climate data:</p>
-            <ul>
-                <li><strong>Elevation:</strong> Direct extraction from SRTM DEM</li>
-                <li><strong>Slope:</strong> Calculated as percent rise using the terra R package</li>
-                <li><strong>Aspect:</strong> Aspect converted to northness (cosine) and eastness (sine) components to handle circular nature of aspect data, also using the terra R package</li>
-                <li><strong>Topographic Wetness Index (TWI):</strong> Calculated using slope-based proxy methodology</li>
-            </ul>
-            <p>All topographic derivatives were calculated at native 30m resolution before resampling to 1km resolution using bilinear interpolation to match the ClimateNA template structure. A 5km buffer was applied around Alabama boundaries during processing to minimize edge effects during resampling operations.</p>
-
-            <h4>2.3.4 Digital Elevation Model and Topographic Framework</h4>
-            <p>The spatial framework for all environmental variables was established using Shuttle Radar Topography Mission (SRTM) digital elevation data (<a href="#ref-farr2007">Farr et al., 2007</a>). The SRTM DEM provided the baseline 30m resolution raster structure that was subsequently resampled to 1km resolution to match ClimateNA extremely strict software requirements. All topographic derivatives (elevation, slope, aspect components, and topographic wetness index) were calculated from this SRTM foundation before alignment with the ClimateNA template structure.</p>
-
-            <h4>2.3.5 Spatial Data Integration and Quality Assurance</h4>
-            <p>All environmental variables underwent systematic processing to ensure spatial consistency and alignment:</p>
-            <ul>
-                <li><strong>Template Establishment:</strong> ClimateNA ASCII files served as the master spatial reference, establishing consistent 1km resolution, extent, and coordinate reference system (WGS84) across all variables datasets.</li>
-                <li><strong>Multi-source Integration:</strong>> Variables from different sources (LANDFIRE, NLCD, SoilGrids) required careful reprojection and resampling procedures to adhere to the ClimateNA raster structure:
+                <div class="technical-details">
+                    <h4>Canopy Openness</h4>
+                    <p><strong>Data source:</strong> NLCD 2023 Annual Land Cover <a href="#ref-homer2015"></a>(Homer et al., 2015)</a></p>
+                    <p><strong>Processing:</strong> A multi-step workflow was implemented to convert NLCD forest classification to canopy openness metrics, based on fire-canopy relationships described by <a href="#ref-mitchell2006">Mitchell et al. (2006)</a>:</p>
                     <ul>
-                        <li>Native resolution (30m → 1km) processing, followed by template alignment</li>
-                        <li>Bilinear interpolation processing followed by template alignment</li>
-                        <li>Nearest neighbor resampling for categorical data</li>
-                        <li>5km buffer zone to minimize edge artifacting</li>
+                        <li>Forest classes (41=Deciduous, 42=Evergreen, 43=Mixed Forest) were extracted</li>
+                        <li>3×3 focal window/neighborhood analysis calculated local forest density</li>
+                        <li>Canopy openness derived as: 100 - (forest density × 100)</li>
+                        <li>Cross-projection handling managed coordinate reference system differences between NLCD (NAD83) and ClimateNA (WGS84)</li>
+                        <li>Final values represent percentage openness, where higher values indicate fire-maintained savanna conditions optimal for longleaf pine</li>
                     </ul>
-                </li>
-                <li><strong>Quality Control:</strong> Comprehensive validation ensured spatial consistency, precision and accuracy:
+                </div>
+
+                <div class="technical-details">
+                    <h4>Soil Variables</h4>
+                    <p><strong>Data source:</strong> SoilGrids.org (<a href="#ref-poggio2021">Poggio et al., 2021</a>; <a href="#ref-turek2023">Turek et al., 2023</a>)</p>
+                    <p><strong>Processing:</strong> Sand fraction (g/kg) data were retrieved and processed at three depths reflecting longleaf pine's preference for well-drained, sandy soils:</p>
                     <ul>
-                        <li>Study area extent verification across all raster layers</li>
-                        <li>Resolution-matching confirmation</li>
-                        <li>Coordinate reference system alignment</li>
-                        <li>Pixel value range validation to ensure bioclimatic and ecological realism</li>
+                        <li>Surface layer: 0-5cm depth</li>
+                        <li>Shallow subsurface: 15-30cm depth</li>
+                        <li>Deep subsurface: 30-60cm depth</li>
                     </ul>
-                </li>
-            </ul>
+                    <p>These variables were included in the initial variable set before the variable selection process to capture soil drainage characteristics critical for longleaf pine establishment and growth.</p>
+                </div>
 
-            <h3>2.4 Variable Selection</h3>
-            <p>An automated multi-criteria variable selection approach was implemented to optimize model performance while minimizing multicollinearity. From an initial set of 91 ClimateNA variables plus ecological enhancements, variables were systematically reduced to an optimal subset using multiple methodological criteria.</p>
-
-            <h4>2.4.1 Selection Framework</h4>
-            <p>Three candidate variable sets were developed representing different ecological prioritization strategies:</p>
-            <ul>
-                <li><strong>Enhanced literature-prioritized:</strong> Variables selected based on longleaf pine ecological literature with priority given to fire-related variables</li>
-                <li><strong>Enhanced PCA-informed:</strong> Variables selected based on principal component loadings explaining 85% of environmental variance</li>
-                <li><strong>Enhanced balanced ecological domains:</strong> Variables ensuring representation across habitat structure, fire-climate, soil drainage, and core climate domains</li>
-            </ul>
-
-            <h4>2.4.2 Multi-Criteria Scoring System</h4>
-            <p>Each candidate set was evaluated using a weighted composite scoring system based on established methodological standards:</p>
-            <ul>
-                <li><strong>VIF analysis (40% weight):</strong> Variance Inflation Factor threshold of 10 (<a href="#ref-dormann2013">Dormann et al., 2013</a>)</li>
-                <li><strong>Correlation assessment (25% weight):</strong> Variables with |r| > 0.8 penalized</li>
-                <li><strong>Sample size optimization (15% weight):</strong> Target ratio of 10-15 samples per variable</li>
-                <li><strong>Performance validation (15% weight):</strong> Cross-validated GLM AUC assessment</li>
-                <li><strong>Ecological enhancement bonus (5% weight):</strong> Priority for fire-dependent habitat variables</li>
-            </ul>
-
-            <h4>2.4.3 Final Variable Set</h4>
-            <p>The enhanced balanced ecological domains approach achieved the highest composite score and was selected for final modeling. The final model included 8 variables representing all major ecological domains:</p>
-            
-            <div class="technical-details">
-                <h4>Selected Variables and VIF Scores</h4>
+                <h4>2.3.3 Topographic Variables</h4>
+                <p>Topographic variables were derived from SRTM 30m resolution digital elevation data and processed through a multi-step workflow, described in Section 2.3.5 below, to ensure spatial consistency with climate data:</p>
                 <ul>
-                    <li><strong>Fire Regime Suitability</strong> | VIF: 1.26</li>
-                    <li><strong>Canopy Openness</strong> | VIF: 2.54</li>
-                    <li><strong>Sand Content (0-5cm)</strong> | VIF: 2.35</li>
-                    <li><strong>Topographic Wetness Index</strong> | VIF: 2.73</li>
-                    <li><strong>Mean Annual Temperature</strong> | VIF: 7.41</li>
-                    <li><strong>Spring Precipitation</strong> | VIF: 7.74</li>
-                    <li><strong>Climatic Moisture Defecit</strong> | VIF: 11.39</li>
-                    <li><strong>Mean Annual Precipitation</strong> | VIF: 27.09</li>
+                    <li><strong>Elevation:</strong> Direct extraction from SRTM DEM</li>
+                    <li><strong>Slope:</strong> Calculated as percent rise using the terra R package</li>
+                    <li><strong>Aspect:</strong> Aspect converted to northness (cosine) and eastness (sine) components to handle circular nature of aspect data, also using the terra R package</li>
+                    <li><strong>Topographic Wetness Index (TWI):</strong> Calculated using slope-based proxy methodology</li>
                 </ul>
-                <p><strong>Note:</strong> While MAP exceeded the VIF threshold of 10, it was retained due to its fundamental ecological importance for longleaf pine and acceptable performance in cross-validation testing.</p>
-            </div>
+                <p>All topographic derivatives were calculated at native 30m resolution before resampling to 1km resolution using bilinear interpolation to match the ClimateNA template structure. A 5km buffer was applied around Alabama boundaries during processing to minimize edge effects during resampling operations.</p>
 
-            <p>This systematic approach ensured optimal balance between model parsimony, statistical validity, and ecological realism while maintaining the fire-dependent habitat enhancements critical for longleaf pine modeling.</p>
+                <h4>2.3.4 Digital Elevation Model and Topographic Framework</h4>
+                <p>The spatial framework for all environmental variables was established using Shuttle Radar Topography Mission (SRTM) digital elevation data (<a href="#ref-farr2007">Farr et al., 2007</a>). The SRTM DEM provided the baseline 30m resolution raster structure that was subsequently resampled to 1km resolution to match ClimateNA extremely strict software requirements. All topographic derivatives (elevation, slope, aspect components, and topographic wetness index) were calculated from this SRTM foundation before alignment with the ClimateNA template structure.</p>
 
-            <h3>2.5 Species Distribution Modeling</h3>
+                <h4>2.3.5 Spatial Data Integration and Quality Assurance</h4>
+                <p>All environmental variables underwent systematic processing to ensure spatial consistency and alignment:</p>
+                <ul>
+                    <li><strong>Template Establishment:</strong> ClimateNA ASCII files served as the master spatial reference, establishing consistent 1km resolution, extent, and coordinate reference system (WGS84) across all variables datasets.</li>
+                    <li><strong>Multi-source Integration:</strong>> Variables from different sources (LANDFIRE, NLCD, SoilGrids) required careful reprojection and resampling procedures to adhere to the ClimateNA raster structure:
+                        <ul>
+                            <li>Native resolution (30m → 1km) processing, followed by template alignment</li>
+                            <li>Bilinear interpolation processing followed by template alignment</li>
+                            <li>Nearest neighbor resampling for categorical data</li>
+                            <li>5km buffer zone to minimize edge artifacting</li>
+                        </ul>
+                    </li>
+                    <li><strong>Quality Control:</strong> Comprehensive validation ensured spatial consistency, precision and accuracy:
+                        <ul>
+                            <li>Study area extent verification across all raster layers</li>
+                            <li>Resolution-matching confirmation</li>
+                            <li>Coordinate reference system alignment</li>
+                            <li>Pixel value range validation to ensure bioclimatic and ecological realism</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>2.4 Variable Selection</h3>
+                <p>An automated multi-criteria variable selection approach was implemented to optimize model performance while minimizing multicollinearity. From an initial set of 91 ClimateNA variables plus ecological enhancements, variables were systematically reduced to an optimal subset using multiple methodological criteria.</p>
+
+                <h4>2.4.1 Selection Framework</h4>
+                <p>Three candidate variable sets were developed representing different ecological prioritization strategies:</p>
+                <ul>
+                    <li><strong>Enhanced literature-prioritized:</strong> Variables selected based on longleaf pine ecological literature with priority given to fire-related variables</li>
+                    <li><strong>Enhanced PCA-informed:</strong> Variables selected based on principal component loadings explaining 85% of environmental variance</li>
+                    <li><strong>Enhanced balanced ecological domains:</strong> Variables ensuring representation across habitat structure, fire-climate, soil drainage, and core climate domains</li>
+                </ul>
+
+                <h4>2.4.2 Multi-Criteria Scoring System</h4>
+                <p>Each candidate set was evaluated using a weighted composite scoring system based on established methodological standards:</p>
+                <ul>
+                    <li><strong>VIF analysis (40% weight):</strong> Variance Inflation Factor threshold of 10 (<a href="#ref-dormann2013">Dormann et al., 2013</a>)</li>
+                    <li><strong>Correlation assessment (25% weight):</strong> Variables with |r| > 0.8 penalized</li>
+                    <li><strong>Sample size optimization (15% weight):</strong> Target ratio of 10-15 samples per variable</li>
+                    <li><strong>Performance validation (15% weight):</strong> Cross-validated GLM AUC assessment</li>
+                    <li><strong>Ecological enhancement bonus (5% weight):</strong> Priority for fire-dependent habitat variables</li>
+                </ul>
+
+                <h4>2.4.3 Final Variable Set</h4>
+                <p>The enhanced balanced ecological domains approach achieved the highest composite score and was selected for final modeling. The final model included 8 variables representing all major ecological domains:</p>
             
-            <h4>2.5.1 MaxEnt Configuration</h4>
-            <p>MaxEnt modeling was conducted using the following optimized parameters derived from systematic parameter testing across 0.5, 1.0, 1.5, 2.0, and 3.0 regularization multipliers for Linear, Linear Quadratic, Linear Quadratic Hinge, and Linear Quadratic Hinge Product feature types:</p>
-            <ul>
-                <li><strong>Features:</strong> Linear, Quadratic, Hinge, Product (LQHP)</li>
-                <li><strong>Regularization multiplier:</strong> 1.5</li>
-                <li><strong>Background points:</strong> 4,350 random samples</li>
-                <li><strong>Model tuning:</strong> 5-fold cross-validation</li>
-                <li><strong>Final validation:</strong> 10-fold cross-validation</li>
-                <li><strong>Output format:</strong> Cloglog (complementary log-log)</li>
-            </ul>
+                <div class="technical-details">
+                    <h4>Selected Variables and VIF Scores</h4>
+                    <ul>
+                        <li><strong>Fire Regime Suitability</strong> | VIF: 1.26</li>
+                        <li><strong>Canopy Openness</strong> | VIF: 2.54</li>
+                        <li><strong>Sand Content (0-5cm)</strong> | VIF: 2.35</li>
+                        <li><strong>Topographic Wetness Index</strong> | VIF: 2.73</li>
+                        <li><strong>Mean Annual Temperature</strong> | VIF: 7.41</li>
+                        <li><strong>Spring Precipitation</strong> | VIF: 7.74</li>
+                        <li><strong>Climatic Moisture Defecit</strong> | VIF: 11.39</li>
+                        <li><strong>Mean Annual Precipitation</strong> | VIF: 27.09</li>
+                    </ul>
+                    <p><strong>Note:</strong> While MAP exceeded the VIF threshold of 10, it was retained due to its fundamental ecological importance for longleaf pine and acceptable performance in cross-validation testing.</p>
+                </div>
 
-            <h4>2.5.2 Bias Correction</h4>
-            <p>As this study relied on presence-only occurrence data, necessary steps had to be taken to account for sampling bias. This type of error is introduced to study designs by the inherent nature of collecting this type of citizen science data--observations are far more frequently logged in easily-accessible locations, such as recreational areas or rights-of-way. Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, controlling for accessibility and observer effort patterns across the landscape (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>).</p>
+                <p>This systematic approach ensured optimal balance between model parsimony, statistical validity, and ecological realism while maintaining the fire-dependent habitat enhancements critical for longleaf pine modeling.</p>
 
-            <h4>2.5.3 Model Evaluation</h4>
-            <p>Model performance was evaluated using multiple metrics following established SDM evaluation protocols (<a href="#ref-phillips2006">Phillips et al., 2006</a>; <a href="#ref-elith2011">Elith et al., 2011</a>):</p>
-            <ul>
-                <li>Area Under the Curve (AUC) of Receiver Operating Characteristic</li>
-                <li>10th percentile training presence threshold</li>
-                <li>Variable contribution and permutation importance</li>
-                <li>Jackknife tests of variable importance</li>
-            </ul>
-            </div>
+                <h3>2.5 Species Distribution Modeling</h3>
+            
+                <h4>2.5.1 MaxEnt Configuration</h4>
+                <p>MaxEnt modeling was conducted using the following optimized parameters derived from systematic parameter testing across 0.5, 1.0, 1.5, 2.0, and 3.0 regularization multipliers for Linear, Linear Quadratic, Linear Quadratic Hinge, and Linear Quadratic Hinge Product feature types:</p>
+                <ul>
+                    <li><strong>Features:</strong> Linear, Quadratic, Hinge, Product (LQHP)</li>
+                    <li><strong>Regularization multiplier:</strong> 1.5</li>
+                    <li><strong>Background points:</strong> 4,350 random samples</li>
+                    <li><strong>Model tuning:</strong> 5-fold cross-validation</li>
+                    <li><strong>Final validation:</strong> 10-fold cross-validation</li>
+                    <li><strong>Output format:</strong> Cloglog (complementary log-log)</li>
+                </ul>
+
+                <h4>2.5.2 Bias Correction</h4>
+                <p>As this study relied on presence-only occurrence data, necessary steps had to be taken to account for sampling bias. This type of error is introduced to study designs by the inherent nature of collecting this type of citizen science data--observations are far more frequently logged in easily-accessible locations, such as recreational areas or rights-of-way. Sampling bias was addressed through a bias surface derived from 209,496 human-observed Plantae records, controlling for accessibility and observer effort patterns across the landscape (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>).</p>
+
+                <h4>2.5.3 Model Evaluation</h4>
+                <p>Model performance was evaluated using multiple metrics following established SDM evaluation protocols (<a href="#ref-phillips2006">Phillips et al., 2006</a>; <a href="#ref-elith2011">Elith et al., 2011</a>):</p>
+                <ul>
+                    <li>Area Under the Curve (AUC) of Receiver Operating Characteristic</li>
+                    <li>10th percentile training presence threshold</li>
+                    <li>Variable contribution and permutation importance</li>
+                    <li>Jackknife tests of variable importance</li>
+                </ul>
+                </div>
 
             <div class="section-box">
                 <h2>3. Results</h2>
@@ -1065,6 +1064,14 @@
             <div class="references" id="references">
                 <h3>References</h3>
                 
+                <div class="reference-item" id="ref-americaslongleaf2024">
+                    America's Longleaf Restoration Initiative. (2024). 2024 Range-wide Accomplishment Report. America's Longleaf Restoration Initiative Partnership.
+                </div>
+                
+                <div class="reference-item" id="ref-americaslongleaf2025">
+                    America's Longleaf Restoration Initiative. (2025). Range-wide Conservation Plan for Longleaf Pine (2025-2040). America's Longleaf Restoration Initiative Partnership.
+                </div>
+                
                 <div class="reference-item" id="ref-anderson2010">
                     Anderson, R.P., & Raza, A. (2010). The effect of the extent of the study region on GIS models of species geographic distributions and estimates of niche evolution: preliminary tests with montane rodents (genus Nephelomys) in Venezuela. Journal of Biogeography, 37(7), 1378-1393.
                 </div>
@@ -1073,8 +1080,16 @@
                     Araújo, M.B., & Guisan, A. (2007). Five (or so) challenges for species distribution modelling. Journal of Biogeography, 33(10), 1677-1688.
                 </div>
 
+                <div class="reference-item" id="ref-gridextra2017">
+                    Auguie, B. (2017). <em>gridExtra: Miscellaneous functions for "Grid" graphics</em>. <a href="https://doi.org/10.32614/CRAN.package.gridExtra">doi:10.32614/CRAN.package.gridExtra</a>, R package version 2.3, https://CRAN.R-project.org/package=gridExtra.
+                </div>
+                
                 <div class="reference-item" id="ref-massada2012">
                     Bar Massada, A., Radeloff, V.C., Stewart, S.I., & Hawbaker, T.J. (2009). Wildfire risk in the wildland–urban interface: A simulation study in northwestern Wisconsin. Forest Ecology and Management, 258(9), 1990-1999.
+                </div>
+                
+                <div class="reference-item" id="ref-baston2023">
+                    Baston, D. (2023). <em>exactextractr: Fast Extraction from Raster Datasets using polygons</em>. <a href="https://doi.org/10.32614/CRAN.package.exactextractr">doi:10.32614/CRAN.package.exactextractr</a>, R package version 0.10.0, https://CRAN.R-project.org/package=exactextractr.
                 </div>
                 
                 <div class="reference-item" id="ref-boyer1990">
@@ -1085,6 +1100,10 @@
                     Campôa, J., & Puhlick, J.J. (2023). Influence of climate fluctuations on Pinus palustris growth and drought resilience. Forest Ecosystems, 10, 100151.
                 </div>
 
+                <div class="reference-item" id="ref-leaflet2024">
+                    Cheng, J., Schloerke, B., Karambelkar, B., & Xie, Y. (2024). <em>leaflet: Create interactive Web Maps with the JavaScript 'Leaflet' library</em>. <a href="https://doi.org/10.32614/CRAN.package.leaflet">doi:10.32614/CRAN.package.leaflet</a>, R package version 2.2.2, https://CRAN.R-project.org/package=leaflet
+                </div>
+                
                 <div class="reference-item" id="ref-connor2018">
                     Connor, T., Hull, V., Viña, A., Shortridge, A., Tang, Y., Zhang, J., Wang, F., & Liu, J. (2018). Effects of grain size and niche breadth on species distribution modeling. Ecography, 41(8), 1270-1282.
                 </div>
@@ -1133,6 +1152,10 @@
                     Frost, C.C. (2006). History and future of the longleaf pine ecosystem. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration (pp. 9-48). Springer.
                 </div>
                 
+                <div class="reference-item" id="ref-viridis2024">
+                    Garnier, S., Ross, N., Rudis, R., Camargo, A.P., Sciaini, M., & Scherer, C. (2024). viridis(Lite) - Colorblind-Friendly Color Maps for R. viridis package version 0.6.5, https://CRAN.R-project.org/package=viridis.
+                </div>
+                
                 <div class="reference-item" id="ref-GBIF2025pinus">
                     GBIF.org (19 June 2025) GBIF Occurrence Download https://doi.org/10.15468/dl.7xvyg9
                 </div>
@@ -1161,6 +1184,18 @@
                     Harris, I., Jones, P.D., Osborn, T.J., Lister, D.H. (2014). Updated high-resolution grids of monthly climatic observations - the CRU TS3.10 Dataset. International Journal of Climatology, 34, 623-642.
                 </div>
                 
+                <div class="reference-item" id="ref-dismo2024">
+                    Hijmans, R.J., Phillips, S., Leathwick, J., & Elith, J. (2024). <em>dismo: Species distribution modeling</em>. <a href="https://doi.org/10.32614/CRAN.package.dismo">doi:10.32614/CRAN.package.dismo</a>, R package version 1.3-16, https://CRAN.R-project.org/package=dismo.
+                </div>
+
+                <div class="reference-item" id="ref-hijmans2025">
+                    Hijmans, R.J. (2025). <em>terra: Spatial data analysis</em>. <a href="https://doi.org/10.32614/CRAN.package.terra">doi:10.32614/CRAN.package.terra</a>, R package version 1.8-54, https://CRAN.R-project.org/package=terra.
+                </div>
+                
+                <div class="reference-item" id="ref-raster2025">
+                    Hijmans, R.J. (2025). <em>raster: Geographic Data Analysis and Modeling</em>. <a href="https://doi.org/10.32614/CRAN.package.raster">doi:10.32614/CRAN.package.raster</a>, R package version 3.6-32, https://CRAN.R-project.org/package=raster.
+                </div>
+
                 <div class="reference-item" id="ref-hirzel2008">
                     Hirzel, A.H., & Le Lay, G. (2008). Habitat suitability modelling and niche theory. Journal of Applied Ecology, 45(5), 1372-1381.
                 </div>
@@ -1221,6 +1256,22 @@
                     Moudrý, V., Keil, P., Gábor, L., Lecours, V., Zarzo-Arias, A., Barták, V., Malavasi, M., Rocchini, D., Torresani, M., Gdulová, K., Grattarola, F., Leroy, F., Marchetto, E., Thouverai, E., Prošek, J., Wild, J., & Šímová, P. (2023). Scale mismatches between predictor and response variables in species distribution modelling: A review of practices for appropriate grain selection. Diversity and Distributions, 29(4), 459-475.
                 </div>
                 
+                <div class="reference-item" id="ref-enmeval2014">
+                    Muscarella, R., Galante, P.J., Soley-Guardia, M., Boria, R.A., Kass, J.M., Uriarte, M., & Anderson, R.P. (2014). ENMeval: An R package for conducting spatially independent evaluations and estimating optimal model complexity for MaxEnt ecological niche models. Methods in Ecology and Evolution, 5(11), 1198-1205.
+                </div>
+                
+                <div class="reference-item" id="ref-nfwf2024">
+                    National Fish and Wildlife Foundation. (2024). NFWF announces record $33.5 million in conservation grants to restore longleaf pine habitat and help at-risk wildlife. NFWF Press Release, June 18, 2024.
+                </div>
+                
+                <div class="reference-item" id="ref-nrcs2024">
+                    Natural Resources Conservation Service. (2024). Longleaf Pine Initiative. USDA Natural Resources Conservation Service. Retrieved from https://www.nrcs.usda.gov/programs-initiatives/longleaf-pine-initiative
+                </div>
+
+                <div class="reference-item" id="ref-neuwirth2022">
+                    Neuwirth, E. (2022). <em>ColorBrewer: ColorBrewer palettes</em>. <a href="https://doi.org/10.32614/CRAN.package.RColorBrewer">doi:10.32614/CRAN.package.RColorBrewer</a>, R package version 1.1-3, https://CRAN.R-project.org/package=RColorBrewer.
+                </div>
+                
                 <div class="reference-item" id="ref-noss1989">
                     Noss, R.F. (1989). Longleaf pine and wiregrass: Keystone species of an endangered ecosystem. Natural Areas Journal, 9(4), 211-213.
                 </div>
@@ -1235,6 +1286,10 @@
                 
                 <div class="reference-item" id="ref-parks2019">
                     Parks, S.A., Holsinger, L.M., Voss, M.A., Loehman, R.A., & Robinson, N.P. (2019). Mean composite fire severity metrics computed with Google Earth Engine offer improved accuracy and expanded mapping potential. Remote Sensing, 11(8), 879.
+                </div>
+                
+                <div class="reference-item" id="ref-pebesma2018">
+                    Pebesma, E. (2018). Simple features for R: Standardized support for spatial vector data. The R Journal, 10(1), 439-446.
                 </div>
                 
                 <div class="reference-item" id="ref-peet2006">
@@ -1257,10 +1312,22 @@
                     Prasad, A.M., Iverson, L.R., Matthews, S., & Peters, M. (2007). Eastern United States Climate Change Tree Atlas - Suitable habitat for Pinus palustris (longleaf pine) as measured by importance value (IV). USDA Forest Service, Northern Research Station.
                 </div>
 
+                <div class="reference-item" id="ref-qgis2023">
+                    QGIS Development Team. (2025). QGIS Geographic Information System. QGIS Association. <a href="">https://www.qgis.org/</a>https://www.qgis.org/
+                </div>
+                
+                <div class="reference-item" id="ref-grid2023">
+                    R Core Team. (2025). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
+                </div>
+                
                 <div class="reference-item" id="ref-ramos2023">
                     Ramos, A.M., Santos, J.A., & Pereira, J.S. (2023). Species Distribution Modelling under Climate Change Scenarios for Maritime Pine (Pinus pinaster Aiton) in Portugal. Forests, 14(3), 591.
                 </div>
 
+                <div class="reference-item" id="ref-samuelson2017">
+                    Samuelson, L.J., Butnor, J.R., Johnsen, K.H., Gonzalez-Benecke, C.A., Martin, T.A., Anderson, P.H., Ramirez, M.R., Lewis, J.C., & Eberhardt, T.L. (2017). Ecosystem carbon density and allocation across a chronosequence of longleaf pine forests. Ecological Applications, 27(1), 244-259.
+                </div>
+                
                 <div class="reference-item" id="ref-song2013">
                     Song, W., Kim, E., Lee, D., Lee, M., & Jeon, S.W. (2013). The sensitivity of species distribution modeling to scale differences. Ecological Modelling, 248, 113-118.
                 </div>
@@ -1273,12 +1340,24 @@
                     Swets, J.A. (1988). Measuring the accuracy of diagnostic systems. Science, 240(4857), 1285-1293.
                 </div>
                 
+                <div class="reference-item" id="ref-talltimbers2024">
+                    Tall Timbers Research Station. (2024). Fire Ecology Program. Tall Timbers Research Station & Land Conservancy. Retrieved from https://talltimbers.org/fire-ecology-program/
+                </div>
+                
+                <div class="reference-item" id="ref-temple2023">
+                    Temple Lang, D. (2023). <em>XML: Tools for Parsing and Generating XML Within R and S-Plus</em>. <a href="https://doi.org/10.32614/CRAN.package.XML">doi:10.32614/CRAN.package.XML</a>, R package version 3.99-0.18, https://CRAN.R-project.org/package=XML.
+                </div>
+                
                 <div class="reference-item" id="ref-turek2023">
                     Turek, M.E., Poggio, L., Batjes, N.H., Armindo, R.A., de Jong van Lier, Q., de Sousa, L.M., Heuvelink, G.B.M. (2023). Global mapping of volumetric water retention at 100, 330 and 15 000 cm suction using the WoSIS database. International Soil and Water Conservation Research, 11(2), 225-239.
                 </div>
 
                 <div class="reference-item" id="ref-uscensus2023">
                     U.S. Census Bureau. (2023). TIGER/Line Shapefiles. U.S. Census Bureau, Geography Division. https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html
+                </div>
+                
+                <div class="reference-item" id="ref-htmlwidgets2023">
+                    Vaidyanathan, R., Xie, Y., Allaire, J., Cheng, J., Sievert, C., & Russell, K. (2023). <em>htmlwidgets: HTML Widgets for R</em>. <a href="https://doi.org/10.32614/CRAN.package.htmlwidgets">doi:10.32614/CRAN.package.htmlwidgets</a>, R package version 1.6.4, https://CRAN.R-project.org/package=htmlwidgets.
                 </div>
                 
                 <div class="reference-item" id="ref-varner2005">
@@ -1303,6 +1382,26 @@
 
                 <div class="reference-item" id="ref-ware1993">
                     Ware, S., Frost, C., & Doerr, P.D. (1993). Southern mixed hardwood forest: The former longleaf pine forest. In W.H. Martin, S.G. Boyce, & A.C. Echternacht (Eds.), Biodiversity of the Southeastern United States: Lowland Terrestrial Communities (pp. 447-493). John Wiley & Sons.
+                </div>
+
+                <div class="reference-item" id="ref-corrplot2021">
+                    Wei, T., & Simko, V. (2024). <em>R package 'corrplot': Visualization of a Correlation Matrix</em>, R package version 0.95, https://github.com/taiyun/corrplot.
+                </div>
+
+                <div class="reference-item" id="ref-ggplot2016">
+                    Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. R package version 3.5.2, Springer-Verlag New York, https://ggplot2.tidyverse.org.
+                </div>
+                
+                <div class="reference-item" id="ref-dplyr2023">
+                    Wickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). <em>dplyr: A grammar of data manipulation</em>. <a href="https://doi.org/10.32614/CRAN.package.dplyr">doi:10.32614/CRAN.package.dplyr</a>, R package version 1.1.4, https://CRAN.R-project.org/package=dplyr.
+                </div>
+
+                <div class="reference-item" id="ref-httr2023">
+                    Wickham, H. (2023). <em>httr: Tools for working with URLs and HTTP</em>. <a href="https://doi.org/10.32614/CRAN.package.httr">doi:10.32614/CRAN.package.httr</a> R package version 1.4.7, https://CRAN.R-project.org/package=httr.
+                </div>
+                
+                <div class="reference-item" id="ref-cowplot2024">
+                    Wilke, C. (2024). <em>cowplot: Streamlined plot theme and plot annotations for 'ggplot2'</em>. <a href="https://doi.org/10.32614/CRAN.package.cowplot">doi:10.32614/CRAN.package.cowplot</a>, R package version 1.1.3, https://CRAN.R-project.org/package=cowplot.
                 </div>
 
                 <div class="reference-item" id="ref-zampieri2022">
