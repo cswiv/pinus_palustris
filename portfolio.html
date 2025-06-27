@@ -325,6 +325,7 @@
         footer p {
             color: #6c757d;
             margin-bottom: 0.5rem;
+            text-align: center; /* Add this line */
         }
 
         footer a {
@@ -336,27 +337,39 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero h2 {
-                font-size: 1rem;
-            }
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1rem;
+    }
 
-            .section-box {
-                padding: 2rem 1.5rem;
-            }
+    .section-box {
+        padding: 2rem 1.5rem;
+    }
 
-            .key-stats, .variable-grid {
-                grid-template-columns: 1fr;
-            }
+    .key-stats, .variable-grid {
+        grid-template-columns: 1fr;
+    }
 
-            main {
-                padding: 2rem 1rem;
-            }
-        }
+    main {
+        padding: 2rem 1rem;
+    }
+
+    /* Add these navigation fixes */
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.7rem 1rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -628,11 +641,11 @@
 
                 <p id="ref-homer2015"><strong>Homer, C., Dewitz, J., Yang, L., et al.</strong> (2015). Completion of the 2011 National Land Cover Database for the conterminous United States–representing a decade of land cover change information. <em>Photogrammetric Engineering & Remote Sensing</em>, 81(5), 345-354.</p>
 
-                <p id="iverson2012"><strong>Iverson, L. R., Matthews, S.N., Prasad, A.M., M.P. Peters, et al.</strong> (2012). Development of risk matrices for evaluating climatic change responses of forested habitats. <em>Climatic Change</em> 114(2): 231-243. doi: 10.1007/s10584-012-0412-x. <a href="https://www.fs.usda.gov/treesearch/pubs/41221">https://www.fs.usda.gov/treesearch/pubs/41221</a></p>
+                <p id="ref-iverson2012"><strong>Iverson, L. R., Matthews, S.N., Prasad, A.M., M.P. Peters, et al.</strong> (2012). Development of risk matrices for evaluating climatic change responses of forested habitats. <em>Climatic Change</em> 114(2): 231-243. doi: 10.1007/s10584-012-0412-x. <a href="https://www.fs.usda.gov/treesearch/pubs/41221">https://www.fs.usda.gov/treesearch/pubs/41221</a></p>
                 
                 <p id="ref-iverson2008"><strong>Iverson, L. R., Prasad, A.M., Matthews, S.N., and M. Peters.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em> 254:390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
                 
-                <p id="ref-iverson2019"><strong>Iverson, L.R., Peters, M.P., Prasad, A.M., & Matthews, S.N. (2019). Analysis of Climate Change Impacts on Tree Species of the Eastern US: Results of DSTRIB-II Modeling. <em>Forests</em>, 10(4), 302. doi: 10.3390/f10040302 <a href="https://www.fs.usda.gov/treesearch/pubs/57857">https://www.fs.usda.gov/treesearch/pubs/57857</a></strong></p>
+                <p id="ref-iverson2019"><strong>Iverson, L.R., Peters, M.P., Prasad, A.M., & Matthews, S.N.</strong>(2019). Analysis of Climate Change Impacts on Tree Species of the Eastern US: Results of DSTRIB-II Modeling. <em>Forests</em>, 10(4), 302. doi: 10.3390/f10040302 <a href="https://www.fs.usda.gov/treesearch/pubs/57857">https://www.fs.usda.gov/treesearch/pubs/57857</a></strong></p>
                 
                 <p id="ref-iversonetal2019"><strong>Iverson, L. R., Prasad, A. M., Peters, M. P., & Matthews, S. N.</strong> (2019). Facilitating Adaptive Forest Management under Climate Change: A Spatially Specific Synthesis of 125 Species for Habitat Changes and Assisted Migration over the Eastern United States. <em>Forests</em>, 10(11), 989. doi: 10.3390/f10110989 <a href="https://www.fs.usda.gov/treesearch/pubs/59105">https://www.fs.usda.gov/treesearch/pubs/59105</a></p>
                 
