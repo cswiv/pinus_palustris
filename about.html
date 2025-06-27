@@ -17,42 +17,140 @@
             line-height: 1.6;
             color: #333;
             background-color: #fdfdfd;
+            padding-top: 80px;
         }
 
         header {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
             color: white;
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
         }
 
-        nav {
-            background-color: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            padding: 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .page-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            padding-top: 5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu.open {
+            left: 0;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu ul {
+            list-style: none;
             padding: 0 2rem;
         }
 
-        nav a {
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            display: block;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255,255,255,0.2);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-menu:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        body {
+            padding-top: 80px;
         }
 
         .container {
@@ -128,6 +226,8 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #4a7c59;
+            border-left: 4px solid #4a7c59;
         }
 
         .content-section h4 {
@@ -266,11 +366,6 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
             .profile-header {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -283,12 +378,26 @@
             .expertise-grid, .contact-grid, .interests-list {
                 grid-template-columns: 1fr;
             }
+
+            .header-content {
+                padding: 1rem;
+            }
+
+            .site-title {
+                font-size: 1.1rem;
+            }
+
+            .page-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-menu" id="navMenu">
+            <button class="close-menu" id="closeMenu">✕</button>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
@@ -296,84 +405,100 @@
                 <li><a href="cv.html">Curriculum Vitae</a></li>
                 <li><a href="#" class="active">About</a></li>
             </ul>
-        </nav>
-        <br>
-        <br>
+        </div>
+        <div class="header-content">
+            <button class="hamburger" id="hamburger">☰</button>
+            <span class="site-title">chandler4.com</span>
+            <span class="separator">|</span>
+            <span class="page-title">About</span>
+        </div>
+    </header>
+
+    <main>
         <div class="container">
             <div class="hero">
                 <h1>About</h1>
             </div>
         </div>
-    </header>
 
-    <main>
         <section class="profile-section">
             <div class="profile-header">
                 <img src="assets/headshot.png" alt="Chandler S. White IV" class="profile-photo">
                 <div class="profile-info">
                     <h3>Chandler S. White IV, GISP</h3>
                     <p class="title">GIS Technical Coordinator | Clayton County, Georgia</p>
-                    <p><em>Bridging technology and conservation through spatial analysis and ecological modeling</em></p>
                 </div>
             </div>
             
             <p>I am a geographic information science professional with over 15 years of experience in the public and private sectors. I currently serve as GIS Technical Coordinator for the Clayton County, Georgia Department of Information Technology, where I specialize in developing innovative geospatial solutions that support local government operations.</p>
             <br>
-            <p>My passion lies at the intersection of many disciplines, where I apply advanced GIS techniques to address real-world challenges and elucidate the "why" of where things are located. The <em>Pinus palustris</em> climate change impact assessment represents my commitment to using spatial modeling for conservation efforts and demonstrates expertise directly relevant to natural history institutions.</p>
+            <p>My passion for geospatial science lies at the intersection of many disciplines, where I apply advanced GIS techniques to address real-world challenges and elucidate the "why" of where things are located. The <em>Pinus palustris</em> climate change impact assessment represents my commitment to using spatial modeling for conservation efforts and demonstrates expertise directly relevant to natural history institutions.</p>
         </section>
 
         <section class="content-section">
             <h4>Professional Background</h4>
-            <p>My career spans multiple domains within geographic information science, from enterprise-level system design to cutting-edge ecological research. I earned my M.S. in Geospatial Science from the University of North Alabama, where my thesis focused on phylogenetic patterns of invasive macrophytes in freshwater communities—research that established my foundation in quantitative ecology and spatial analysis.</p>
+            <p>My career spans multiple domains within geographic information science, from enterprise-level system design to field data collection. I earned my M.S. in Geospatial Science from the University of North Alabama, where my thesis focused on phylogenetic patterns of invasive macrophytes in freshwater communities—research that established my foundation in quantitative ecology.</p>
             
-            <p>At Clayton County, I've led initiatives in strategic GIS implementation, modernizing government operations through integrated spatial technologies. My work has been recognized with multiple awards, including the 2025 Esri Special Achievement in GIS Award and the Government-to-Government Award from the Georgia Chapter of Government Management Information Sciences.</p>
+            <p>At Clayton County, I've led initiatives in strategic GIS implementation, modernizing local government operations through integrated spatial technologies. My work has been recognized with multiple awards, including the 2025 Esri Special Achievement in GIS Award and the Government-to-Government Award from the Georgia Chapter of Government Management Information Sciences.</p>
 
             <div class="expertise-grid">
                 <div class="expertise-card">
                     <h5>Habitat Suitability Modeling</h5>
-                    <p>Advanced techniques in MaxEnt modeling and climate change projections for conservation planning</p>
+                    <p>Techniques in habitat suitability modeling (MaxEnt and R) and working with climate change projection data</p>
                 </div>
                 <div class="expertise-card">
                     <h5>Conservation GIS</h5>
-                    <p>Spatial analysis for endangered species, habitat assessment, and natural heritage program applications</p>
+                    <p>Spatial analysis for endemic species, habitat assessment, and conservation/restoration planning</p>
                 </div>
                 <div class="expertise-card">
                     <h5>Ecological Research</h5>
-                    <p>Quantitative methods in ecology, community structure analysis, and environmental modeling</p>
+                    <p>Quantitative methods in ecology, community structure analysis, and biogeographical analysis</p>
                 </div>
                 <div class="expertise-card">
                     <h5>Enterprise GIS</h5>
-                    <p>System design, database administration, and geospatial application development for organizational needs</p>
+                    <p>System design, database administration, and geospatial application development for organization-wide needs</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
-            <h4>Research Philosophy</h4>
-            <p>I believe that robust scientific methodology combined with innovative GIS technologies can provide powerful tools for conservation decision-making. My approach emphasizes rigorous model validation, ecological grounding of analyses, and transparent communication of uncertainties—principles clearly demonstrated in the <em>Marshallia mohrii</em> study.</p>
-            
-            <p>Having worked extensively with Alabama ecosystems through my research at Auburn University and the University of North Alabama, I bring deep familiarity with the state's flora, fauna, and ecological challenges. This background, combined with current expertise in advanced spatial modeling techniques, positions me well to contribute to natural heritage conservation efforts.</p>
+            <h4>Q&A Time</h4>
+            <p>Get to know me a bit better!</p>
 
-            <div class="research-interests">
-                <h5>Research Interests & Applications</h5>
-                <div class="interests-list">
-                    <div class="interest-item">Climate change impact modeling</div>
-                    <div class="interest-item">Endangered species conservation</div>
-                    <div class="interest-item">Habitat connectivity analysis</div>
-                    <div class="interest-item">Biodiversity informatics</div>
-                    <div class="interest-item">Quantitative ecology methods</div>
-                    <div class="interest-item">Conservation planning tools</div>
-                    <div class="interest-item">Aquatic ecosystem analysis</div>
-                    <div class="interest-item">Spatial database design</div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h5>What's your favorite herp?</h5>
+                    <p><em>Diadophis punctatus</em></p>
+                </div>
+                <div class="expertise-card">
+                    <h5>What's your favorite U.S. city?</h5>
+                    <p>Chicago</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>What do you enjoy doing in your free time?</h5>
+                    <p>I enjoy working in my garden, experimenting with obsolete A/V equipment, and spending time with family</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>What's your favorite landscape?</h5>
+                    <p>The Burren in western Ireland</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>Beatles or Stones?</h5>
+                    <p>...the Beach Boys</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>Miles or Coltrane?</h5>
+                    <p>Coltrane, Alice</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>What's your favorite food?</h5>
+                    <p>30-star (i.e., extremely spicy) Phanang Curry</p>
+                </div>
+                <div class="expertise-card">
+                    <h5>Do you enjoy forbs?</h5>
+                    <p>Yeah, <em>Marshallia mohrii</em> Beadle & Boynton is rad</p>
                 </div>
             </div>
-        </section>
-
-        <section class="content-section">
-            <h4>Community Engagement</h4>
-            <p>Beyond my professional work, I'm committed to advancing GIS education and humanitarian applications. I've organized GIS workshops for high school students, contributed over 40 hours to humanitarian mapping efforts following natural disasters, and served in leadership roles within professional organizations.</p>
-            
-            <p>My teaching experience at the University of North Alabama, spanning courses from physical geography to advanced quantitative methods, reflects my dedication to knowledge transfer and capacity building in geospatial science.</p>
         </section>
 
         <section class="contact-section">
@@ -405,5 +530,37 @@
         <p><strong>Chandler S. White IV, GISP</strong></p>
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
     </footer>
+<script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        function openMenu() {
+            navMenu.classList.add('open');
+            navOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenuFunc() {
+            navMenu.classList.remove('open');
+            navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFunc);
+        navOverlay.addEventListener('click', closeMenuFunc);
+
+        // Add scroll shadow effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
