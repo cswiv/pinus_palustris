@@ -22,7 +22,7 @@
         header {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
             color: white;
-            padding: 4rem 0;
+            padding: 2rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-align: center;
         }
@@ -217,7 +217,7 @@
 
         .credentials {
             background: #f8fffe;
-            border: 1px solid #a3febf;
+            border: 1px solid #2d5016;
             border-radius: 8px;
             padding: 2rem;
             margin: 3rem 0;
@@ -263,6 +263,7 @@
         footer p {
             color: #6c757d;
             margin-bottom: 0.5rem;
+            text-align: center; /* Add this line */
         }
 
         footer a {
@@ -276,29 +277,37 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
-            
+    
             .hero h2 {
-                font-size: 1.1rem;
-            }
-
-            .hero-description {
                 font-size: 1rem;
             }
 
-            .expertise-overview, .nav-grid, .credentials-grid {
+            .section-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .key-stats, .variable-grid {
                 grid-template-columns: 1fr;
             }
 
-            header {
-                padding: 3rem 0;
+            main {
+                padding: 2rem 1rem;
             }
 
-            main {
-                padding: 3rem 1rem;
-            }
-        }
+    /* Add these navigation fixes */
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.7rem 1rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -335,22 +344,17 @@
             <div class="expertise-card">
                 <span class="expertise-icon">🗺️</span>
                 <h4>Spatial Analysis & Modeling</h4>
-                <p>Knowledge and mastery of advanced GIS techniques, specifically with a focus on modern GIS platforms like R and ArcGIS Online, in addition to specialized modeling software.</p>
-            </div>
-            <div class="expertise-card">
-                <span class="expertise-icon">🌱</span>
-                <h4>Conservation Applications</h4>
-                <p>Passion for developing conservation planning tools for effective and efficient action.</p>
+                <p>Advanced GIS techniques, species distribution modeling, and habitat suitability analysis using R, ArcGIS, and specialized ecological modeling software.</p>
             </div>
             <div class="expertise-card">
                 <span class="expertise-icon">🏛️</span>
                 <h4>Enterprise GIS</h4>
-                <p>Experience in system design, database administration, and application development for government operations and organizational spatial data management.</p>
+                <p>System design, database administration, and application development for government operations and organizational spatial data management.</p>
             </div>
             <div class="expertise-card">
                 <span class="expertise-icon">📊</span>
                 <h4>Research & Analysis</h4>
-                <p>Focus on research and methodology, with experience in both academic and applied contexts.</p>
+                <p>Quantitative methods in ecology, statistical modeling, and scientific research with experience in both academic and applied contexts.</p>
             </div>
         </div>
 
@@ -368,10 +372,6 @@
                 <div class="credential-item">
                     <strong>National Recognition</strong>
                     Awarded Esri's Special Achievement in GIS Award (2025)
-                </div>
-                <div class="credential-item">
-                    <strong>Alabama Roots</strong>
-                    Auburn University alum with local knowledge
                 </div>
             </div>
         </section>
@@ -396,7 +396,7 @@
                 <a href="about.html" class="nav-card">
                     <span class="nav-icon">📖</span>
                     <h4>About</h4>
-                    <p>Personal background, research philosophy, and other fun facts about mey</p>
+                    <p>Personal background, research philosophy, and other fun facts about me</p>
                 </a>
             </div>
         </section>
