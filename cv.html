@@ -17,42 +17,140 @@
             line-height: 1.6;
             color: #333;
             background-color: #fdfdfd;
+            padding-top: 80px;
         }
 
         header {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
             color: white;
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
         }
 
-        nav {
-            background-color: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            padding: 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .page-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            padding-top: 5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu.open {
+            left: 0;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu ul {
+            list-style: none;
             padding: 0 2rem;
         }
 
-        nav a {
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            display: block;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255,255,255,0.2);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-menu:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        body {
+            padding-top: 80px;
         }
 
         .container {
@@ -152,6 +250,8 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #4a7c59;
+            border-left: 4px solid #4a7c59;
         }
 
         .cv-section h4 {
@@ -249,6 +349,7 @@
         .certifications h5 {
             color: #2d5016;
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
         .cert-item {
@@ -287,25 +388,38 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .cv-header .contact-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .skills-grid {
+            .profile-header {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-photo {
+                justify-self: center;
+            }
+
+            .expertise-grid, .contact-grid, .interests-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                padding: 1rem;
+            }
+
+            .site-title {
+                font-size: 1.1rem;
+            }
+
+            .page-title {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
+<header>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-menu" id="navMenu">
+            <button class="close-menu" id="closeMenu">✕</button>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
@@ -313,21 +427,25 @@
                 <li><a href="#" class="active">Curriculum Vitae</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-        </nav>
-        <br>
-        <br>
+        </div>
+        <div class="header-content">
+            <button class="hamburger" id="hamburger">☰</button>
+            <span class="site-title">chandler4.com</span>
+            <span class="separator">|</span>
+            <span class="page-title">Curriculum Vitae</span>
+        </div>
+    </header>
+
+    <main>
         <div class="container">
             <div class="hero">
                 <h1>Curriculum Vitae</h1>
             </div>
         </div>
-    </header>
-
-    <main>
         <section class="cv-header">
             <h3>Chandler S. White IV, GISP</h3>
             <p class="title">GIS Technical Coordinator | Clayton County, Georgia</p>
-            <p><em>Geographic information science professional with expertise in spatial analysis, ecology, and application development</em></p>
+            <p><em>Geographic information science professional with expertise in research, spatial analysis, and modern GIS platforms</em></p>
             <div class="contact-info">
                 <span><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a></span>
                 <span><a href="https://www.chandler4.com">www.chandler4.com</a></span>
@@ -379,7 +497,7 @@
                 <div class="employer">University of North Alabama</div>
                 <div class="date">January 2016 - December 2017</div>
                 <div class="description">
-                    Courses: Physical Geography, Cartography, GIS, Quantitative Methods, Remote Sensing
+                    Courses: Quantitative Methods, GIS, Physical Geography, Cartography, Remote Sensing
                 </div>
             </div>
         </section>
@@ -412,21 +530,20 @@
                     <ul>
                         <li>Esri (ArcGIS Enterprise, Online, Pro)</li>
                         <li>QGIS</li>
+                        <li>Remote sensing & image analysis</li>
                         <li>Web GIS</li>
-                        <li>R</li>
                         <li>Python</li>
-                        <li>TerrSet</li>
+                        <li>R</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h5>Ecological Modeling</h5>
+                    <h5>Spatial Modeling</h5>
                     <ul>
                         <li>MaxEnt</li>
-                        <li>Climate change projections</li>
-                        <li>Conservation planning</li>
-                        <li>Phylogenetic analysis</li>
-                        <li>Environmental data processing</li>
-                        <li>Model validation & assessment</li>
+                        <li>ClimateNA</li>
+                        <li>TerrSet</li>
+                        <li>Suitability analyses (site selection, ecological niche)</li>
+                        <li>Model validation & evaluation</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -434,7 +551,6 @@
                     <ul>
                         <li>Database administration</li>
                         <li>Enterprise GIS systems</li>
-                        <li>Remote sensing & image analysis</li>
                         <li>ETL design</li>
                         <li>System integration</li>
                         <li>Geospatial app development</li>
@@ -445,14 +561,14 @@
                     <ul>
                         <li>Community ecology</li>
                         <li>Lentic ecosystems</li>
-                        <li>Climate change</li>
-                        <li>Flora of the Southeast U.S.</li>
+                        <li>Transportation</li>
+                        <li>GIS Governance</li>
                         <li>Quantitative and qualitative methods</li>
                         <li>Physical and cultural geography</li>
                     </ul>
                 </div>
             </div>
-
+            <br>
             <div class="certifications">
                 <h5>Professional Certifications</h5>
                 <div class="cert-item">
@@ -499,7 +615,7 @@
             </div>
             <div class="experience-item">
                 <div class="position">Humanitarian Mapping Volunteer</div>
-                <div class="employer">Humanitarian OpenStreetMap Team (HOT)</div>
+                <div class="employer"><a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a></div>
                 <div class="date">February 2023</div>
                 <div class="description">Contributed 42.1 hours to earthquake response efforts in Türkiye and Syria, performing feature extraction from satellite imagery</div>
             </div>
@@ -508,9 +624,39 @@
 
     <footer>
         <p><strong>Chandler S. White IV, GISP</strong></p>
-        <p>GIS Technical Coordinator | Clayton County, Georgia</p>
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
-        <p><em>Specialized in spatial analysis, ecology, and conservation applications</em></p>
     </footer>
+<script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        function openMenu() {
+            navMenu.classList.add('open');
+            navOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenuFunc() {
+            navMenu.classList.remove('open');
+            navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFunc);
+        navOverlay.addEventListener('click', closeMenuFunc);
+
+        // Add scroll shadow effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
