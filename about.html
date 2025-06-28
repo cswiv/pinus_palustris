@@ -29,7 +29,7 @@
             right: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added transform transition */
         }
 
         .header-content {
@@ -531,36 +531,57 @@
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
     </footer>
 <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const navOverlay = document.getElementById('navOverlay');
-        const closeMenu = document.getElementById('closeMenu');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+    const header = document.querySelector('header');
 
-        function openMenu() {
-            navMenu.classList.add('open');
-            navOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
+    let lastScrollTop = 0;
+    let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+
+    function openMenu() {
+        navMenu.classList.add('open');
+        navOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuFunc() {
+        navMenu.classList.remove('open');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFunc);
+    navOverlay.addEventListener('click', closeMenuFunc);
+
+    // Smart header with scroll direction detection
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Add shadow effect
+        if (scrollTop > 10) {
+            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+        } else {
+            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
         }
 
-        function closeMenuFunc() {
-            navMenu.classList.remove('open');
-            navOverlay.classList.remove('open');
-            document.body.style.overflow = '';
+        // Auto-hide/show header based on scroll direction
+        if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) {
+            return; // Don't do anything if scroll distance is too small
         }
 
-        hamburger.addEventListener('click', openMenu);
-        closeMenu.addEventListener('click', closeMenuFunc);
-        navOverlay.addEventListener('click', closeMenuFunc);
-
-        // Add scroll shadow effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
-        });
-    </script>
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down & past 100px - hide header
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up - show header
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+</script>
 </body>
 </html>
