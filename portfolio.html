@@ -17,43 +17,140 @@
             line-height: 1.6;
             color: #333;
             background-color: #fdfdfd;
+            padding-top: 80px;
         }
 
         header {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
             color: white;
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
+            transition: box-shadow 0.3s ease;
         }
 
-        nav {
-            background-color: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            padding: 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .page-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            padding-top: 5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu.open {
+            left: 0;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu ul {
+            list-style: none;
             padding: 0 2rem;
         }
 
-        nav a {
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            display: block;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover {
+        .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255,255,255,0.2);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-menu:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        body {
+            padding-top: 80px;
         }
 
         .container {
@@ -65,6 +162,7 @@
         .hero {
             max-width: 900px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .hero h1 {
@@ -218,7 +316,7 @@
         }
 
         .variable-item .name {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
         }
 
@@ -241,13 +339,23 @@
             color: white;
             border-radius: 8px;
             padding: 2rem;
-            text-align: center;
+            text-align: center !important;
             margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .interactive-map-section h3 {
-            color: white;
+            color: white !important;
             margin-bottom: 1rem;
+            text-align: center !important;
+        }
+
+        .interactive-map-section p {
+            text-align: center !important;
+            margin-bottom: 1.5rem;
         }
 
         .map-button {
@@ -292,12 +400,12 @@
             margin-bottom: 0.5rem;
         }
 
-        .back-to-portfolio {
+        .back-to-index {
             text-align: center;
             margin: 3rem 0;
         }
 
-        .back-to-portfolio a {
+        .back-to-index a {
             display: inline-block;
             background: #4a7c59;
             color: white;
@@ -308,7 +416,7 @@
             transition: all 0.3s ease;
         }
 
-        .back-to-portfolio a:hover {
+        .back-to-index a:hover {
             background: #2d5016;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -325,7 +433,7 @@
         footer p {
             color: #6c757d;
             margin-bottom: 0.5rem;
-            text-align: center; /* Add this line */
+            text-align: center;
         }
 
         footer a {
@@ -339,62 +447,63 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 1.8rem;
-            }
-    
-            .hero h2 {
-                font-size: 1rem;
+                font-size: 2rem;
             }
 
-            .section-box {
-                padding: 2rem 1.5rem;
-            }
-
-            .key-stats, .variable-grid {
+            .profile-header {
                 grid-template-columns: 1fr;
-            }
-
-            main {
-                padding: 2rem 1rem;
-            }
-
-            /* Add these navigation fixes */
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
                 text-align: center;
             }
 
-            nav a {
-                display: block;
-                padding: 0.7rem 1rem;
+            .profile-photo {
+                justify-self: center;
+            }
+
+            .expertise-grid, .contact-grid, .interests-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                padding: 1rem;
+            }
+
+            .site-title {
+                font-size: 1.1rem;
+            }
+
+            .page-title {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-menu" id="navMenu">
+            <button class="close-menu" id="closeMenu">✕</button>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#" class="active">Portfolio</a></li>
                 <li><a href="interactive_habitat_map.html" target="_blank">Interactive Map</a></li>
                 <li><a href="cv.html">Curriculum Vitae</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-        </nav>
-        <div>
-            <br>
-            <br>
         </div>
+        <div class="header-content">
+            <button class="hamburger" id="hamburger">☰</button>
+            <span class="site-title">chandler4.com</span>
+            <span class="separator">|</span>
+            <span class="page-title">Portfolio</span>
+        </div>
+    </header>
+
+    <main>
         <div class="container">
             <div class="hero">
                 <h1>Climate Change Impact Assessment for <em>Pinus palustris</em> Mill.</h1>
             </div>
         </div>
-    </header>
-
-    <main>
         <div class="project-overview">
             <h3>Project Overview</h3>
             <p><strong>Challenge:</strong> Longleaf pine ecosystems have declined from 37 million hectares to less than 5% of their original range (<a href="#ref-jose2006">Jose et al., 2006</a>; <a href="#ref-frost2006">Frost, 2006</a>). With climate change posing additional threats, conservation planning requires understanding how suitable habitat may shift across time periods.</p>
@@ -411,7 +520,7 @@
                 <div class="stat-card">
                     <h4>Model Performance</h4>
                     <div class="stat-value">0.706</div>
-                    <div class="stat-description">Test AUC (Good discrimination)</div>
+                    <div class="stat-description">Test AUC (Decent discrimination)</div>
                 </div>
                 <div class="stat-card">
                     <h4>Current Suitable Habitat</h4>
@@ -428,6 +537,7 @@
                     <div class="stat-value">+2.9%</div>
                     <div class="stat-description">Modest habitat increase projected</div>
                 </div>
+                
             </div>
 
             <p><strong>Interesting Result:</strong> Contrary to expectations, longleaf pine shows remarkable climate resilience in Alabama. While other fire-dependent species face 16-30% habitat losses (<a href="#ref-parks2019">Parks et al., 2019</a>; <a href="#ref-stevens2018">Stevens-Rumann et al., 2018</a>), longleaf pine habitat actually increases slightly under future climate scenarios, suggesting strong adaptive capacity. Also, compared to current U.S. Forest Service projections in their Climate Change Atlas that have longleaf pine habitat expanding significantly under a number of scenarios, habitat expansion is far more constrained in my study (however, it should be noted that other factors, like study extent and methodology, may account for this and other discrepancies; <a href="#ref-usforestservice2024">U.S. Forest Service, 2020</a>).</p>
@@ -483,6 +593,46 @@
                     </div>
                     <div class="name">Climatic Moisture Deficit</div>
                 </div>
+                <div class="variable-item">
+                    <div class="contribution">
+                        <span class="stable">2.8%</span>
+                        <span class="arrow">→</span>
+                        <span class="increase">6.1%</span>
+                        <span class="arrow">→</span>
+                        <span class="decrease">1.6%</span>
+                    </div>
+                    <div class="name">Fire Regime Suitability</div>
+                </div>
+                <div class="variable-item">
+                    <div class="contribution">
+                        <span class="stable">11.6%</span>
+                        <span class="arrow">→</span>
+                        <span class="decrease">4.2%</span>
+                        <span class="arrow">→</span>
+                        <span class="increase">4.9%</span>
+                    </div>
+                    <div class="name">Mean Annual Temperature</div>
+                </div>
+                <div class="variable-item">
+                    <div class="contribution">
+                        <span class="stable">3.5%</span>
+                        <span class="arrow">→</span>
+                        <span class="increase">13%</span>
+                        <span class="arrow">→</span>
+                        <span class="decrease">9.8%</span>
+                    </div>
+                    <div class="name">Mean Annual Precipitation</div>
+                </div>
+                <div class="variable-item">
+                    <div class="contribution">
+                        <span class="stable">6.0%</span>
+                        <span class="arrow">→</span>
+                        <span class="stable">6.4%</span>
+                        <span class="arrow">→</span>
+                        <span class="increase">9.1%</span>
+                    </div>
+                    <div class="name">Topographic Wetness Index</div>
+                </div>
             </div>
 
             <h3>Key Temporal Patterns</h3>
@@ -503,7 +653,7 @@
                     <li><strong>Species Data:</strong> 274 high-quality GBIF occurrence records with 2km spatial filtering (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>)</li>
                     <li><strong>Climate Variables:</strong> ClimateNA v7.30 with 13-GCM ensemble under SSP2-4.5 scenario (<a href="#ref-wang2016">Wang et al., 2016</a>)</li>
                     <li><strong>Ecological Enhancement:</strong> Custom fire regime suitability and canopy openness variables</li>
-                    <li><strong>Bias Correction:</strong> Sampling bias surface derived from 209,496 plant observations</li>
+                    <li><strong>Bias Correction:</strong> Sampling bias surface derived from 209,496 plant observations (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>)</li>
                 </ul>
             </div>
 
@@ -517,7 +667,7 @@
                 </ul>
             </div>
 
-            <h3>Innovation Highlights</h3>
+            <h3>Study Design Spotlight</h3>
             <ul>
                 <li><strong>Fire Regime Integration:</strong> First longleaf pine model to incorporate LANDFIRE fire return interval data (<a href="#ref-landfire2016">LANDFIRE, 2016</a>)</li>
                 <li><strong>Habitat Structure Variables:</strong> NLCD-derived canopy openness capturing fire-maintained savanna conditions (<a href="#ref-homer2015">Homer et al., 2015</a>)</li>
@@ -528,7 +678,7 @@
 
         <div class="interactive-map-section">
             <h3>🗺️ Explore Interactive Results</h3>
-            <p>View detailed habitat suitability maps, climate projections, and county-level impact analysis through my interactive web mapping application.</p>
+            <p>View detailed maps and county-level impact analysis through my interactive web mapping application.</p>
             <a href="interactive_habitat_map.html" target="_blank" class="map-button">Launch Interactive Map</a>
         </div>
 
@@ -554,16 +704,16 @@
             <ul>
                 <li><strong>Geospatial Analysis:</strong> R/QGIS integration, multi-source data processing, coordinate system management</li>
                 <li><strong>Species Distribution Modeling:</strong> MaxEnt optimization, variable selection, bias correction</li>
-                <li><strong>Climate Data Processing:</strong> ClimateNA integration, multi-temporal analysis, projection handling</li>
+                <li><strong>Climate Data Processing:</strong> ClimateNA processing, multi-temporal analysis, raster grid handling</li>
                 <li><strong>Ecological Variable Development:</strong> Fire regime classification, habitat structure quantification</li>
-                <li><strong>Statistical Analysis:</strong> Cross-validation, performance metrics, uncertainty assessment</li>
-                <li><strong>Data Visualization:</strong> Interactive web mapping, statistical graphics, scientific communication</li>
-                <li><strong>Conservation Planning:</strong> Refugia analysis, adaptive management frameworks, policy recommendations</li>
+                <li><strong>Quantitative Analysis:</strong> Cross-validation, performance metrics, uncertainty assessment</li>
+                <li><strong>Data Visualization:</strong> Interactive web mapping, summary graphics, scientific communication</li>
+                <li><strong>Conservation Planning:</strong> Refugia analysis, adaptive management frameworks, decision support</li>
             </ul>
         </div>
 
-        <div class="back-to-portfolio">
-            <a href="portfolio.html">← Back to Portfolio</a>
+        <div class="back-to-index">
+            <a href="index.html">← Back to Home</a>
         </div>
 
         <div class="section-box">
@@ -766,5 +916,37 @@
         <p><strong>Chandler S. White IV, GISP</strong></p>
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        function openMenu() {
+            navMenu.classList.add('open');
+            navOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenuFunc() {
+            navMenu.classList.remove('open');
+            navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFunc);
+        navOverlay.addEventListener('click', closeMenuFunc);
+
+        // Add scroll shadow effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
