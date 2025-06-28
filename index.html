@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chandler4.com | Homepage</title>
+    <title>chandler4.com | Home</title>
     <meta name="description" content="Chandler S. White IV, GISP - Geographic Information Science Professional specializing in spatial analysis, conservation ecology, and species distribution modeling.">
     <style>
         * {
@@ -17,43 +17,140 @@
             line-height: 1.6;
             color: #333;
             background-color: #fdfdfd;
+            padding-top: 80px;
         }
 
         header {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
             color: white;
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
+            transition: box-shadow 0.3s ease;
         }
 
-        nav {
-            background-color: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            padding: 1rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .page-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            padding-top: 5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu.open {
+            left: 0;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu ul {
+            list-style: none;
             padding: 0 2rem;
         }
 
-        nav a {
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            display: block;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255,255,255,0.2);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-menu:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        body {
+            padding-top: 80px;
         }
 
         .container {
@@ -65,6 +162,7 @@
         .hero {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .hero h1 {
@@ -277,42 +375,41 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 1.8rem;
-            }
-    
-            .hero h2 {
-                font-size: 1rem;
+                font-size: 2rem;
             }
 
-            .section-box {
-                padding: 2rem 1.5rem;
+            .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .key-stats, .variable-grid {
+            .profile-photo {
+                justify-self: center;
+            }
+
+            .expertise-grid, .contact-grid, .interests-list {
                 grid-template-columns: 1fr;
             }
 
-            main {
-                padding: 2rem 1rem;
+            .header-content {
+                padding: 1rem;
             }
 
-    /* Add these navigation fixes */
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
+            .site-title {
+                font-size: 1.1rem;
+            }
 
-    nav a {
-        display: block;
-        padding: 0.7rem 1rem;
-    }
-}
+            .page-title {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
+<header>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-menu" id="navMenu">
+            <button class="close-menu" id="closeMenu">✕</button>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
@@ -320,20 +417,23 @@
                 <li><a href="cv.html">Curriculum Vitae</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-        </nav>
-    <div>
-        <br>
-        <br>
-    </div>
-        <div class="container">
-            <div class="hero">
-                <h1>Chandler S. White IV, GISP</h1>
-                <h2>Geographic Information Science Professional</h2>
-            </div>
+        </div>
+        <div class="header-content">
+            <button class="hamburger" id="hamburger">☰</button>
+            <span class="site-title">chandler4.com</span>
+            <span class="separator">|</span>
+            <span class="page-title"></span>
         </div>
     </header>
 
     <main>
+        <div class="container">
+            <div class="hero">
+                <h1>Chandler S. White, IV</h1>
+                <h2>Geospatial Information Science Professional</h2>
+            </div>
+        </div>
+        <br>
         <section class="intro-section">
             <h3>Welcome!</h3>
             <p>Hello! My name is Chandler White, and I'm a GIS professional with over 15 years of experience in both the public and private sectors. I currently serve as the GIS Technical Coordinator with the Department of Information Technology at Clayton County, Georgia.</p>
@@ -406,5 +506,37 @@
         <p><strong>Chandler S. White IV, GISP</strong></p>
         <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
     </footer>
+<script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        function openMenu() {
+            navMenu.classList.add('open');
+            navOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenuFunc() {
+            navMenu.classList.remove('open');
+            navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFunc);
+        navOverlay.addEventListener('click', closeMenuFunc);
+
+        // Add scroll shadow effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
