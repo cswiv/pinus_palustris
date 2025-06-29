@@ -510,7 +510,7 @@
             
             <p><strong>Solution:</strong> I developed an innovative species distribution model that integrates fire regime data and ecological variables with climate projections to assess habitat suitability across three time periods: current (1991-2020), mid-century (2041-2070), and late-century (2071-2100).</p>
             
-            <p><strong>Innovation:</strong> Unlike traditional climate-only models, this approach incorporates fire regime suitability and canopy openness variables that capture longleaf pine's fire-dependent habitat requirements, providing more ecologically realistic projections (<a href="#ref-hirzel2008">Hirzel & Le Lay, 2008</a>).</p>
+            <p><strong>Innovation:</strong> Unlike bioclimatic predictor-based models, this approach incorporates fire regime suitability and canopy openness variables that capture longleaf pine's fire-dependent habitat requirements, providing projections within the context of longleaf pine's unique ecology(<a href="#ref-hirzel2008">Hirzel & Le Lay, 2008</a>).</p>
         </div>
 
         <div class="section-box">
@@ -540,12 +540,12 @@
                 
             </div>
 
-            <p><strong>Interesting Result:</strong> Contrary to expectations, longleaf pine shows remarkable climate resilience in Alabama. While other fire-dependent species face 16-30% habitat losses (<a href="#ref-parks2019">Parks et al., 2019</a>; <a href="#ref-stevens2018">Stevens-Rumann et al., 2018</a>), longleaf pine habitat actually increases slightly under future climate scenarios, suggesting strong adaptive capacity. Also, compared to current U.S. Forest Service projections in their Climate Change Atlas that have longleaf pine habitat expanding significantly under a number of scenarios, habitat expansion is far more constrained in my study (however, it should be noted that other factors, like study extent and methodology, may account for this and other discrepancies; <a href="#ref-usforestservice2024">U.S. Forest Service, 2020</a>).</p>
+            <p><strong>Interesting Insights:</strong> In my model, longleaf pine demonstrates remarkable climate resilience in Alabama. While other fire-dependent species face 16-30% habitat losses (<a href="#ref-parks2019">Parks et al., 2019</a>; <a href="#ref-stevens2018">Stevens-Rumann et al., 2018</a>), longleaf pine habitat actually increases slightly under future climate scenarios, suggesting strong adaptive capacity. Additionally, regional trends within the study area reveal themselves, including habitat resilience in southeast Alabama. Compared to current U.S. Forest Service projections in their <a href="https://www.fs.usda.gov/nrs/atlas/tree/121" target="_blank">Climate Change Atlas</a> that have longleaf pine habitat expanding significantly under a number of scenarios, habitat expansion is far more constrained in my study (however, it should be noted that other factors, like study extent and methodology, may account for this and other discrepancies; <a href="#ref-usforestservice2024">U.S. Forest Service, 2020</a>).</p>
         </div>
 
         <div class="innovation-highlight">
             <h3>Methodological Highlights</h3>
-            <p>The integration of ecological predictors improved model performance significantly, pushing Test AUC above the critical 0.7 threshold (<a href="#ref-swets1988">Swets, 1988</a>). Canopy openness emerged as the most important predictor (35.7% contribution), validating the importance of fire-maintained savanna structure in species distribution modeling (<a href="#ref-mitchell2006">Mitchell et al., 2006</a>).</p>
+            <p>The integration of ecological predictors improved model performance significantly, pushing Test AUC above the critical 0.7 threshold (<a href="#ref-fielding1997">Fielding & Bell, 1997</a>; <a href="ref-hosmer2013">Hosmer et al., 2013</a>; <a href="#ref-swets1988">Swets, 1988</a>). Canopy openness emerged as the most important predictor (35.7% contribution), validating the importance of fire-maintained savanna structure in habitat suitability modeling (<a href="#ref-mitchell2006">Mitchell et al., 2006</a>).</p>
         </div>
 
         <div class="section-box">
@@ -661,7 +661,7 @@
                 <h4>Modeling Framework</h4>
                 <ul>
                     <li><strong>Algorithm:</strong> MaxEnt with optimized parameters (LQHP features, 1.5 regularization) (<a href="#ref-phillips2006">Phillips et al., 2006</a>)</li>
-                    <li><strong>Variable Selection:</strong> Multi-criteria optimization balancing VIF, correlation, and ecological domains (<a href="#ref-dormann2013">Dormann et al., 2013</a>)</li>
+                    <li><strong>Variable Selection:</strong> Multi-criteria optimization balancing VIF, correlation, and ecological domains (<a href="#ref-dormann2013">Dormann et al., 2013</a>; <a href="ref-feng2019">Feng et al., 2019</a>)</li>
                     <li><strong>Validation:</strong> 10-fold cross-validation with independent test sets</li>
                     <li><strong>Climate Projections:</strong> Three time periods with refugia analysis</li>
                 </ul>
@@ -697,6 +697,15 @@
             <p>This research demonstrates that incorporating species-specific ecological requirements dramatically improves model realism for fire-dependent species (<a href="#ref-dubuis2022">Dubuis et al., 2022</a>). The temporal variable importance analysis reveals that conservation strategies must adapt over time, with different factors becoming critical during transition periods.</p>
 
             <p>The methodology is transferable to other fire-dependent ecosystems worldwide and provides a framework for understanding how species-environment relationships may evolve under climate change beyond simple habitat area projections (<a href="#ref-franklin2010">Franklin, 2010</a>).</p>
+            
+            <h3>Future Research Directions</h3>
+            <p>This study opens several avenues for future research. The overall project could be improved through expanded study area extent and higher resolution (beyond the 1 km used here), factors which were limited due to computational constraints of using a personal workstation. Future work could integrate more detailed data, such as soils from SSURGO and more up-to-date LANDFIRE data. The input DEM could be LiDAR-derived, which could produce higher-quality derivatives, like TWI, slope, and aspect. Additional research directions include:</p>
+                <ul>
+                    <li><strong>Effects of spatial extent and model design:</strong>Habitat suitability (and other ecological measures, such as species richness) could be modeled and compared at various extents and resolutions to assess model performance (<a href="#ref-nizamani2023">Nizamani et al., 2023</a>)</li>
+                    <li><strong>Ecosystem-level modeling:</strong> Expansion to include associated species and community dynamics (<a href="#ref-zurrell2020">Zurrell et al., 2020</a>)</li>
+                    <li><strong>Scenario expansion:</strong> Analysis under additional emission scenarios and time horizons</li>
+                    <li><strong>Methodological enhancement:</strong>Modern habitat suitability modeling software, such as the <a href="https://github.com/sylvainschmitt/sdmverse" target="_blank">sdmverse</a> R metapackage, could be used to enhance model design and user experience (<a href="#ref-kass2024">Kass et al., 2024</a>)</li>
+                </ul>
         </div>
 
         <div class="section-box">
@@ -757,6 +766,10 @@
 
                 <p id="ref-farr2007"><strong>Farr, T.G., Rosen, P.A., Caro, E., et al.</strong> (2007). The Shuttle Radar Topography Mission. <em>Reviews of Geophysics</em>, 45(2), RG2004. <a href="https://doi.org/10.1029/2005RG000183">https://doi.org/10.1029/2005RG000183</a></p>
                 
+                <p id="ref-feng2019"><strong>Feng, X., Park, D.S., Liang, Y., Pandey, R., and Papeş, M.</strong> (2019). Collinearity in ecological niche modeling: Confusions and challenges. <em>Ecology and Evolution</em>, 9(18), 10365-10376.</p>
+                
+                <p id="ref-fielding1997"><strong>Fielding, A.H. & Bell, J.F.</strong> (1997). A review of methods for the assessment of prediction errors in conservation presence/absence models. <em>Environmental Conservation</em>, 24(1), 38-49.</p>
+                
                 <p id="ref-franklin2010"><strong>Franklin, J.</strong> (2010). <em>Mapping species distributions: spatial inference and prediction</em>. Cambridge University Press.</p>
                 
                 <p id="ref-frost1993"><strong>Frost, C.C.</strong> (1993). Four centuries of changing landscape patterns in the longleaf pine ecosystem. Proc Tall Timbers Fire Ecol Conf 18, 17-44.</p>
@@ -791,9 +804,11 @@
 
                 <p id="ref-homer2015"><strong>Homer, C., Dewitz, J., Yang, L., et al.</strong> (2015). Completion of the 2011 National Land Cover Database for the conterminous United States–representing a decade of land cover change information. <em>Photogrammetric Engineering & Remote Sensing</em>, 81(5), 345-354.</p>
 
-                <p id="ref-iverson2012"><strong>Iverson, L. R., Matthews, S.N., Prasad, A.M., M.P. Peters, et al.</strong> (2012). Development of risk matrices for evaluating climatic change responses of forested habitats. <em>Climatic Change</em> 114(2): 231-243. doi: 10.1007/s10584-012-0412-x. <a href="https://www.fs.usda.gov/treesearch/pubs/41221">https://www.fs.usda.gov/treesearch/pubs/41221</a></p>
+                <p id="ref-hosmer2013"><strong>Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X.</strong> (2013). Assessing the fit of the model. In <em>Applied logistic regression</em> (3rd ed.). (pp. 153-223). John Wiley & Sons.</p>
                 
-                <p id="ref-iverson2008"><strong>Iverson, L. R., Prasad, A.M., Matthews, S.N., and M. Peters.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em> 254:390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
+                <p id="ref-iverson2012"><strong>Iverson, L. R., Matthews, S.N., Prasad, A.M., M.P. Peters, et al.</strong> (2012). Development of risk matrices for evaluating climatic change responses of forested habitats. <em>Climatic Change</em>, 114(2), 231-243. doi: 10.1007/s10584-012-0412-x. <a href="https://www.fs.usda.gov/treesearch/pubs/41221">https://www.fs.usda.gov/treesearch/pubs/41221</a></p>
+                
+                <p id="ref-iverson2008"><strong>Iverson, L. R., Prasad, A.M., Matthews, S.N., and M. Peters.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em>, 254, 390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
                 
                 <p id="ref-iverson2019"><strong>Iverson, L.R., Peters, M.P., Prasad, A.M., & Matthews, S.N.</strong>(2019). Analysis of Climate Change Impacts on Tree Species of the Eastern US: Results of DSTRIB-II Modeling. <em>Forests</em>, 10(4), 302. doi: 10.3390/f10040302 <a href="https://www.fs.usda.gov/treesearch/pubs/57857">https://www.fs.usda.gov/treesearch/pubs/57857</a></strong></p>
                 
@@ -801,6 +816,8 @@
                 
                 <p id="ref-jose2006"><strong>Jose, S., Jokela, E.J., & Miller, D.L.</strong> (Eds.). (2006). <em>The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration</em>. Springer Science & Business Media.</p>
 
+                <p id="ref-kass2024"><strong>Kass, J.M., Smith, A.B., Warren, D.L., Vignali, S., et al.</strong> (2024). Achieving higher standards in species distribution modeling by leveraging the diversity of available software. <em>Ecography</em>, 2025(2), 1-14.</p>
+                
                 <p id="ref-kearney2009"><strong>Kearney, M., & Porter, W.</strong> (2009). Mechanistic niche modelling: combining physiological and spatial data to predict species' ranges. <em>Ecology Letters</em>, 12(4), 334-350.</p>
 
                 <p id="ref-khosravi2016"><strong>Khosravi, R., Hemami, M.R., Malekian, M., et al.</strong> (2016). Maxent modeling for predicting potential distribution of goitered gazelle in central Iran: the effect of extent and grain size on performance of the model. <em>Turkish Journal of Zoology</em>, 40(4), 574-585.</p>
@@ -817,7 +834,7 @@
                 
                 <p id="ref-mahony2022"><strong>Mahony, C.R., Wang, T., Hamann, A., & Cannon, A.J.</strong> (2022). A CMIP6 ensemble for downscaled monthly climate normals over North America. <em>International Journal of Climatology</em>, 42(11), 5871-5891. <a href="https://doi.org/10.1002/joc.7566">https://doi.org/10.1002/joc.7566</a></p>
                 
-                <p id="ref-matthews2011"><strong>Matthews, S. N., Iverson, L.R., Prasad, A.M., Peters, M.P., & P. G. Rodewald.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em> 254:390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
+                <p id="ref-matthews2011"><strong>Matthews, S. N., Iverson, L.R., Prasad, A.M., Peters, M.P., & P. G. Rodewald.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em>, 254, 390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
                 
                 <p id="ref-mitchell2006"><strong>Mitchell, R.J., Hiers, J.K., O'Brien, J.J., et al.</strong> (2006). Silviculture that sustains: the nexus between silviculture, frequent prescribed fire, and conservation of biodiversity in longleaf pine forests of the southeastern United States. <em>Canadian Journal of Forest Research</em>, 36(12), 2724-2736.</p>
 
@@ -830,6 +847,8 @@
                 <p id="ref-nrcs2024"><strong>Natural Resources Conservation Service.</strong> (2024). Longleaf Pine Initiative. USDA Natural Resources Conservation Service. Retrieved from <a href="https://www.nrcs.usda.gov/programs-initiatives/longleaf-pine-initiative">https://www.nrcs.usda.gov/programs-initiatives/longleaf-pine-initiative</a></p>
 
                 <p id="ref-neuwirth2022"><strong>Neuwirth, E.</strong> (2022). <em>RColorBrewer: ColorBrewer palettes</em>. R package version 1.1-3, <a href="https://CRAN.R-project.org/package=RColorBrewer">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
+                
+                <p id="ref-nizamani2023"><strong>Nizamani, M.M., Papeş, M., Wang, H-F., & Harris, A.J.</strong> (2023). How does spatial extent and environmental limits affect the accuracy of species richness estimates from ecological niche models? A case study with North American Pinaceae and Cactaceae. <em>Ecology and Evolution</em>, 13(4), 1-14.</p>
                 
                 <p id="ref-noss1989"><strong>Noss, R.F.</strong> (1989). Longleaf pine and wiregrass: Keystone species of an endangered ecosystem. <em>Natural Areas Journal</em>, 9(4), 211-213.</p>
                 
@@ -851,7 +870,7 @@
                 
                 <p id="ref-phillips2017"><strong>Phillips, S.J., Anderson, R.P., Schapire, R.E., et al.</strong> (2017). Opening the black box: an open-source release of Maxent. <em>Ecography</em>, 40(7), 887-893.</p>
 
-                <p id="ref-poggio2021"><strong>Poggio, L., de Sousa, L.M., Batjes, N.H., et al.</strong> (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. <em>SOIL</em>, 7, 217–240.</p>
+                <p id="ref-poggio2021"><strong>Poggio, L., de Sousa, L.M., Batjes, N.H., et al.</strong> (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. <em>Soil</em>, 7, 217–240.</p>
 
                 <p id="ref-prasad2007"><strong>Prasad, A.M., Iverson, L.R., Matthews, S.N., & Peters, M.</strong> (2007). Eastern United States Climate Change Tree Atlas - Suitable habitat for Pinus palustris (longleaf pine) as measured by importance value (IV). USDA Forest Service, Northern Research Station.</p>
 
@@ -906,8 +925,10 @@
                 <p id="ref-wilke2024"><strong>Wilke, C.</strong> (2024). <em>cowplot: Streamlined plot theme and plot annotations for 'ggplot2'</em>. R package version 1.1.3, <a href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/package=cowplot</a>.</p>
 
                 <p id="ref-wu2020"><strong>Wu, Q.</strong> (2020). <em>whitebox: 'WhiteboxTools' R Frontend</em>. R package version 2.0.0, <a href="https://CRAN.R-project.org/package=whitebox">https://CRAN.R-project.org/package=whitebox</a>.</p>
-
+                
                 <p id="ref-zampieri2022"><strong>Zampieri, N.E., & Pau, S.</strong> (2022). The effects of fire, climate, and species composition on longleaf pine stand structure and growth rates across diverse natural communities in Florida. <em>Forest Ecology and Management</em>, 524, 120512.</p>
+            
+                <p id="ref-zurrell2020"><strong>Zurrell, D., Zimmermann, N.E., Gross, H., Baltensweiler, A., et al.</strong> (2020). Testing species assemblage predictions from stacked and joint species distribution models. <em>Journal of Biogeography</em>, (47)1, 101-113.</p>
             </div>
         </div>
     </main>
