@@ -413,7 +413,7 @@
             color: #333;
         }
 
-        .streamlit-section iframe {
+        iframe.streamlit-section {
             border: 1px solid #e6e6e6;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -474,7 +474,7 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 1024px) {
+        @media screen and (max-width: 1024px) {
             .hero h1 {
                 font-size: 2rem;
             }
@@ -504,18 +504,13 @@
                 font-size: 1rem;
             }
 
-            .streamlit-section iframe {
+            iframe.streamlit-section {
                 display: none !important;
-                border: 5px solid red !important;
-            }
-
-            .streamlit-section {
-                border: 3 px solid blue !important;
+                visibility: hidden !important;
             }
 
             .mobile-message {
                 display: block !important;
-                border: 3px solid green !important;
             }
         }
     </style>
