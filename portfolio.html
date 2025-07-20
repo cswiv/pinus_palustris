@@ -474,7 +474,7 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 1024px), (pointer: coarse)  {
+        @media (max-width: 1024px) {
             .hero h1 {
                 font-size: 2rem;
             }
@@ -505,11 +505,17 @@
             }
 
             .streamlit-section iframe {
-                display: none;
+                display: none !important;
+                border: 5px solid red !important;
+            }
+
+            .streamlit-section {
+                border: 3 px solid blue !important;
             }
 
             .mobile-message {
                 display: block !important;
+                border: 3px solid green !important;
             }
         }
     </style>
