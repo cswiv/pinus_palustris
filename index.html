@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chandler4.com | Portfolio</title>
-    <meta name="description" content="Species distribution modeling and habitat suitability analysis for Longleaf Pine (Pinus palustris) under climate change scenarios in Alabama using MaxEnt and bioclimatic, topographic, and ecologic variables.">
+    <title>chandler4.com | Home</title>
+    <meta name="description" content="Chandler S. White IV, GISP - Geographic Information Science Professional specializing in spatial analysis, conservation ecology, and species distribution modeling.">
     <style>
         * {
             margin: 0;
@@ -22,6 +22,10 @@
             --accent-color: #4a7c59;
             --border-color: #4a7c59;
             --shadow: rgba(0,0,0,0.08);
+            --footer-bg: #f8f9fa;
+            --footer-border: #e9ecef;
+            --footer-text: #6c757d;
+            --overlay-bg: #f8fffe;
         }
 
         body {
@@ -124,7 +128,7 @@
         .nav-menu ul {
             list-style: none;
             padding: 0 2rem;
-            margin: 0 0 1rem 0; /* Remove top margin, add bottom margin */
+            margin: 0 0 1rem 0;
         }
 
         .nav-menu li {
@@ -136,12 +140,12 @@
             text-decoration: none;
             font-weight: 500;
             padding: 0.75rem 1rem;
-            margin: 0; /* Remove any margin */
+            margin: 0;
             display: block;
             border-radius: 4px;
             transition: background-color 0.3s ease;
             text-align: left;
-            width: calc(100% - 2rem); /* Account for parent padding */
+            width: calc(100% - 2rem);
             margin-left: 0;
             margin-right: 0;
         }
@@ -169,6 +173,35 @@
             background-color: rgba(255,255,255,0.1);
         }
 
+        /* Theme toggle button in navigation */
+        .nav-menu .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            color: white !important;
+            padding: 0.75rem 1rem;
+            margin: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1rem;
+            width: auto;
+            box-sizing: border-box;
+        }
+
+        .nav-menu .theme-toggle:hover {
+            background-color: rgba(255,255,255,0.2);
+            color: white !important;
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -176,326 +209,221 @@
         }
 
         .hero {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             font-weight: 300;
         }
 
         .hero h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
         main {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
 
-        .section-box {
+        .intro-section {
             background: var(--card-bg);
             border-radius: 8px;
-            padding: 2.5rem;
-            margin: 2rem 0;
+            padding: 3rem;
+            margin-bottom: 3rem;
             box-shadow: 0 4px 20px var(--shadow);
             border: 1px solid var(--border-color);
             border-left: 4px solid var(--border-color);
+            text-align: center;
             transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .project-overview {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--primary-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .project-overview h3 {
+        .intro-section h3 {
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            transition: color 0.3s ease;
-        }
-
-        h2 {
-            color: var(--primary-color);
-            margin: 2.5rem 0 1.5rem 0;
-            font-size: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        h3 {
-            color: var(--accent-color);
-            margin: 2rem 0 1rem 0;
-            font-size: 1.3rem;
-            transition: color 0.3s ease;
-        }
-
-        h4 {
-            color: var(--primary-color);
-            margin: 1.5rem 0 0.8rem 0;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
-
-        .key-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            border-left: 4px solid var(--primary-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .stat-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .stat-description {
-            font-size: 0.9rem;
-            color: #666;
-            transition: color 0.3s ease;
-        }
-
-        .variable-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .variable-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1rem;
-            text-align: center;
-            border-left: 3px solid var(--primary-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .variable-item .contribution {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-            line-height: 1.4;
-            transition: color 0.3s ease;
-        }
-
-        .variable-item .period-value {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .variable-item .increase {
-            color: #27ae60;
-        }
-
-        .variable-item .decrease {
-            color: #e74c3c;
-        }
-
-        .variable-item .stable {
-            color: var(--primary-color);
-            transition: color 0.3s ease;
-        }
-
-        .variable-item .arrow {
-            color: #666;
-            margin: 0 0.3rem;
-            transition: color 0.3s ease;
-        }
-
-        .variable-item .name {
-            font-size: 0.8rem;
-            color: #666;
-            transition: color 0.3s ease;
-        }
-
-        .innovation-highlight {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .innovation-highlight h3 {
-            margin-bottom: 1rem;
-            color: white !important;
-        }
-
-        .interactive-map-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center !important;
-            margin: 2rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .interactive-map-section h3 {
-            color: white !important;
-            margin-bottom: 1rem;
-            text-align: center !important;
-        }
-
-        .interactive-map-section p {
-            text-align: center !important;
             margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            transition: color 0.3s ease;
         }
 
-        .map-button {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            color: white !important; /* Force white text */
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .map-button:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            color: white !important; /* Keep white text on hover */
-        }
-
-        .methods-overview {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .methods-overview h4 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .streamlit-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--primary-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .streamlit-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-
-        .streamlit-section p {
-            text-align: center;
+        .intro-section p {
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
             color: var(--text-color);
+            transition: color 0.3s ease;
         }
 
-        iframe.streamlit-section {
-            border: 1px solid var(--border-color);
+        .expertise-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .expertise-card {
+            background: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 4px 15px var(--shadow);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            text-align: center;
+            border: 1px solid var(--border-color);
         }
 
-        ul {
-            margin-left: 2rem;
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .expertise-card h4 {
+            color: var(--primary-color);
             margin-bottom: 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
 
-        li {
-            margin-bottom: 0.5rem;
+        .expertise-card p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            opacity: 0.8;
+            transition: color 0.3s ease;
         }
 
-        .back-to-index {
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .navigation-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 3rem;
             text-align: center;
             margin: 3rem 0;
         }
 
-        .back-to-index a {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white !important; /* Force white text */
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+        .navigation-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            color: white !important;
         }
 
-        .back-to-index a:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            color: white !important; /* Keep white text on hover */
+        .navigation-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-decoration: none;
+            color: white !important;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            color: white !important;
+        }
+
+        .nav-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: white !important;
+        }
+
+        .nav-card p {
+            opacity: 0.9;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .nav-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .credentials {
+            background: var(--overlay-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .credentials h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .credential-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--border-color);
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .credential-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
         }
 
         footer {
-            background-color: var(--card-bg);
+            background-color: var(--footer-bg);
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--footer-border);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         footer p {
-            color: #6c757d;
+            color: var(--footer-text);
             margin-bottom: 0.5rem;
             text-align: center;
             transition: color 0.3s ease;
@@ -510,156 +438,6 @@
             text-decoration: underline;
         }
 
-        /* Table of Contents Styles */
-        .toc-container {
-            position: fixed;
-            top: 50%;
-            right: 2rem;
-            transform: translateY(-50%);
-            width: 48px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 20px var(--shadow);
-            z-index: 500;
-            max-height: 70vh;
-            overflow-y: auto;
-            transition: all 0.3s ease;
-        }
-
-        .toc-container.expanded {
-            width: 280px;
-        }
-
-        .toc-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: border-radius 0.3s ease;
-        }
-
-        .toc-header.expanded {
-            border-radius: 8px 8px 0 0;
-            padding: 1rem;
-            justify-content: space-between;
-        }
-
-        .toc-header h4 {
-            margin: 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: white;
-            display: none;
-        }
-
-        .toc-header.expanded h4 {
-            display: block;
-        }
-
-        .toc-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .toc-toggle:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        .toc-content {
-            padding: 0;
-            max-height: 400px;
-            overflow-y: auto;
-            transition: max-height 0.3s ease;
-        }
-
-        .toc-content.collapsed {
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .toc-item {
-            border-bottom: 1px solid var(--border-color);
-            transition: border-color 0.3s ease;
-        }
-
-        .toc-item:last-child {
-            border-bottom: none;
-        }
-
-        .toc-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .toc-link:hover {
-            background-color: var(--card-bg);
-            border-left-color: var(--accent-color);
-            color: var(--primary-color);
-        }
-
-        .toc-link.active {
-            background-color: var(--card-bg);
-            border-left-color: var(--primary-color);
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .nav-menu .theme-toggle {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 4px;
-            color: white !important;
-            padding: 0.75rem 1rem;
-            margin: 1rem 2rem; /* Same horizontal margin as ul padding */
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 1rem;
-            width: auto; /* Let it size to content instead of full width */
-            box-sizing: border-box;
-        }
-
-        .nav-menu .theme-toggle:hover {
-            background-color: rgba(255,255,255,0.2);
-            color: white !important;
-        }
-
-        .theme-icon {
-            font-size: 1.2rem;
-            margin-left: 0.5rem;
-        }
-
         /* Dark mode styles */
         [data-theme="dark"] {
             --bg-color: #0f0f0f;
@@ -670,6 +448,10 @@
             --accent-color: #60a5fa;
             --border-color: #374151;
             --shadow: rgba(0,0,0,0.4);
+            --footer-bg: #1a1a1a;
+            --footer-border: #374151;
+            --footer-text: #9ca3af;
+            --overlay-bg: #262626;
         }
 
         [data-theme="dark"] a {
@@ -694,6 +476,10 @@
             --accent-color: #4a7c59;
             --border-color: #4a7c59;
             --shadow: rgba(0,0,0,0.08);
+            --footer-bg: #f8f9fa;
+            --footer-border: #e9ecef;
+            --footer-text: #6c757d;
+            --overlay-bg: #f8fffe;
         }
 
         [data-theme="light"] a {
@@ -704,26 +490,7 @@
             color: #2d5016;
         }
 
-        /* Dark mode specific adjustments */
-        [data-theme="dark"] .stat-description,
-        [data-theme="dark"] .variable-item .name,
-        [data-theme="dark"] .variable-item .arrow {
-            color: #9ca3af;
-        }
-
-        [data-theme="dark"] footer p {
-            color: #9ca3af;
-        }
-
-        [data-theme="dark"] .toc-link:hover {
-            background-color: #374151;
-        }
-
-        [data-theme="dark"] .toc-link.active {
-            background-color: #374151;
-        }
-
-        @media screen and (max-width: 1024px) {
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
@@ -752,30 +519,17 @@
             .page-title {
                 font-size: 1rem;
             }
-
-            iframe.streamlit-section {
-                display: none !important;
-                visibility: hidden !important;
-            }
-
-            .mobile-message {
-                display: block !important;
-            }
-
-            .toc-container {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
-    <header>
+<header>
         <div class="nav-overlay" id="navOverlay"></div>
         <div class="nav-menu" id="navMenu">
             <button class="close-menu" id="closeMenu">✕</button>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#" class="active">Portfolio</a></li>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="interactive_habitat_map.html" target="_blank">Interactive Map</a></li>
                 <li><a href="cv.html">Curriculum Vitae</a></li>
                 <li><a href="about.html">About</a></li>
@@ -788,465 +542,84 @@
         <div class="header-content">
             <button class="hamburger" id="hamburger">☰</button>
             <span class="site-title">chandler4.com</span>
-            <span class="separator">|</span>
-            <span class="page-title">Portfolio</span>
+            <span class="page-title"></span>
         </div>
     </header>
 
     <main>
-        <div class="toc-container" id="tocContainer">
-            <div class="toc-header" onclick="toggleTOC()" id="tocHeader">
-                <h4>Page Navigation</h4>
-                <button class="toc-toggle" id="tocToggle">+</button>
-        </div>
-        <div class="toc-content collapsed" id="tocContent">
-            <ul class="toc-list" id="tocList">
-                <!-- TOC items will be generated by JavaScript -->
-            </ul>
-        </div>
-    </div>
-        
         <div class="container">
             <div class="hero">
-                <h1>Climate Change Impact Assessment for <em>Pinus palustris</em> Mill.</h1>
+                <h1><strong>Chandler S. White, IV</strong></h1>
+                <h2>Geospatial Information Science Professional</h2>
             </div>
         </div>
-        <div class="project-overview">
-            <h3>Project Overview</h3>
-            <p><strong>Challenge:</strong> Longleaf pine ecosystems have declined from 37 million hectares to less than 5% of their original range (<a href="#ref-jose2006">Jose et al., 2006</a>; <a href="#ref-frost2006">Frost, 2006</a>). With climate change posing additional threats, conservation planning requires understanding how suitable habitat may shift across time periods.</p>
+        <br>
+        <section class="intro-section">
+            <h3>Welcome!</h3>
+            <p>Hello! My name is Chandler White. I'm a GIS professional with over 15 years of experience in both the public and private sectors. I currently serve as the GIS Technical Coordinator with the Department of Information Technology at Clayton County, Georgia.</p>
+            <p>My professional interests lie in spatial analysis, research, and application development, while my skills range from enterprise system design to field data collection. I'm passionate about applying geospatial technology to address real-world challenges and support data-driven decision making.</p>
+        </section>
+
+        <div class="expertise-overview">
+            <div class="expertise-card">
+                <span class="expertise-icon">🗺️</span>
+                <h4>Spatial Analysis & Modeling</h4>
+                <p>Advanced GIS techniques, including spatial analysis and modeling using R, ArcGIS, and specialized modeling software.</p>
+            </div>
+            <div class="expertise-card">
+                <span class="expertise-icon">🏛️</span>
+                <h4>Enterprise GIS</h4>
+                <p>System design, database administration, and application development for government operations.</p>
+            </div>
+            <div class="expertise-card">
+                <span class="expertise-icon">📊</span>
+                <h4>Research & Analysis</h4>
+                <p>Quantitative methods in statistical modeling and scientific research with experience in both academic and applied contexts.</p>
+            </div>
+        </div>
+
+        <section class="credentials">
+            <h4>Professional Credentials & Recognition</h4>
+            <div class="credentials-grid">
+                <div class="credential-item">
+                    <strong>GISP Certified</strong>
+                    Geographic Information Systems Professional (2022)
+                </div>
+                <div class="credential-item">
+                    <strong>M.S. Geospatial Science</strong>
+                    University of North Alabama (2017)
+                </div>
+                <div class="credential-item">
+                    <strong>National Recognition</strong>
+                    Awarded Esri's Special Achievement in GIS Award (2025)
+                </div>
+            </div>
+        </section>
+
+        <section class="navigation-section">
+            <h3>Explore My Work</h3>
+            <p>Discover my portfolio, professional background, and current research projects</p>
             
-            <p><strong>Solution:</strong> I developed an innovative habitat suitability model that integrates bioclimatic, topographic, and fire ecology variables with climate projections to assess habitat suitability across three time periods: current (1991-2020), mid-century (2041-2070), and late-century (2071-2100).</p>
-            
-            <p><strong>Takeaway:</strong> Unlike bioclimatic predictor-exclusive models, this approach incorporates fire regime suitability and canopy openness variables that capture longleaf pine's fire-dependent habitat requirements, providing projections within the context of longleaf pine's unique ecology (<a href="#ref-hirzel2008">Hirzel & Le Lay, 2008</a>).</p>
-        </div>
-
-        <div class="section-box">
-            <h2 id="key-findings">Key Findings</h2>
-
-            <div class="key-stats">
-                <div class="stat-card">
-                    <h4>Model Performance</h4>
-                    <div class="stat-value">0.706</div>
-                    <div class="stat-description">Test AUC (Decent discrimination)</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Current Suitable Habitat</h4>
-                    <div class="stat-value">106,598</div>
-                    <div class="stat-description">km² in Alabama (81.3% of state)</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Climate Refugia</h4>
-                    <div class="stat-value">88.3%</div>
-                    <div class="stat-description">Stable habitat across all periods</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Late-Century Change</h4>
-                    <div class="stat-value">+2.9%</div>
-                    <div class="stat-description">Modest habitat increase projected</div>
-                </div>
+            <div class="nav-grid">
+                <a href="portfolio.html" class="nav-card">
+                    <span class="nav-icon">💼</span>
+                    <h4>Portfolio</h4>
+                    <p>Featured project: Climate change impact assessment for <em>Pinus palustris</em> Mill. using habitat suitability modeling and spatiotemporal analysis</p>
+                </a>
                 
+                <a href="cv.html" class="nav-card">
+                    <span class="nav-icon">📄</span>
+                    <h4>Curriculum Vitae</h4>
+                    <p>Complete professional history, education, technical skills, research experience, and professional development activities</p>
+                </a>
+                
+                <a href="about.html" class="nav-card">
+                    <span class="nav-icon">📖</span>
+                    <h4>About</h4>
+                    <p>Personal background and other fun facts about me</p>
+                </a>
             </div>
-
-            <p><strong>Interesting Insights:</strong> In my model, longleaf pine demonstrates remarkable climate resilience in Alabama. While other fire-dependent species face 16-30% habitat losses (<a href="#ref-parks2019">Parks et al., 2019</a>; <a href="#ref-stevens2018">Stevens-Rumann et al., 2018</a>), longleaf pine habitat actually increases slightly under future climate scenarios, suggesting strong adaptive capacity. Additionally, regional trends within the study area reveal themselves, including habitat resilience in southeast Alabama. Compared to current U.S. Forest Service projections in their <a href="https://www.fs.usda.gov/nrs/atlas/tree/121" target="_blank">Climate Change Atlas</a> that have longleaf pine habitat expanding significantly under a number of scenarios, habitat expansion is far more constrained in my study (however, it should be noted that other factors, like study extent and methodology, may account for this and other discrepancies; <a href="#ref-usforestservice2024">U.S. Forest Service, 2020</a>).</p>
-        </div>
-
-        <div class="innovation-highlight">
-            <h3>Methodological Highlights</h3>
-            <p>The integration of ecological predictors improved model performance, pushing Test AUC above the critical 0.7 threshold (<a href="#ref-fielding1997" style="color: yellow;">Fielding & Bell, 1997</a>; <a href="ref-hosmer2013" style="color: yellow;">Hosmer et al., 2013</a>; <a href="#ref-swets1988" style="color: yellow;">Swets, 1988</a>). Canopy openness emerged as the most important predictor (35.7% contribution), validating the importance of fire-maintained savanna structure in habitat suitability modeling (<a href="#ref-mitchell2006" style="color: yellow;">Mitchell et al., 2006</a>).</p>
-        </div>
-
-        <div class="section-box">
-            <h2 id="variable-dynamics">Variable Dynamics</h2>
-            <p>Analysis revealed how environmental relationships evolve across time periods, providing insights for adaptive conservation planning:</p>
-
-            <div class="variable-grid">
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">35.7%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">28.8%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">39.0%</span>
-                    </div>
-                    <div class="name">Canopy Openness</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">20.3%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">8.6%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">4.4%</span>
-                    </div>
-                    <div class="name">Spring Precipitation</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">18.7%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">29.7%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">27.1%</span>
-                    </div>
-                    <div class="name">Sand Content (0-5cm)</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">1.5%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">3.0%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">4.0%</span>
-                    </div>
-                    <div class="name">Climatic Moisture Deficit</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">2.8%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">6.1%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">1.6%</span>
-                    </div>
-                    <div class="name">Fire Regime Suitability</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">11.6%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">4.2%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">4.9%</span>
-                    </div>
-                    <div class="name">Mean Annual Temperature</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">3.5%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">13%</span>
-                        <span class="arrow">→</span>
-                        <span class="decrease">9.8%</span>
-                    </div>
-                    <div class="name">Mean Annual Precipitation</div>
-                </div>
-                <div class="variable-item">
-                    <div class="contribution">
-                        <span class="stable">6.0%</span>
-                        <span class="arrow">→</span>
-                        <span class="stable">6.4%</span>
-                        <span class="arrow">→</span>
-                        <span class="increase">9.1%</span>
-                    </div>
-                    <div class="name">Topographic Wetness Index</div>
-                </div>
-            </div>
-
-            <h3>Key Temporal Patterns</h3>
-            <ul>
-                <li><strong>Fire-dependent structure remains critical:</strong> Canopy openness maintains dominance across all periods (<a href="#ref-boyer1990">Boyer, 1990</a>)</li>
-                <li><strong>Moisture relationships shift:</strong> Spring precipitation declines while annual drought stress increases</li>
-                <li><strong>Soil drainage amplification:</strong> Well-drained sandy soils become increasingly important mid-century</li>
-                <li><strong>Mid-century vulnerability:</strong> Multiple factors converge during 2041-2070 transition period</li>
-            </ul>
-            <br>
-            <iframe class="streamlit-section" src="https://py.cafe/embed/cswiv./maxent-response-curves-portfolio?pycafe-theme=light&pycafe-link-to-app=false" width="100%" height="600px" style="border: 1px solid #e6e6e6; border-radius: 8px;"></iframe>
-            
-            <div class="mobile-message" style="display: none; text-align: center; padding: 2rem; background: #f8f9fa; border: 1px solid #e6e6e6; border-radius: 8px; color: #666;">
-                <p><strong>Interactive content available on larger screens</strong></p>
-                <p>View this page on a tablet or desktop to see the interactive response curves.</p>
-            </div>
-        </div>
-
-        <div class="section-box">
-            <h2 id="technical-approach">Technical Approach</h2>
-
-            <div class="methods-overview">
-                <h4>Data Integration & Processing</h4>
-                <ul>
-                    <li><strong>Species Data:</strong> 246 high-quality GBIF occurrence records with 2km spatial filtering (<a href="#ref-GBIF2025pinus">GBIF.org, 2025</a>)</li>
-                    <li><strong>Climate Variables:</strong> ClimateNA v7.30 with 13-GCM ensemble under SSP2-4.5 scenario (<a href="#ref-wang2016">Wang et al., 2016</a>)</li>
-                    <li><strong>Ecological Enhancement:</strong> Custom fire regime suitability and canopy openness variables</li>
-                    <li><strong>Bias Correction:</strong> Sampling bias surface derived from 209,496 plant observations (<a href="#ref-GBIF2025plantae">GBIF.org, 2025</a>)</li>
-                </ul>
-            </div>
-
-            <div class="methods-overview">
-                <h4>Modeling Framework</h4>
-                <ul>
-                    <li><strong>Algorithm:</strong> MaxEnt with optimized parameters (LQHP features, 1.5 regularization) (<a href="#ref-phillips2006">Phillips et al., 2006</a>)</li>
-                    <li><strong>Variable Selection:</strong> Multi-criteria optimization balancing VIF, correlation, and ecological domains (<a href="#ref-dormann2013">Dormann et al., 2013</a>; <a href="ref-feng2019">Feng et al., 2019</a>)</li>
-                    <li><strong>Validation:</strong> 10-fold cross-validation with independent test sets</li>
-                    <li><strong>Climate Projections:</strong> Three time periods with refugia analysis</li>
-                </ul>
-            </div>
-
-            <h3>Study Design Spotlight</h3>
-            <ul>
-                <li><strong>Fire Regime Integration:</strong> Integration of LANDFIRE fire return interval data (<a href="#ref-landfire2016">LANDFIRE, 2016</a>)</li>
-                <li><strong>Habitat Structure Variables:</strong> NLCD-derived canopy openness capturing fire-maintained savanna conditions (<a href="#ref-homer2015">Homer et al., 2015</a>)</li>
-                <li><strong>Temporal Variable Analysis:</strong> Dynamic assessment of how species-environment relationships evolve</li>
-                <li><strong>Multi-scale Processing:</strong> Systematic resampling of variables from 30m to 1km resolution</li>
-            </ul>
-        </div>
-
-        <div class="interactive-map-section">
-            <h3>🗺️ Explore Interactive Results</h3>
-            <p>View detailed maps and county-level impact analysis through my interactive web mapping application.</p>
-            <a href="interactive_habitat_map.html" target="_blank" class="map-button">Launch Interactive Map</a>
-        </div>
-
-        <div class="section-box">
-            <h2 id="conservation-implications">Conservation Implications</h2>
-
-            <h3>Strategic Recommendations</h3>
-            <ul>
-                <li><strong>Prioritize Climate Refugia:</strong> Focus resources on 94,126 km² of stable habitat areas</li>
-                <li><strong>Adaptive Fire Management:</strong> Intensify prescribed burning during mid-century vulnerability window</li>
-                <li><strong>Target Well-Drained Soils:</strong> Sandy soil sites provide crucial buffering during climate transition</li>
-                <li><strong>Regional Focus:</strong> Southeastern Alabama shows highest resilience; central regions need enhanced management</li>
-            </ul>
-
-            <h3>Broader Impact</h3>
-            <p>This research demonstrates that incorporating species-specific ecological requirements improves model realism for fire-dependent species (<a href="#ref-dubuis2022">Dubuis et al., 2022</a>). The temporal variable importance analysis reveals that conservation strategies must adapt over time, with different factors becoming critical during transition periods.</p>
-
-            <p>The methodology is transferable to other fire-dependent ecosystems worldwide and provides a framework for understanding how species-environment relationships may evolve under climate change beyond simple habitat area projections (<a href="#ref-franklin2010">Franklin, 2010</a>).</p>
-            
-            <h3>Future Research Directions</h3>
-            <p>This study opens several avenues for future research. The overall project could be improved through expanded study area extent and higher resolution (beyond the 1 km used here), factors which were limited due to computational constraints of using a personal workstation. Future work could integrate more detailed data, such as soils from SSURGO and more up-to-date LANDFIRE data. The input DEM could be LiDAR-derived, which could produce higher-quality derivatives, like TWI, slope, and aspect. Additional research directions include:</p>
-                <ul>
-                    <li><strong>Effects of spatial extent and model design:</strong> Habitat suitability (and other ecological measures, such as species richness) could be modeled and compared at various extents and resolutions to assess model performance (<a href="#ref-nizamani2023">Nizamani et al., 2023</a>)</li>
-                    <li><strong>Ecosystem-level modeling:</strong> Expansion to include associated species and community dynamics (<a href="#ref-zurrell2020">Zurrell et al., 2020</a>)</li>
-                    <li><strong>Scenario expansion:</strong> Analysis under additional emission scenarios and time horizons</li>
-                    <li><strong>Methodological enhancement:</strong> Modern habitat suitability modeling software, such as the <a href="https://github.com/sylvainschmitt/sdmverse" target="_blank">sdmverse</a> R metapackage, could be used to enhance model design and user experience (<a href="#ref-kass2024">Kass et al., 2024</a>)</li>
-                </ul>
-        </div>
-
-        <div class="section-box">
-            <h2 id="technical-skills">Technical Skills Demonstrated</h2>
-            <ul>
-                <li><strong>Geospatial Analysis:</strong> R/QGIS integration, end-to-end data processing, coordinate system management</li>
-                <li><strong>Habitat Suitability Modeling:</strong> MaxEnt optimization, variable selection, bias correction</li>
-                <li><strong>Climate Data Processing:</strong> ClimateNA processing, multi-temporal analysis, raster grid handling</li>
-                <li><strong>Ecological Variable Development:</strong> Fire regime classification, habitat structure quantification</li>
-                <li><strong>Quantitative Analysis:</strong> Cross-validation, performance metrics, multi-criteria assessment</li>
-                <li><strong>Data Visualization:</strong> Interactive web mapping, summary graphics, scientific communication</li>
-                <li><strong>Conservation Planning:</strong> Refugia analysis, adaptive management frameworks, decision support</li>
-            </ul>
-        </div>
-
-        <div class="back-to-index">
-            <a href="index.html">← Back to Home</a>
-        </div>
-
-        <div class="section-box">
-            <h2 id="references">References</h2>
-            <div style="font-size: 0.9rem; line-height: 1.4;">
-                <p id="ref-americaslongleaf2024"><strong>America's Longleaf Restoration Initiative.</strong> (2024). 2024 Range-wide Accomplishment Report. America's Longleaf Restoration Initiative Partnership.</p>
-                
-                <p id="ref-americaslongleaf2025"><strong>America's Longleaf Restoration Initiative.</strong> (2025). Range-wide Conservation Plan for Longleaf Pine (2025-2040). America's Longleaf Restoration Initiative Partnership.</p>
-                
-                <p id="ref-anderson2010"><strong>Anderson, R.P., & Raza, A.</strong> (2010). The effect of the extent of the study region on GIS models of species geographic distributions and estimates of niche evolution: preliminary tests with montane rodents (genus Nephelomys) in Venezuela. <em>Journal of Biogeography</em>, 37(7), 1378-1393.</p>
-                
-                <p id="ref-araujo2007"><strong>Araújo, M.B., & Guisan, A.</strong> (2007). Five (or so) challenges for species distribution modelling. <em>Journal of Biogeography</em>, 33(10), 1677-1688.</p>
-
-                <p id="ref-auguie2017"><strong>Auguie, B.</strong> (2017). <em>gridExtra: Miscellaneous functions for "Grid" graphics</em>. R package version 2.3, <a href="https://CRAN.R-project.org/package=gridExtra">https://CRAN.R-project.org/package=gridExtra</a>.</p>
-                
-                <p id="ref-massada2012"><strong>Bar Massada, A., Radeloff, V.C., Stewart, S.I., & Hawbaker, T.J.</strong> (2009). Wildfire risk in the wildland–urban interface: A simulation study in northwestern Wisconsin. <em>Forest Ecology and Management</em>, 258(9), 1990-1999.</p>
-                
-                <p id="ref-exactextractr2023"><strong>Baston, D.</strong> (2023). <em>exactextractr: Fast Extraction from Raster Datasets using polygons</em>. R package version 0.10.0, <a href="https://CRAN.R-project.org/package=exactextractr">https://CRAN.R-project.org/package=exactextractr</a>.</p>
-                
-                <p id="ref-boyer1990"><strong>Boyer, W.D.</strong> (1990). Pinus palustris Mill. Longleaf pine. In R.M. Burns & B.H. Honkala (Eds.), <em>Silvics of North America: Volume 1, Conifers</em> (pp. 405-412). USDA Forest Service Agriculture Handbook 654.</p>
-
-                <p id="ref-campoa2023"><strong>Campôa, J., & Puhlick, J.J.</strong> (2023). Influence of climate fluctuations on Pinus palustris growth and drought resilience. <em>Forest Ecosystems</em>, 10, 100151.</p>
-
-                <p id="ref-cheng2024"><strong>Cheng, J., Schloerke, B., Karambelkar, B., & Xie, Y.</strong> (2024). <em>leaflet: Create interactive Web Maps with the JavaScript 'Leaflet' library</em>. R package version 2.2.2, <a href="https://CRAN.R-project.org/package=leaflet">https://CRAN.R-project.org/package=leaflet</a>.</p>
-                
-                <p id="ref-connor2018"><strong>Connor, T., Hull, V., Viña, A., et al.</strong> (2018). Effects of grain size and niche breadth on species distribution modeling. <em>Ecography</em>, 41(8), 1270-1282.</p>
-                
-                <p id="ref-croker1987"><strong>Croker, T.C.</strong> (1987). Longleaf pine: A history of man and a forest. USDA Forest Service, Forestry Report R8-FR7.</p>
-                
-                <p id="ref-daly2008"><strong>Daly, C., Halbleib, M., Smith, J.I., et al.</strong> (2008). Physiographically sensitive mapping of temperature and precipitation across the conterminous United States. <em>International Journal of Climatology</em>, 28, 2031–2064.</p>
-                
-                <p id="ref-davis2021"><strong>Davis, A.B., Jackman, T.R., Savage, J.A., & Huebner, C.D.</strong> (2021). Twenty‐five years of tree demography in a frequently burned oak woodland: implications for savanna restoration. <em>Ecosphere</em>, 12(12), e03844.</p>
-                
-                <p id="ref-dormann2013"><strong>Dormann, C.F., Elith, J., Bacher, S., et al.</strong> (2013). Collinearity: a review of methods to deal with it and a simulation study evaluating their performance. <em>Ecography</em>, 36(1), 27-46.</p>
-                
-                <p id="ref-dubuis2022"><strong>Dubuis, A., Rossier, L., Pottier, J., et al.</strong> (2022). Beyond topo-climatic predictors: Does habitats distribution and remote sensing information improve predictions of species distribution models? <em>Ecological Indicators</em>, 145, 109617.</p>
-
-                <p id="ref-elith2009"><strong>Elith, J., & Leathwick, J.R.</strong> (2009). Species distribution models: ecological explanation and prediction across space and time. <em>Annual Review of Ecology, Evolution, and Systematics</em>, 40, 677-697.</p>
-
-                <p id="ref-elith2011"><strong>Elith, J., Phillips, S.J., Hastie, T., et al.</strong> (2011). A statistical explanation of MaxEnt for ecologists. <em>Diversity and Distributions</em>, 17(1), 43-57.</p>
-
-                <p id="ref-farr2007"><strong>Farr, T.G., Rosen, P.A., Caro, E., et al.</strong> (2007). The Shuttle Radar Topography Mission. <em>Reviews of Geophysics</em>, 45(2), RG2004. <a href="https://doi.org/10.1029/2005RG000183">https://doi.org/10.1029/2005RG000183</a></p>
-                
-                <p id="ref-feng2019"><strong>Feng, X., Park, D.S., Liang, Y., Pandey, R., and Papeş, M.</strong> (2019). Collinearity in ecological niche modeling: Confusions and challenges. <em>Ecology and Evolution</em>, 9(18), 10365-10376.</p>
-                
-                <p id="ref-fielding1997"><strong>Fielding, A.H. & Bell, J.F.</strong> (1997). A review of methods for the assessment of prediction errors in conservation presence/absence models. <em>Environmental Conservation</em>, 24(1), 38-49.</p>
-                
-                <p id="ref-franklin2010"><strong>Franklin, J.</strong> (2010). <em>Mapping species distributions: spatial inference and prediction</em>. Cambridge University Press.</p>
-                
-                <p id="ref-frost1993"><strong>Frost, C.C.</strong> (1993). Four centuries of changing landscape patterns in the longleaf pine ecosystem. Proc Tall Timbers Fire Ecol Conf 18, 17-44.</p>
-
-                <p id="ref-frost2006"><strong>Frost, C.C.</strong> (2006). History and future of the longleaf pine ecosystem. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), <em>The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration</em> (pp. 9-48). Springer.</p>
-                
-                <p id="ref-garnier2024"><strong>Garnier, S., Ross, N., Rudis, R., et al.</strong> (2024). viridis(Lite) - Colorblind-Friendly Color Maps for R. viridis package version 0.6.5, <a href="https://CRAN.R-project.org/package=viridis">https://CRAN.R-project.org/package=viridis</a>.</p>
-                
-                <p id="ref-GBIF2025pinus"><strong>GBIF.org</strong> (19 June 2025) GBIF Occurrence Download <a href="https://doi.org/10.15468/dl.7xvyg9">https://doi.org/10.15468/dl.7xvyg9</a></p>
-
-                <p id="ref-GBIF2025plantae"><strong>GBIF.org</strong> (22 June 2025) GBIF Occurrence Download <a href="https://doi.org/10.15468/dl.6axvt7">https://doi.org/10.15468/dl.6axvt7</a></p>
-
-                <p id="ref-gilliam1999"><strong>Gilliam, F.S., & Platt, W.J.</strong> (1999). Effects of long-term fire exclusion on tree species composition and stand structure in an old-growth Pinus palustris (Longleaf pine) forest. <em>Plant Ecology</em>, 140(1), 15-26.</p>
-
-                <p id="ref-gomez2007"><strong>Gómez-Mendoza, L., & Arriaga, L.</strong> (2007). Modeling the effect of climate change on the distribution of oak and pine species of Mexico. <em>Conservation Biology</em>, 21(6), 1545-1555.</p>
-                
-                <p id="ref-griffith2001"><strong>Griffith, G.E., Omernik, J.M., Comstock, J.A., et al.</strong> (2001). Ecoregions of Alabama and Georgia (color poster with map, descriptive text, summary tables, and photographs). U.S. Geological Survey, Reston, VA.</p>
-                
-                <p id="ref-guisan2007"><strong>Guisan, A., Graham, C.H., Elith, J., et al.</strong> (2007). Sensitivity of predictive species distribution models to change in grain size. <em>Diversity and Distributions</em>, 13(3), 332-340.</p>
-                
-                <p id="ref-harris2014"><strong>Harris, I., Jones, P.D., Osborn, T.J., Lister, D.H.</strong> (2014). Updated high-resolution grids of monthly climatic observations - the CRU TS3.10 Dataset. <em>International Journal of Climatology</em>, 34, 623-642.</p>
-                
-                <p id="ref-hijmans2024"><strong>Hijmans, R.J., Phillips, S., Leathwick, J., & Elith, J.</strong> (2024). <em>dismo: Species distribution modeling</em>. R package version 1.3-16, <a href="https://CRAN.R-project.org/package=dismo">https://CRAN.R-project.org/package=dismo</a>.</p>
-
-                <p id="ref-hijmans2025"><strong>Hijmans, R.J.</strong> (2025). <em>terra: Spatial data analysis</em>. R package version 1.8-54, <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.</p>
-                
-                <p id="ref-hijmans2023"><strong>Hijmans, R.J.</strong> (2025). <em>raster: Geographic Data Analysis and Modeling</em>. R package version 3.6-32, <a href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p>
-
-                <p id="ref-hirzel2008"><strong>Hirzel, A.H., & Le Lay, G.</strong> (2008). Habitat suitability modelling and niche theory. <em>Journal of Applied Ecology</em>, 45(5), 1372-1381.</p>
-
-                <p id="ref-hirzel2006"><strong>Hirzel, A.H., Le Lay, G., Helfer, V., et al.</strong> (2006). Evaluating the ability of habitat suitability models to predict species presences. <em>Ecological Modelling</em>, 199(2), 142-152.</p>
-
-                <p id="ref-homer2015"><strong>Homer, C., Dewitz, J., Yang, L., et al.</strong> (2015). Completion of the 2011 National Land Cover Database for the conterminous United States–representing a decade of land cover change information. <em>Photogrammetric Engineering & Remote Sensing</em>, 81(5), 345-354.</p>
-
-                <p id="ref-hosmer2013"><strong>Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X.</strong> (2013). Assessing the fit of the model. In <em>Applied logistic regression</em> (3rd ed.). (pp. 153-223). John Wiley & Sons.</p>
-                
-                <p id="ref-iverson2012"><strong>Iverson, L. R., Matthews, S.N., Prasad, A.M., M.P. Peters, et al.</strong> (2012). Development of risk matrices for evaluating climatic change responses of forested habitats. <em>Climatic Change</em>, 114(2), 231-243. doi: 10.1007/s10584-012-0412-x. <a href="https://www.fs.usda.gov/treesearch/pubs/41221">https://www.fs.usda.gov/treesearch/pubs/41221</a></p>
-                
-                <p id="ref-iverson2008"><strong>Iverson, L. R., Prasad, A.M., Matthews, S.N., and M. Peters.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em>, 254, 390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
-                
-                <p id="ref-iverson2019"><strong>Iverson, L.R., Peters, M.P., Prasad, A.M., & Matthews, S.N.</strong>(2019). Analysis of Climate Change Impacts on Tree Species of the Eastern US: Results of DSTRIB-II Modeling. <em>Forests</em>, 10(4), 302. doi: 10.3390/f10040302 <a href="https://www.fs.usda.gov/treesearch/pubs/57857">https://www.fs.usda.gov/treesearch/pubs/57857</a></strong></p>
-                
-                <p id="ref-iversonetal2019"><strong>Iverson, L. R., Prasad, A. M., Peters, M. P., & Matthews, S. N.</strong> (2019). Facilitating Adaptive Forest Management under Climate Change: A Spatially Specific Synthesis of 125 Species for Habitat Changes and Assisted Migration over the Eastern United States. <em>Forests</em>, 10(11), 989. doi: 10.3390/f10110989 <a href="https://www.fs.usda.gov/treesearch/pubs/59105">https://www.fs.usda.gov/treesearch/pubs/59105</a></p>
-                
-                <p id="ref-jose2006"><strong>Jose, S., Jokela, E.J., & Miller, D.L.</strong> (Eds.). (2006). <em>The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration</em>. Springer Science & Business Media.</p>
-
-                <p id="ref-kartesz1994"><strong>Kartesz, J.T.</strong> (1994). A synonymized checklist of the vascular flora of the United States, Canada, and Greenland. (2nd Ed.). (2 vols.). Timber Press.</p>
-                
-                <p id="ref-kass2024"><strong>Kass, J.M., Smith, A.B., Warren, D.L., Vignali, S., et al.</strong> (2024). Achieving higher standards in species distribution modeling by leveraging the diversity of available software. <em>Ecography</em>, 2025(2), 1-14.</p>
-                
-                <p id="ref-kearney2009"><strong>Kearney, M., & Porter, W.</strong> (2009). Mechanistic niche modelling: combining physiological and spatial data to predict species' ranges. <em>Ecology Letters</em>, 12(4), 334-350.</p>
-
-                <p id="ref-khosravi2016"><strong>Khosravi, R., Hemami, M.R., Malekian, M., et al.</strong> (2016). Maxent modeling for predicting potential distribution of goitered gazelle in central Iran: the effect of extent and grain size on performance of the model. <em>Turkish Journal of Zoology</em>, 40(4), 574-585.</p>
-                
-                <p id="ref-kirkman2001"><strong>Kirkman, L.K., Mitchell, R.J., Helton, R.C., & Drew, M.B.</strong> (2001). Productivity and species richness across an environmental gradient in a fire-dependent ecosystem. <em>American Journal of Botany</em>, 88(11), 2119-2128.</p>
-
-                <p id="ref-kirkman2017"><strong>Kirkman, L.K., & Jack, S.B.</strong> (2017). The longleaf pine ecosystem: An overview. In L.K. Kirkman & S.B. Jack (Eds.), <em>Ecological Restoration and Management of Longleaf Pine Forests</em> (pp. 1-10). CRC Press.</p>
-                
-                <p id="ref-landfire2016"><strong>LANDFIRE.</strong> (2016). Biophysical Settings Fire Return Interval (FRI_SURFAC), LANDFIRE 2.0.0, U.S. Department of the Interior, Geological Survey, and U.S. Department of Agriculture. Accessed 03 June 2025 at <a href="http://www.landfire.gov/viewer">http://www.landfire.gov/viewer</a>.</p>
-
-                <p id="ref-landers1995"><strong>Landers, J.L., Van Lear, D.H., & Boyer, W.D.</strong> (1995). The longleaf pine forests of the Southeast: Requiem or renaissance? <em>Journal of Forestry</em>, 93(11), 39-44.</p>
-                
-                <p id="ref-li2019"><strong>Li, J., Fan, K., Zhou, Y., et al.</strong> (2019). Interactive spatial scale effects on species distribution modeling: The case of the giant panda. <em>Scientific Reports</em>, 9(1), 14563.</p>
-                
-                <p id="ref-mahony2022"><strong>Mahony, C.R., Wang, T., Hamann, A., & Cannon, A.J.</strong> (2022). A CMIP6 ensemble for downscaled monthly climate normals over North America. <em>International Journal of Climatology</em>, 42(11), 5871-5891. <a href="https://doi.org/10.1002/joc.7566">https://doi.org/10.1002/joc.7566</a></p>
-                
-                <p id="ref-matthews2011"><strong>Matthews, S. N., Iverson, L.R., Prasad, A.M., Peters, M.P., & P. G. Rodewald.</strong> (2008). Estimating potential habitat for 134 eastern US tree species under six climate scenarios. <em>Forest Ecology and Management</em>, 254, 390-406. <a href="http://www.treesearch.fs.fed.us/pubs/13412">http://www.treesearch.fs.fed.us/pubs/13412</a></p>
-                
-                <p id="ref-mitchell2006"><strong>Mitchell, R.J., Hiers, J.K., O'Brien, J.J., et al.</strong> (2006). Silviculture that sustains: the nexus between silviculture, frequent prescribed fire, and conservation of biodiversity in longleaf pine forests of the southeastern United States. <em>Canadian Journal of Forest Research</em>, 36(12), 2724-2736.</p>
-
-                <p id="ref-moudry2023"><strong>Moudrý, V., Keil, P., Gábor, L., et al.</strong> (2023). Scale mismatches between predictor and response variables in species distribution modelling: A review of practices for appropriate grain selection. <em>Diversity and Distributions</em>, 29(4), 459-475.</p>
-                
-                <p id="ref-muscarella2014"><strong>Muscarella, R., Galante, P.J., Soley-Guardia, M., et al.</strong> (2014). ENMeval: An R package for conducting spatially independent evaluations and estimating optimal model complexity for MaxEnt ecological niche models. <em>Methods in Ecology and Evolution</em>, 5(11), 1198-1205.</p>
-                
-                <p id="ref-nfwf2024"><strong>National Fish and Wildlife Foundation.</strong> (2024). NFWF announces record $33.5 million in conservation grants to restore longleaf pine habitat and help at-risk wildlife. NFWF Press Release, June 18, 2024.</p>
-                
-                <p id="ref-nrcs2024"><strong>Natural Resources Conservation Service.</strong> (2024). Longleaf Pine Initiative. USDA Natural Resources Conservation Service. Retrieved from <a href="https://www.nrcs.usda.gov/programs-initiatives/longleaf-pine-initiative">https://www.nrcs.usda.gov/programs-initiatives/longleaf-pine-initiative</a></p>
-
-                <p id="ref-neuwirth2022"><strong>Neuwirth, E.</strong> (2022). <em>RColorBrewer: ColorBrewer palettes</em>. R package version 1.1-3, <a href="https://CRAN.R-project.org/package=RColorBrewer">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
-                
-                <p id="ref-nizamani2023"><strong>Nizamani, M.M., Papeş, M., Wang, H-F., & Harris, A.J.</strong> (2023). How does spatial extent and environmental limits affect the accuracy of species richness estimates from ecological niche models? A case study with North American Pinaceae and Cactaceae. <em>Ecology and Evolution</em>, 13(4), 1-14.</p>
-                
-                <p id="ref-noss1989"><strong>Noss, R.F.</strong> (1989). Longleaf pine and wiregrass: Keystone species of an endangered ecosystem. <em>Natural Areas Journal</em>, 9(4), 211-213.</p>
-                
-                <p id="ref-noss2013"><strong>Noss, R.F., Platt, W.J., Sorrie, B.A., et al.</strong> (2013). How global biodiversity hotspots may go unrecognized: lessons from the North American Coastal Plain. <em>Diversity and Distributions</em>, 21(2), 236-244.</p>
-                
-                <p id="ref-outcalt2000"><strong>Outcalt, K.W.</strong> (2000). The longleaf pine ecosystem of the South. <em>Native Plants Journal</em>, 1(1), 42-53.</p>
-                
-                <p id="ref-parks2019"><strong>Parks, S.A., Holsinger, L.M., Voss, M.A., et al.</strong> (2019). Mean composite fire severity metrics computed with Google Earth Engine offer improved accuracy and expanded mapping potential. <em>Remote Sensing</em>, 11(8), 879.</p>
-                
-                <p id="ref-pebesma2018"><strong>Pebesma, E.</strong> (2018). Simple features for R: Standardized support for spatial vector data. <em>The R Journal</em>, 10(1), 439-446.</p>
-                
-                <p id="ref-peet2006"><strong>Peet, R.K.</strong> (2006). Ecological Classification of Longleaf Pine Woodlands. In S. Jose, E.J. Jokela, & D.L. Miller (Eds.), <em>The Longleaf Pine Ecosystem: Ecology, Silviculture, and Restoration</em> (pp. 51-93). Springer.</p>
-
-                <p id="ref-peters2019"><strong>Peters, M.P., Iverson, L.R., Prasad, A.M., & Matthews, S.N.</strong> (2019). Utilizing the density of inventory samples to define a hybrid lattice for species distribution models: DISTRI-II for 135 eastern U.S. trees. <em>Ecology and Evolution</em>. doi: 10.1002/ece3.5445 <a href="https://www.fs.usda.gov/treesearch/pubs/58353">https://www.fs.usda.gov/treesearch/pubs/58353</a></p>
-                
-                <p id="ref-usforestservice2024"><strong>Peters, M.P., Prasad, A.M., & Matthews, S.N.</strong> (2020). Climate change tree atlas. Version 4. U.S. Forest Service, Northern Research Station and Northern Institute of Applied Climate Science, Delaware, OH. <a href="https://www.nrs.fs.fed.us/atlas">https://www.nrs.fs.fed.us/atlas</a></p>
-                
-                <p id="ref-phillips2006"><strong>Phillips, S.J., Anderson, R.P., & Schapire, R.E.</strong> (2006). Maximum entropy modeling of species geographic distributions. <em>Ecological Modelling</em>, 190(3-4), 231-259.</p>
-                
-                <p id="ref-phillips2017"><strong>Phillips, S.J., Anderson, R.P., Schapire, R.E., et al.</strong> (2017). Opening the black box: an open-source release of Maxent. <em>Ecography</em>, 40(7), 887-893.</p>
-
-                <p id="ref-poggio2021"><strong>Poggio, L., de Sousa, L.M., Batjes, N.H., et al.</strong> (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. <em>Soil</em>, 7, 217–240.</p>
-
-                <p id="ref-prasad2007"><strong>Prasad, A.M., Iverson, L.R., Matthews, S.N., & Peters, M.</strong> (2007). Eastern United States Climate Change Tree Atlas - Suitable habitat for Pinus palustris (longleaf pine) as measured by importance value (IV). USDA Forest Service, Northern Research Station.</p>
-
-                <p id="ref-prasad2013"><strong>Prasad, A. M., Gardiner, J. D., Iverson, L. R., Matthews, S. N., & Peters, M.</strong> (2013). Exploring tree species colonization potentials using a spatially explicit simulation model: implications for four oaks under climate change. <em>Global Change Biology</em>, 19(7), 2196–2208. doi: 10.1111/gcb.12204 <a href="https://www.fs.usda.gov/treesearch/pubs/43705">https://www.fs.usda.gov/treesearch/pubs/43705</a></p>
-
-                <p id="ref-qgis2025"><strong>QGIS Development Team.</strong> (2025). QGIS Geographic Information System. QGIS Association. <a href="https://www.qgis.org/">https://www.qgis.org/</a></p>
-                
-                <p id="ref-rcore2025"><strong>R Core Team.</strong> (2025). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/">https://www.R-project.org/</a></p>
-                
-                <p id="ref-ramos2023"><strong>Ramos, A.M., Santos, J.A., & Pereira, J.S.</strong> (2023). Species Distribution Modelling under Climate Change Scenarios for Maritime Pine (Pinus pinaster Aiton) in Portugal. <em>Forests</em>, 14(3), 591.</p>
-
-                <p id="ref-samuelson2017"><strong>Samuelson, L.J., Butnor, J.R., Johnsen, K.H., et al.</strong> (2017). Ecosystem carbon density and allocation across a chronosequence of longleaf pine forests. <em>Ecological Applications</em>, 27(1), 244-259.</p>
-                
-                <p id="ref-song2013"><strong>Song, W., Kim, E., Lee, D., et al.</strong> (2013). The sensitivity of species distribution modeling to scale differences. <em>Ecological Modelling</em>, 248, 113-118.</p>
-                
-                <p id="ref-stevens2018"><strong>Stevens-Rumann, C.S., Kemp, K.B., Higuera, P.E., et al.</strong> (2018). Evidence for declining forest resilience to wildfires under climate change. <em>Ecology Letters</em>, 21(2), 243-252.</p>
-                
-                <p id="ref-swets1988"><strong>Swets, J.A.</strong> (1988). Measuring the accuracy of diagnostic systems. <em>Science</em>, 240(4857), 1285-1293.</p>
-                
-                <p id="ref-talltimbers2024"><strong>Tall Timbers Research Station.</strong> (2024). Fire Ecology Program. Tall Timbers Research Station & Land Conservancy. Retrieved from <a href="https://talltimbers.org/fire-ecology-program/">https://talltimbers.org/fire-ecology-program/</a></p>
-                
-                <p id="ref-templeLang2023"><strong>Temple Lang, D.</strong> (2023). <em>XML: Tools for Parsing and Generating XML Within R and S-Plus</em>. R package version 3.99-0.18, <a href="https://CRAN.R-project.org/package=XML">https://CRAN.R-project.org/package=XML</a>.</p>
-                
-                <p id="ref-turek2023"><strong>Turek, M.E., Poggio, L., Batjes, N.H., et al.</strong> (2023). Global mapping of volumetric water retention at 100, 330 and 15 000 cm suction using the WoSIS database. <em>International Soil and Water Conservation Research</em>, 11(2), 225-239.</p>
-
-                <p id="ref-uscensus2023"><strong>U.S. Census Bureau.</strong> (2023). TIGER/Line Shapefiles. U.S. Census Bureau, Geography Division. <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a></p>
-                
-                <p id="ref-urbanek2021"><strong>Urbanek, S.</strong> (2021). <em>rJava: Low-Level R to Java Interface</em>. R package version 1.0-6, <a href="https://CRAN.R-project.org/package=rJava">https://CRAN.R-project.org/package=rJava</a>.</p>
-                
-                <p id="ref-vaidyanathan2023"><strong>Vaidyanathan, R., Xie, Y., Allaire, J., et al.</strong> (2023). <em>htmlwidgets: HTML Widgets for R</em>. R package version 1.6.4, <a href="https://CRAN.R-project.org/package=htmlwidgets">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
-                
-                <p id="ref-varner2005"><strong>Varner, J.M., Gordon, D.R., Putz, F.E., & Hiers, J.K.</strong> (2005). Restoring fire to long-unburned Pinus palustris ecosystems: novel fire effects and consequences for long-unburned ecosystems. <em>Restoration Ecology</em>, 13(3), 536-544.</p>
-
-                <p id="ref-walker1984"><strong>Walker, J., & Peet, R.K.</strong> (1984). Composition and species diversity of pine-wiregrass savannas of the Green Swamp, North Carolina. <em>Vegetatio</em>, 55(3), 163-179.</p>
-
-                <p id="ref-wang2006"><strong>Wang, T., Hamann, A., Spittlehouse, D.L., Aitken, S.N.</strong> (2006). Development of scale-free climate data for western Canada for use in resource management. <em>International Journal of Climatology</em>, 26(3), 383-397.</p>
-                
-                <p id="ref-wang2012"><strong>Wang, T., Hamann, A., Spittlehouse, D.L., Murdock, T.Q.</strong> (2012). ClimateWNA – High-resolution spatial climate data for western North America. <em>Journal of Applied Meteorology and Climatology</em>, 51, 16-29.</p>
-                
-                <p id="ref-wang2016"><strong>Wang, T., Hamann, A., Spittlehouse, D.L., & Carroll, C.</strong> (2016). Locally Downscaled and Spatially Customizable Climate Data for Historical and Future Periods for North America. <em>PLoS ONE</em>, 11(6).</p>
-
-                <p id="ref-ware1993"><strong>Ware, S., Frost, C., & Doerr, P.D.</strong> (1993). Southern mixed hardwood forest: The former longleaf pine forest. In W.H. Martin, S.G. Boyce, & A.C. Echternacht (Eds.), <em>Biodiversity of the Southeastern United States: Lowland Terrestrial Communities</em> (pp. 447-493). John Wiley & Sons.</p>
-
-                <p id="ref-wei2021"><strong>Wei, T., & Simko, V.</strong> (2024). <em>R package 'corrplot': Visualization of a Correlation Matrix</em>, R package version 0.95, <a href="https://github.com/taiyun/corrplot">https://github.com/taiyun/corrplot</a>.</p>
-
-                <p id="ref-wickham2016"><strong>Wickham, H.</strong> (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. R package version 3.5.2, Springer-Verlag New York, <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
-                
-                <p id="ref-wickham2023"><strong>Wickham, H., François, R., Henry, L., et al.</strong> (2023). <em>dplyr: A grammar of data manipulation</em>. R package version 1.1.4, <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
-
-                <p id="ref-wickham2023httr"><strong>Wickham, H.</strong> (2023). <em>httr: Tools for working with URLs and HTTP</em>. R package version 1.4.7, <a href="https://CRAN.R-project.org/package=httr">https://CRAN.R-project.org/package=httr</a>.</p>
-                
-                <p id="ref-wilke2024"><strong>Wilke, C.</strong> (2024). <em>cowplot: Streamlined plot theme and plot annotations for 'ggplot2'</em>. R package version 1.1.3, <a href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/package=cowplot</a>.</p>
-
-                <p id="ref-wu2020"><strong>Wu, Q.</strong> (2020). <em>whitebox: 'WhiteboxTools' R Frontend</em>. R package version 2.0.0, <a href="https://CRAN.R-project.org/package=whitebox">https://CRAN.R-project.org/package=whitebox</a>.</p>
-                
-                <p id="ref-zampieri2022"><strong>Zampieri, N.E., & Pau, S.</strong> (2022). The effects of fire, climate, and species composition on longleaf pine stand structure and growth rates across diverse natural communities in Florida. <em>Forest Ecology and Management</em>, 524, 120512.</p>
-            
-                <p id="ref-zurrell2020"><strong>Zurrell, D., Zimmermann, N.E., Gross, H., Baltensweiler, A., et al.</strong> (2020). Testing species assemblage predictions from stacked and joint species distribution models. <em>Journal of Biogeography</em>, (47)1, 101-113.</p>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -1304,136 +677,6 @@
         }
         
         lastScrollTop = scrollTop;
-    });
-
-    // Table of Contents functionality
-    function generateTOC() {
-        const headings = document.querySelectorAll('h2');
-        const tocList = document.getElementById('tocList');
-    
-        headings.forEach((heading, index) => {
-            // Create unique ID if it doesn't exist
-            if (!heading.id) {
-                heading.id = `heading-${index}`;
-            }
-        
-            const li = document.createElement('li');
-            li.className = 'toc-item';
-        
-            const a = document.createElement('a');
-            a.href = `#${heading.id}`;
-            a.className = 'toc-link';
-            a.textContent = heading.textContent;
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                smoothScrollTo(heading.id);
-            });
-        
-            li.appendChild(a);
-            tocList.appendChild(li);
-        });
-    }
-
-    function smoothScrollTo(targetId) {
-        const target = document.getElementById(targetId);
-        if (target) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight - 20;
-        
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-
-    function toggleTOC() {
-        const container = document.getElementById('tocContainer');
-        const content = document.getElementById('tocContent');
-        const toggle = document.getElementById('tocToggle');
-        const header = document.getElementById('tocHeader');
-    
-        const isCollapsed = content.classList.contains('collapsed');
-    
-        if (isCollapsed) {
-            // Expanding
-            container.classList.add('expanded');
-            content.classList.remove('collapsed');
-            header.classList.add('expanded');
-            toggle.textContent = '−';
-        } else {
-            // Collapsing
-            container.classList.remove('expanded');
-            content.classList.add('collapsed');
-            header.classList.remove('expanded');
-            toggle.textContent = '+';
-        }
-    }
-
-    function updateActiveTOC() {
-        const headings = document.querySelectorAll('h2');
-        const tocLinks = document.querySelectorAll('.toc-link');
-        const headerHeight = document.querySelector('header').offsetHeight;
-        const scrollPos = window.scrollY + headerHeight + 100;
-    
-        let activeHeading = null;
-    
-        headings.forEach((heading) => {
-            if (heading.offsetTop <= scrollPos) {
-                activeHeading = heading;
-            }
-        });
-    
-        tocLinks.forEach(link => link.classList.remove('active'));
-    
-        if (activeHeading) {
-            const activeLink = document.querySelector(`a[href="#${activeHeading.id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-    }
-
-    // Initialize TOC when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        generateTOC();
-    
-        // Update active section on scroll
-        let scrollTimeout;
-        window.addEventListener('scroll', function() {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(updateActiveTOC, 50);
-        });
-    });
-
-    // Update your existing header scroll code to account for TOC
-    // Replace the existing window scroll event listener with this updated version:
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-        // Add shadow effect
-        if (scrollTop > 10) {
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-        } else {
-            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-        }
-
-        // Auto-hide/show header based on scroll direction
-        if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) {
-            return;
-        }
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-    
-        lastScrollTop = scrollTop;
-    
-        // Update TOC active state (with throttling)
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveTOC, 50);
     });
 
     // Theme toggle functionality
