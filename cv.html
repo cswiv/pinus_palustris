@@ -119,7 +119,7 @@
         }
 
         .nav-menu a {
-            color: white;
+            color: white !important; /* Force white text in both themes */
             text-decoration: none;
             font-weight: 500;
             padding: 0.75rem 1rem;
@@ -130,6 +130,7 @@
 
         .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255,255,255,0.2);
+            color: white !important; /* Ensure white text on hover/active too */
         }
 
         .close-menu {
@@ -275,7 +276,7 @@
         .education-item:last-child, .experience-item:last-child {
             border-bottom: none;
             margin-bottom: 0;
-            padding-bottom: 0;
+            padding-bottom: 1.5rem; /* Keep the padding for proper spacing */
         }
 
         .degree, .position {
@@ -393,7 +394,7 @@
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 4px;
-            color: white;
+            color: white !important; /* Force white text for theme toggle */
             padding: 0.75rem 1rem;
             margin: 1rem 2rem;
             cursor: pointer;
@@ -407,6 +408,7 @@
 
         .nav-menu .theme-toggle:hover {
             background-color: rgba(255,255,255,0.2);
+            color: white !important; /* Ensure white text on hover */
         }
 
         .theme-icon {
@@ -743,6 +745,7 @@
                 <div class="employer"><a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a></div>
                 <div class="date">February 2023</div>
                 <div class="description">Contributed 42.1 hours to earthquake response efforts in Türkiye and Syria, performing feature extraction from satellite imagery</div>
+                <p></p>
             </div>
         </section>
     </main>
