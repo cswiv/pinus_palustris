@@ -1,849 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chandler4.com | Curriculum Vitae</title>
-    <meta name="description" content="Curriculum vitae for Chandler S. White IV, GISP - Geographic Information Science Professional specializing in spatial analysis, ecology, and app development.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            background-color: var(--bg-color);
-            padding-top: 80px;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added transform transition */
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            margin-right: 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .site-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-
-        .separator {
-            margin: 0 0.5rem;
-            opacity: 0.7;
-        }
-
-        .page-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            transition: left 0.3s ease;
-            z-index: 1001;
-            padding-top: 5rem;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-menu.open {
-            left: 0;
-        }
-
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .nav-menu ul {
-            list-style: none;
-            padding: 0 2rem;
-        }
-
-        .nav-menu li {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-menu a {
-            color: white !important; /* Force white text in both themes */
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.75rem 1rem;
-            display: block;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            background-color: rgba(255,255,255,0.2);
-            color: white !important; /* Ensure white text on hover/active too */
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .close-menu:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        body {
-            padding-top: 80px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-        }
-
-        .hero h2 {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .cv-header {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 20px var(--shadow);
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--border-color);
-        }
-
-        .cv-header h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
-        }
-
-        .cv-header .title {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .cv-header .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .cv-header .contact-info a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .cv-header .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        .download-section {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: white !important; /* Force white text in both themes */
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-            color: white !important; /* Ensure white text on hover too */
-        }
-        .cv-section {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 20px var(--shadow);
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--border-color);
-        }
-
-        .cv-section h4 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .education-item, .experience-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .education-item:last-child, .experience-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 1.5rem; /* Keep the padding for proper spacing */
-        }
-
-        .degree, .position {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .institution, .employer {
-            color: var(--accent-color);
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .description {
-            margin-top: 0.5rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .skill-category h5 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .skill-category ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .skill-category li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.2rem;
-            position: relative;
-        }
-
-        .skill-category li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .certifications {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-        }
-        
-
-        .certifications h5 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .cert-item {
-            background: var(--bg-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .award-image {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 6px;
-            margin: 1rem auto;
-            display: block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-color);
-            transition: border-color 0.3s ease;
-        }
-
-        .award-caption {
-            font-style: italic;
-            color: #666;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            line-height: 1.4;
-        }
-        
-        .nav-menu .theme-toggle {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 4px;
-            color: white !important; /* Force white text for theme toggle */
-            padding: 0.75rem 1rem;
-            margin: 1rem 2rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 1rem;
-        }
-
-        .nav-menu .theme-toggle:hover {
-            background-color: rgba(255,255,255,0.2);
-            color: white !important; /* Ensure white text on hover */
-        }
-
-        .theme-icon {
-            font-size: 1.2rem;
-            margin-left: 0.5rem;
-        }
-
-        /* Dark mode styles */
-        [data-theme="dark"] {
-            --bg-color: #0f0f0f;
-            --text-color: #e0e0e0;
-            --card-bg: #1a1a1a;
-            --primary-color: #3b82f6;
-            --primary-dark: #1e40af;
-            --accent-color: #60a5fa;
-            --border-color: #374151;
-            --shadow: rgba(0,0,0,0.4);
-        }
-
-        [data-theme="dark"] a {
-            color: #60a5fa; /* Light blue - matches your accent color */
-            transition: color 0.3s ease;
-        }
-
-        [data-theme="dark"] a:hover {
-            color: #93c5fd; /* Lighter blue on hover */
-        }
-
-        [data-theme="dark"] a:visited {
-            color: #a78bfa; /* Light purple for visited links */
-        }
-
-        [data-theme="light"] {
-            --bg-color: #fdfdfd;
-            --text-color: #333;
-            --card-bg: white;
-            --primary-color: #2d5016;
-            --primary-dark: #4a7c59;
-            --accent-color: #4a7c59;
-            --border-color: #4a7c59;
-            --shadow: rgba(0,0,0,0.08);
-        }
-
-        [data-theme="light"] a {
-            color: #4a7c59; /* Your existing green */
-        }
-
-        [data-theme="light"] a:hover {
-            color: #2d5016; /* Darker green on hover */
-        }
-        
-        footer {
-            background-color: var(--card-bg);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        footer p {
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Dark mode specific adjustments */
-        [data-theme="dark"] .date,
-        [data-theme="dark"] .award-caption {
-            color: #9ca3af;
-        }
-
-        [data-theme="dark"] .education-item,
-        [data-theme="dark"] .experience-item {
-            border-bottom: 1px solid #374151;
-        }
-
-        [data-theme="dark"] footer p {
-            color: #9ca3af;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .profile-header {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-photo {
-                justify-self: center;
-            }
-
-            .expertise-grid, .contact-grid, .interests-list {
-                grid-template-columns: 1fr;
-            }
-
-            .header-content {
-                padding: 1rem;
-            }
-
-            .site-title {
-                font-size: 1.1rem;
-            }
-
-            .page-title {
-                font-size: 1rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chandler4.com | Curriculum Vitae</title>
+<meta name="description" content="Curriculum vitae of Chandler S. White IV, GISP.">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
-        <div class="nav-overlay" id="navOverlay"></div>
-        <div class="nav-menu" id="navMenu">
-            <button class="close-menu" id="closeMenu">✕</button>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="interactive_habitat_map.html" target="_blank">Interactive Map</a></li>
-                <li><a href="#" class="active">Curriculum Vitae</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle">
-                <span>Dark Mode</span>
-                <span class="theme-icon">🌙</span>
-            </button>
-        </div>
-        <div class="header-content">
-            <button class="hamburger" id="hamburger">☰</button>
-            <span class="site-title">chandler4.com</span>
-            <span class="separator">|</span>
-            <span class="page-title">Curriculum Vitae</span>
-        </div>
-    </header>
+<h1><a href="index.html">chandler4.com</a></h1>
 
-    <main>
-        <div class="container">
-            <div class="hero">
-                <h1>Curriculum Vitae</h1>
-            </div>
-        </div>
-        <section class="cv-header">
-            <h3>Chandler S. White IV, GISP</h3>
-            <p class="title">GIS Technical Coordinator | Clayton County, Georgia</p>
-            <p><em>Geographic information science professional with expertise in research, spatial analysis, and modern GIS platforms</em></p>
-            <div class="contact-info">
-                <span><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a></span>
-                <span><a href="https://www.chandler4.com">www.chandler4.com</a></span>
-                <span>334-728-2974</span>
-            </div>
-        </section>
+<nav>
+<ul>
+<li><a href="portfolio.html">portfolio</a></li>
+<li><a href="interactive_habitat_map.html">interactive map</a></li>
+<li><a href="cv.html">curriculum vitae</a></li>
+<li><a href="about.html">about</a></li>
+<li><button class="plain" id="theme-toggle" type="button">dark mode</button></li>
+</ul>
+</nav>
+</header>
 
-        <div class="download-section">
-            <a href="assets/c_white_cv.pdf" target="_blank" class="download-btn">📄 Download Full CV (PDF)</a>
-        </div>
+<hr>
 
-        <section class="cv-section">
-            <h4>Education</h4>
-            <div class="education-item">
-                <div class="degree">M.S., Geospatial Science</div>
-                <div class="institution">University of North Alabama, Florence, AL</div>
-                <div class="date">December 2017</div>
-                <div class="description">
-                    <strong>Thesis:</strong> Phylogenetic patterns of invasive macrophytes in freshwater communities<br>
-                    <strong>Advisor:</strong> Dr. Jonathan Fleming
-                </div>
-            </div>
-            <div class="education-item">
-                <div class="degree">B.A., Geography</div>
-                <div class="institution">Auburn University, Auburn, AL</div>
-                <div class="date">December 2009</div>
-            </div>
-        </section>
+<div class="intro">
+<h2>Chandler S. White IV, GISP</h2>
+<p>GIS Technical Coordinator, Clayton County, Georgia<br>
+<i>Geographic information science professional with expertise in research, spatial analysis, and modern GIS platforms</i></p>
+<p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> / 334-728-2974</p>
+<p><a href="assets/c_white_cv.pdf">Download full CV (PDF)</a></p>
+</div>
+<h3>Education</h3>
+<p><b>M.S., Geospatial Science</b>, University of North Alabama, Florence, AL (December 2017)<br><strong>Thesis:</strong> Phylogenetic patterns of invasive macrophytes in freshwater communities<br/>
+<strong>Advisor:</strong> Dr. Jonathan Fleming</p>
+<p><b>B.A., Geography</b>, Auburn University, Auburn, AL (December 2009)</p>
+<h3>Professional Experience</h3>
+<p><b>GIS Technical Coordinator</b>, Clayton County Department of Information Technology (January 2024 - Present)</p>
+<p><b>GIS Analyst</b>, Clayton County Department of Information Technology (June 2023 - January 2024)</p>
+<p><b>Systems Administrator</b>, Clayton County Department of Transportation and Development (October 2018 - June 2023)</p>
+<p><b>Graduate Teaching Assistant</b>, University of North Alabama (January 2016 - December 2017)<br>Courses: Quantitative Methods, GIS, Physical Geography, Cartography, Remote Sensing</p>
+<h3>Research Experience</h3>
+<p><b>Research Assistant</b>, AlabamaView (2008 - 2010)<br>Collected and processed environmental products derived from Landsat program platforms</p>
+<p><b>Research Volunteer</b>, Lake Watch of Lake Martin (2009 - 2010)<br>Collected and processed water samples using spectroradiometer and other digital sensors for eutrophication analysis</p>
+<h3>Technical Skills & Expertise</h3>
+<p><b>GIS & Spatial Analysis</b></p><ul>
+<li>Esri (ArcGIS Enterprise, Online, Pro)</li>
+<li>QGIS</li>
+<li>Remote sensing &amp; image analysis</li>
+<li>Web GIS</li>
+<li>Python</li>
+<li>R</li>
+</ul>
+<p><b>Spatial Modeling</b></p><ul>
+<li>MaxEnt</li>
+<li>ClimateNA</li>
+<li>TerrSet</li>
+<li>Suitability analyses (site selection, ecological niche)</li>
+<li>Model validation &amp; evaluation</li>
+</ul>
+<p><b>Data & Systems</b></p><ul>
+<li>Database administration</li>
+<li>Enterprise GIS systems</li>
+<li>ETL design</li>
+<li>System integration</li>
+<li>Geospatial app development</li>
+</ul>
+<p><b>Research Areas</b></p><ul>
+<li>Community ecology</li>
+<li>Lentic ecosystems</li>
+<li>Transportation</li>
+<li>GIS Governance</li>
+<li>Quantitative and qualitative methods</li>
+<li>Physical and cultural geography</li>
+</ul>
+<p><b>Professional Certifications</b></p>
+<p><strong>Geographic Information Systems Professional (GISP)</strong><br/>
+                    GIS Certification Institute | Credential ID 161424 | Awarded 2022</p>
+<h3>Selected Awards & Recognition</h3>
+<p><b>Special Achievement in GIS Award</b>, Esri (2025)<br><img src="assets/sag.jpg" alt="2025 Esri UC Awards Ceremony; Chandler White, Jack Dangermond (Esri cofounder and president; left-to-right)" width="320"><br><small>2025 Esri UC Awards Ceremony; Chandler White, Jack Dangermond (Esri cofounder and president; left-to-right)</small></p>
+<p><b>Government-to-Government Award</b>, Government Management Information Sciences, Georgia Chapter (2025)</p>
+<p><b>David W. Icenogle Award for Outstanding Senior in Geography</b>, Auburn University (2009)</p>
+<h3>Professional Development & Service</h3>
+<p><b>Member</b>, <a href="https://thegpn.org/" target="_blank">Geospatial Professional Network</a></p>
+<p><b>Member</b>, <a href="https://gageospatial.org/" target="_blank">Georgia Geospatial Association</a></p>
+<p><b>GIS Track Organizer</b>, <a href="https://www.gagmis.org/" target="_blank">Georgia GMIS</a> (May 2025)<br>Designed and served as instructor of record for a series of six GIS workshops at the <a href="https://www.gagmis.org/conferences/spring-2025-conference/" target="_blank">Spring 2025 Georgia GMIS Conference.</a></p>
+<p><b>GIS Day Workshop Organizer</b>, Morrow High School (November 2024)<br>Organized and led GIS Day Expo event and GIS mini-workshop for students</p>
+<p><b>Humanitarian Mapping Volunteer</b>, <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a> (February 2023)<br>Contributed 42.1 hours to earthquake response efforts in Türkiye and Syria, performing feature extraction from satellite imagery</p>
 
-        <section class="cv-section">
-            <h4>Professional Experience</h4>
-            <div class="experience-item">
-                <div class="position">GIS Technical Coordinator</div>
-                <div class="employer">Clayton County Department of Information Technology</div>
-                <div class="date">January 2024 - Present</div>
-            </div>
-            <div class="experience-item">
-                <div class="position">GIS Analyst</div>
-                <div class="employer">Clayton County Department of Information Technology</div>
-                <div class="date">June 2023 - January 2024</div>
-            </div>
-            <div class="experience-item">
-                <div class="position">Systems Administrator</div>
-                <div class="employer">Clayton County Department of Transportation and Development</div>
-                <div class="date">October 2018 - June 2023</div>
-            </div>
-            <div class="experience-item">
-                <div class="position">Graduate Teaching Assistant</div>
-                <div class="employer">University of North Alabama</div>
-                <div class="date">January 2016 - December 2017</div>
-                <div class="description">
-                    Courses: Quantitative Methods, GIS, Physical Geography, Cartography, Remote Sensing
-                </div>
-            </div>
-        </section>
+<hr>
 
-        <section class="cv-section">
-            <h4>Research Experience</h4>
-            <div class="experience-item">
-                <div class="position">Research Assistant</div>
-                <div class="employer">AlabamaView</div>
-                <div class="date">2008 - 2010</div>
-                <div class="description">
-                    Collected and processed environmental products derived from Landsat program platforms
-                </div>
-            </div>
-            <div class="experience-item">
-                <div class="position">Research Volunteer</div>
-                <div class="employer">Lake Watch of Lake Martin</div>
-                <div class="date">2009 - 2010</div>
-                <div class="description">
-                    Collected and processed water samples using spectroradiometer and other digital sensors for eutrophication analysis
-                </div>
-            </div>
-        </section>
+<footer>
+<p>Chandler S. White IV, GISP<br>
+<a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a></p>
+</footer>
 
-        <section class="cv-section">
-            <h4>Technical Skills & Expertise</h4>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h5>GIS & Spatial Analysis</h5>
-                    <ul>
-                        <li>Esri (ArcGIS Enterprise, Online, Pro)</li>
-                        <li>QGIS</li>
-                        <li>Remote sensing & image analysis</li>
-                        <li>Web GIS</li>
-                        <li>Python</li>
-                        <li>R</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h5>Spatial Modeling</h5>
-                    <ul>
-                        <li>MaxEnt</li>
-                        <li>ClimateNA</li>
-                        <li>TerrSet</li>
-                        <li>Suitability analyses (site selection, ecological niche)</li>
-                        <li>Model validation & evaluation</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h5>Data & Systems</h5>
-                    <ul>
-                        <li>Database administration</li>
-                        <li>Enterprise GIS systems</li>
-                        <li>ETL design</li>
-                        <li>System integration</li>
-                        <li>Geospatial app development</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h5>Research Areas</h5>
-                    <ul>
-                        <li>Community ecology</li>
-                        <li>Lentic ecosystems</li>
-                        <li>Transportation</li>
-                        <li>GIS Governance</li>
-                        <li>Quantitative and qualitative methods</li>
-                        <li>Physical and cultural geography</li>
-                    </ul>
-                </div>
-            </div>
-            <br>
-            <div class="certifications">
-                <h5>Professional Certifications</h5>
-                <div class="cert-item">
-                    <strong>Geographic Information Systems Professional (GISP)</strong><br>
-                    GIS Certification Institute | Credential ID 161424 | Awarded 2022
-                </div>
-            </div>
-        </section>
-
-        <section class="cv-section">
-            <h4>Selected Awards & Recognition</h4>
-            <div class="experience-item">
-                <div class="position">Special Achievement in GIS Award</div>
-                <div class="employer">Esri</div>
-                <div class="date">2025</div>
-                <img src="assets/sag.jpg" alt="2025 Esri UC Awards Ceremony; Chandler White, Jack Dangermond (Esri cofounder and president; left-to-right)" class="award-image">
-                <p class="award-caption">2025 Esri UC Awards Ceremony; Chandler White, Jack Dangermond (Esri cofounder and president; left-to-right)</p>
-            </div>
-            <div class="experience-item">
-                <div class="position">Government-to-Government Award</div>
-                <div class="employer">Government Management Information Sciences, Georgia Chapter</div>
-                <div class="date">2025</div>
-            </div>
-            <div class="experience-item">
-                <div class="position">David W. Icenogle Award for Outstanding Senior in Geography</div>
-                <div class="employer">Auburn University</div>
-                <div class="date">2009</div>
-            </div>
-        </section>
-
-        <section class="cv-section">
-            <h4>Professional Development & Service</h4>
-            <div class="experience-item">
-                <div class="position">Member</div>
-                <div class="employer"><a href="https://thegpn.org/" target="_blank">Geospatial Professional Network</a></div>
-            </div>
-            <div class="experience-item">
-                <div class="position">Member</div>
-                <div class="employer"><a href="https://gageospatial.org/" target="_blank">Georgia Geospatial Association</a></div>
-            </div>
-            <div class="experience-item">
-                <div class="position">GIS Track Organizer</div>
-                <div class="employer"><a href="https://www.gagmis.org/" target="_blank">Georgia GMIS</a></div>
-                <div class="date">May 2025</div>
-                <div class="description">Designed and served as instructor of record for a series of six GIS workshops at the <a href="https://www.gagmis.org/conferences/spring-2025-conference/" target="_blank">Spring 2025 Georgia GMIS Conference.</a></div>
-            </div>            
-            <div class="experience-item">
-                <div class="position">GIS Day Workshop Organizer</div>
-                <div class="employer">Morrow High School</div>
-                <div class="date">November 2024</div>
-                <div class="description">Organized and led GIS Day Expo event and GIS mini-workshop for students</div>
-            </div>
-            <div class="experience-item">
-                <div class="position">Humanitarian Mapping Volunteer</div>
-                <div class="employer"><a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a></div>
-                <div class="date">February 2023</div>
-                <div class="description">Contributed 42.1 hours to earthquake response efforts in Türkiye and Syria, performing feature extraction from satellite imagery</div>
-                <p></p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p><strong>Chandler S. White IV, GISP</strong></p>
-        <p><a href="mailto:chandlerswhite@gmail.com">chandlerswhite@gmail.com</a> | <a href="https://www.chandler4.com">www.chandler4.com</a></p>
-    </footer>
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    const navOverlay = document.getElementById('navOverlay');
-    const closeMenu = document.getElementById('closeMenu');
-    const header = document.querySelector('header');
-
-    let lastScrollTop = 0;
-    let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
-
-    function openMenu() {
-        navMenu.classList.add('open');
-        navOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenuFunc() {
-        navMenu.classList.remove('open');
-        navOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    hamburger.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMenuFunc);
-    navOverlay.addEventListener('click', closeMenuFunc);
-
-    // Smart header with scroll direction detection
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add shadow effect
-        if (scrollTop > 10) {
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-        } else {
-            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-        }
-
-        // Auto-hide/show header based on scroll direction
-        if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) {
-            return; // Don't do anything if scroll distance is too small
-        }
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down & past 100px - hide header
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up - show header
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollTop = scrollTop;
-    });
-
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
-
-        function updateThemeIcon(theme) {
-            const themeText = themeToggle.querySelector('span:first-child');
-            const themeIcon = themeToggle.querySelector('.theme-icon');
-    
-            if (theme === 'dark') {
-                themeText.textContent = 'Light Mode';
-                themeIcon.textContent = '☀️';
-            } else {
-                themeText.textContent = 'Dark Mode';
-                themeIcon.textContent = '🌙';
-            }
-        }
-
-    // Initialize theme on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-    });
-</script>
+<script src="site.js"></script>
 </body>
 </html>
