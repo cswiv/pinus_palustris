@@ -1,0 +1,53 @@
+/* chandler4.com — deliberately minimal. Browser defaults do most of the work. */
+
+body {
+  font-family: "Times New Roman", Times, serif;   /* swap for: "Courier New", Courier, monospace */
+  font-size: 16px;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #000000;
+  max-width: 44em;
+  margin: 1em auto;
+  padding: 0 1em;
+}
+
+a { color: #0000ee; }
+a:visited { color: #551a8b; }
+
+header, footer, .intro { text-align: center; }
+
+h1 { font-size: 1.6em; margin: 0.4em 0; }
+h2 { font-size: 1.25em; margin: 1.4em 0 0.4em; }
+h3 { font-size: 1.05em; margin: 1.2em 0 0.3em; }
+
+hr { border: 0; border-top: 1px solid #000; margin: 1.2em 0; }
+
+nav ul { list-style: none; padding: 0; margin: 0.5em 0; }
+nav li { display: inline; white-space: nowrap; }
+nav li + li::before { content: " / "; }
+
+img { max-width: 100%; height: auto; }
+
+button.plain {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0;
+  cursor: pointer; text-decoration: underline;
+}
+
+footer { font-size: 0.9em; margin-top: 2em; }
+
+/* Small screens: a touch more breathing room for tapping nav links. */
+@media (max-width: 600px) {
+  body { font-size: 17px; padding: 0 1.2em; }
+  nav li { line-height: 2; }
+}
+
+/* Dark mode: white on black. Link blues lightened to clear WCAG AA (4.5:1) on #000. */
+body.dark { background: #000000; color: #ffffff; }
+body.dark a { color: #8ab4f8; }          /* ~8.5:1 on black */
+body.dark a:visited { color: #c58af9; }  /* ~7.4:1 on black */
+body.dark hr { border-top-color: #fff; }
+
+dt { font-weight: bold; margin-top: 0.6em; }
+dd { margin: 0 0 0.4em 1.5em; }
+iframe { border: 1px solid #000; }
+body.dark iframe { border-color: #fff; }
